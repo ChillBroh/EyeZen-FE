@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 // Import React components
 import NotFound from "../pages/NotFound";
 import Home from "../pages/Home";
+import InfantQuizHome from "../pages/infantQuiz/HomePage";
 
 const Router = () => {
   return (
@@ -13,6 +14,9 @@ const Router = () => {
 
       {/* Handle a 404 Not Found route */}
       <Route path="*" element={<NotFound />} />
+
+      {/* Infant Eye Care Home Page */}
+      <Route path="/infant_eye_care" element={<InfantQuizHome />} />
     </Routes>
   );
 };
