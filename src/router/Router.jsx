@@ -4,8 +4,8 @@ import { Routes, Route } from "react-router-dom";
 // Import React components
 import NotFound from "../pages/NotFound";
 import Home from "../pages/Home";
-import NearSighted from "../pages/yasiru/NearSighted";
-import NearSightedTestView from "../pages/yasiru/NearSightedTestView";
+import NearSighted from "../pages/sighted-tests/NearSighted";
+import NearSightedTestView from "../pages/sighted-tests/NearSightedTestView";
 
 const Router = () => {
   return (
@@ -17,7 +17,7 @@ const Router = () => {
       <Route path="*" element={<NotFound />} />
 
 
-      {/* -----------Yasiru Routes--------------------- */}
+      {/* -----------sighted test Routes--------------------- */}
       <Route path="/near-sighted" element={<NearSighted />} />
       <Route path="/test-view" element={<NearSightedTestView />} />
 
