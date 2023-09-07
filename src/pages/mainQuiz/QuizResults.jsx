@@ -40,7 +40,7 @@ const QuizResults = () => {
               </p>
             </div>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center ">
             <Link to="/">
               <Button btnName="Back To Home" />
             </Link>

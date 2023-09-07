@@ -1,30 +1,39 @@
 import React, { useState } from "react";
 import data from "../../assets/databse/data";
 
-const Questions = () => {
-  const questions = data[0];
-  const [checked, setChecked] = useState(undefined);
+const Questions = (props) => {
+  const questions = data;
+
+  const [checked, setChecked] = useState(false);
   const selectRadio = () => {
     setChecked(true);
-    console.log("Radio Checked");
+    props.onRadioSelect(true);
   };
   return (
     <div>
-      <h1 className="text-3xl text-center mt-16">{questions.question}</h1>
-      <div className="mt-16 text-2xl ml-48 sm:ml-16 xs:ml-0">
-        <ul key={questions.id}>
-          {questions.options.map((value, index) => (
-            <li>
-              <input
-                type="radio"
-                name="answers"
-                id={`q${index}-option`}
-                value={checked}
-                onChange={selectRadio}
-                className="mx-16 ml-32 mt-10"
-              />
-              <label htmlFor={`q${index}-option`}>{value}</label>
-            </li>
+      <h1 className="text-3xl text-center mt-16">
+        {questions[props.num].question}
+      </h1>
+      <div className="mt-16 text-3xl ml-48 sm:ml-16 xs:ml-0">
+        <ul>
+          {questions[props.num].options.map((value, index) => (
+            <div key={index}>
+              <li>
+                <input
+                  type="radio"
+                  name="answers"
+                  id={`q${index}-option`}
+                  className="mx-16 ml-32 mt-10 hover:cursor-pointer"
+                  onClick={selectRadio}
+                />
+                <label
+                  htmlFor={`q${index}-option`}
+                  className="hover:cursor-pointer"
+                >
+                  {value}
+                </label>
+              </li>
+            </div>
           ))}
         </ul>
       </div>
