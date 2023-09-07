@@ -17,6 +17,10 @@ const inside_nav = [
     path: "/infant_quiz",
     display: "Infant Eyecare Quiz",
   },
+  {
+    path: "/tests",
+    display: "Eye Checkup Tests for Adults",
+  },
 ];
 
 const Navbar = () => {
@@ -46,12 +50,12 @@ const Navbar = () => {
         <h3 className="text-2xl font-bold text-[#41A4FF]">EyeZen</h3>
       </div>
       {/* <!-- left header section --> */}
-      <div className="items-center hidden space-x-5 md:flex">
+      <div className="items-center hidden space-x-16 md:flex">
         <Link to="/">Home</Link>
         <Menu as="div" className="relative inline-block text-left">
           <div>
             <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2">
-              Eyecare Quizes
+              Eyecare
               <ChevronDownIcon
                 className="-mr-1 mt-1 h-5 w-5 text-gray-400"
                 aria-hidden="true"
@@ -91,7 +95,6 @@ const Navbar = () => {
             </Menu.Items>
           </Transition>
         </Menu>
-        <Link to="/tests">EyeCheckup Tests</Link>
         <Link to="/ayurvedic">Ayurvedic Eyecare</Link>
         <Link to="/kid_games_home">Games for Kids</Link>
         <Link to="/infant_eye_care">Infant Eye care</Link>
