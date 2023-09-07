@@ -8,6 +8,7 @@ import MainQuizHome from "../pages/mainQuiz/MainQuizHome";
 import CreateFact from "../pages/infantQuiz/InfantFact";
 import InfantQuiz from "../pages/infantQuiz/InfantQuiz";
 import Home from "../pages/Home";
+import QuizPage from "../pages/mainQuiz/QuizPage";
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
 
       {/* main Quiz */}
       <Route path="/main_quiz" element={<MainQuizHome />} />
+      <Route path="/main_questions" element={<QuizPage />} />
 
       {/* Handle a 404 Not Found route */}
       <Route path="*" element={<NotFound />} />
