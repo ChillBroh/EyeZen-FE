@@ -2,6 +2,7 @@ import { initTE, Stepper, Ripple } from "tw-elements";
 import { useEffect } from "react";
 import StepperComponent from "../../components/StepperComponent.jsx";
 import Button from "../../components/Button";
+import { Link } from "react-router-dom";
 
 const MainQuizHome = () => {
   useEffect(() => {
@@ -32,7 +33,9 @@ const MainQuizHome = () => {
         </div>
       </div>
       <div className="flex justify-center">
-        <Button btnName="Start Quiz" />
+        <Link to="/main_questions">
+          <Button btnName="Start Quiz" />
+        </Link>
       </div>
     </div>
   );
