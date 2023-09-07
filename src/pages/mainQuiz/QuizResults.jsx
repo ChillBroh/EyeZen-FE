@@ -1,17 +1,19 @@
 import React from "react";
+import ResultsShow from "../../assets/mainquiz/Quizresults.jpg";
 
 const QuizResults = () => {
   return (
-    <div>
-      <div className="grid grid-cols-2 ">
-        <div>Previous</div>
-        <div>Next</div>
-      </div>
-
-      <div className="flex items-center">
-        <div className="py-4 text-red-600">01</div>
-        <div className="py-12 text-red-600">02</div>
-        <div className="py-8 text-red-600">03</div>
+    <div className="mx-auto max-w-2xl mt-24 px-4  sm:px-6  lg:max-w-7xl lg:px-8">
+      <div className="grid grid-cols-2">
+        <div className="grid grid-rows-4">
+          <div>Your Results</div>
+          <div>score</div>
+          <div>disease</div>
+          <div>btn</div>
+        </div>
+        <div>
+          <img src={ResultsShow} alt="" />
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 const Data = [
   {
     id: 1,
-    question: "hehe hello",
-    options: ["option 1", "option 2"],
+    question:
+      "Have you experienced any sudden and severe vision loss in one or both eyes?",
+    options: ["Yes", "No"],
   },
   {
     id: 1,

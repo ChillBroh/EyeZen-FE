@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../../components/Button";
 import Questions from "./Questions";
+import { Link } from "react-router-dom";
 
 const QuizPage = () => {
   // Event handler for next button
@@ -26,7 +27,9 @@ const QuizPage = () => {
           <Button btnName="Prev" onClick={onPrev}></Button>
         </div>
         <div className="flex justify-end">
-          <Button btnName="Next" color="black" onClick={onNext}></Button>
+          <Link to="/main_quiz_results">
+            <Button btnName="Next" color="black" onClick={onNext}></Button>
+          </Link>
         </div>
       </div>
     </div>
