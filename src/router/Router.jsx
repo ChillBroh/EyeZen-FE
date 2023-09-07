@@ -6,12 +6,13 @@ import NotFound from "../pages/NotFound";
 import InfantQuizHome from "../pages/infantQuiz/HomePage";
 import MainQuizHome from "../pages/mainQuiz/MainQuizHome";
 import CreateFact from "../pages/infantQuiz/InfantFact";
+import Home from "../pages/Home";
 
 const Router = () => {
   return (
     <Routes>
       {/* App routes*/}
-      <Route path="/" element={<MainQuizHome />} />
+      <Route path="/" element={<Home />} />
 
       {/* main Quiz */}
       <Route path="/main_quiz" element={<MainQuizHome />} />
