@@ -14,7 +14,7 @@ const inside_nav = [
     display: "Main Quiz",
   },
   {
-    path: "/infant_eye_care",
+    path: "/infant_quiz",
     display: "Infant Eyecare Quiz",
   },
 ];
