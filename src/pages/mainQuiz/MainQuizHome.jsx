@@ -1,4 +1,4 @@
-import { initTE, Stepper, Ripple } from "tw-elements";
+import { initTE, Stepper } from "tw-elements";
 import { useEffect } from "react";
 import StepperComponent from "../../components/StepperComponent.jsx";
 import Button from "../../components/Button";
@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 
 const MainQuizHome = () => {
   useEffect(() => {
-    initTE({ Stepper, Ripple });
-    console.log("Mounted");
+    initTE({ Stepper });
   }, []);
   return (
     <div className="mx-auto max-w-2xl mt-24 px-4  sm:px-6  lg:max-w-7xl lg:px-8">
