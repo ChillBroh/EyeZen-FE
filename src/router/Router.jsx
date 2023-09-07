@@ -6,6 +6,7 @@ import NotFound from "../pages/NotFound";
 import InfantQuizHome from "../pages/infantQuiz/HomePage";
 import MainQuizHome from "../pages/mainQuiz/MainQuizHome";
 import CreateFact from "../pages/infantQuiz/InfantFact";
+import InfantQuiz from "../pages/infantQuiz/InfantQuiz";
 import Home from "../pages/Home";
 
 const Router = () => {
@@ -22,6 +23,9 @@ const Router = () => {
 
       {/* Infant Eye Care Home Page */}
       <Route path="/infant_eye_care" element={<InfantQuizHome />} />
+
+      {/* Infant Eye Care Home Page */}
+      <Route path="/infant_quiz" element={<InfantQuiz />} />
 
       {/* Infant Eye Care Home Page */}
       <Route path="/infant_facts" element={<CreateFact />} />
