@@ -3,15 +3,16 @@ import axios from 'axios';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 function VoiceToText() {
-  const [data, setData] = useState({});
+  const [words, setWords] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [attempts, setAttempts] = useState({ success: 0, failure: 0 }); // Track attempts
+  const [attempts, setAttempts] = useState({ success: 0, failure: 0 });
+  const [currentWordIndex, setCurrentWordIndex] = useState(null);
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/v1/sighted/') // Updated API endpoint
+      .get('http://localhost:5000/api/word')
       .then((res) => {
-        setData(res.data);
+        setWords(res.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -39,25 +40,21 @@ function VoiceToText() {
   };
 
   const handleSpeechRecognitionResult = () => {
-    if (transcript.toLowerCase() === data.message.toLowerCase()) {
-      handleSuccessfulAttempt();
-    } else {
-      handleFailedAttempt();
+    if (currentWordIndex !== null) {
+      if (transcript.toLowerCase() === words[currentWordIndex].word.toLowerCase()) {
+        handleSuccessfulAttempt();
+      } else {
+        handleFailedAttempt();
+      }
     }
   };
 
   const startListeningAndUpdateData = () => {
     SpeechRecognition.startListening();
-    
-    // After starting listening, initiate a GET request to update data
-    axios
-      .get('http://localhost:5000/api/v1/sighted/')
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+    // Generate a new random index to display a different word
+    const newWordIndex = Math.floor(Math.random() * words.length);
+    setCurrentWordIndex(newWordIndex);
 
     handleSpeechRecognitionResult();
   };
@@ -70,7 +67,9 @@ function VoiceToText() {
             <p>Loading data...</p>
           ) : (
             <div>
-              <div className='mb-16 justify-center items-center'>{data.message}</div>
+              {currentWordIndex !== null && (
+                <div className='mb-16 justify-center items-center'>{words[currentWordIndex].word}</div>
+              )}
             </div>
           )}
         </div>
