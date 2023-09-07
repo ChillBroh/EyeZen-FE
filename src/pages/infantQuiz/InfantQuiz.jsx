@@ -24,6 +24,17 @@ const InfantQuiz = () => {
   
     return (
       <div>
+        <section className="py-20 px-8 mx-auto mb-10" style={{width: "80%"}}>
+        <div>
+        <div className="text-5xl text-center mb-10">
+          Infant Vision
+          <span className="text-[#004AAD]"> Test Quiz</span>
+        </div>
+      </div>
+        <p className="text-lg text-gray-600 text-center">
+        Welcome to the Infant Development Quiz! This quiz will test your knowledge about the fascinating world of infants and their early development milestones. Whether you're a parent, caregiver, or just curious about infant development, this quiz will help you learn more about the incredible journey of babies during their first year of life.
+        </p>
+      </section>
         <section className="bg-white-100 py-8 px-8 mx-auto mb-10 shadow-2xl shadow-gray-400" style={{width: "80%"}}>
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Frequently Asked Questions</h2>
           <ul className="mx-auto"> {/* Center the FAQ section */}
