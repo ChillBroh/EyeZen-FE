@@ -91,9 +91,10 @@ const Navbar = () => {
             </Menu.Items>
           </Transition>
         </Menu>
-
+        <Link to="/tests">EyeCheckup Tests</Link>
         <Link to="/ayurvedic">Ayurvedic Eyecare</Link>
         <Link to="/kid_games_home">Games for Kids</Link>
+        <Link to="/infant_eye_care">Infant Eye care</Link>
         <Link to="/contactus">Contact us</Link>
       </div>
       {/* <!-- right header section --> */}

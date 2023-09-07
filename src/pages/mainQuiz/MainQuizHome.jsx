@@ -31,7 +31,9 @@ const MainQuizHome = () => {
           <StepperComponent />
         </div>
       </div>
-      <Button btnName="Start Quiz" />
+      <div className="flex justify-center">
+        <Button btnName="Start Quiz" />
+      </div>
     </div>
   );
 };
