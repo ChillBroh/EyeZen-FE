@@ -13,6 +13,9 @@ const Router = () => {
       {/* App routes*/}
       <Route path="/" element={<MainQuizHome />} />
 
+      {/* main Quiz */}
+      <Route path="/main_quiz" element={<MainQuizHome />} />
+
       {/* Handle a 404 Not Found route */}
       <Route path="*" element={<NotFound />} />
 
