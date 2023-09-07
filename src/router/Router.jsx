@@ -8,8 +8,6 @@ import MainQuizHome from "../pages/mainQuiz/MainQuizHome";
 import CreateFact from "../pages/infantQuiz/InfantFact";
 import InfantQuiz from "../pages/infantQuiz/InfantQuiz";
 import Home from "../pages/Home";
-import NearSighted from "../pages/sighted-tests/NearSighted";
-import NearSightedTestView from "../pages/sighted-tests/NearSightedTestView";
 import QuizPage from "../pages/mainQuiz/QuizPage";
 
 const Router = () => {
@@ -24,14 +22,6 @@ const Router = () => {
 
       {/* Handle a 404 Not Found route */}
       <Route path="*" element={<NotFound />} />
-
-
-      {/* -----------sighted test Routes--------------------- */}
-      <Route path="/near-sighted" element={<NearSighted />} />
-      <Route path="/test-view" element={<NearSightedTestView />} />
-
-
-
 
       {/* Infant Eye Care Home Page */}
       <Route path="/infant_eye_care" element={<InfantQuizHome />} />
