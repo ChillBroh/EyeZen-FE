@@ -98,7 +98,7 @@ const Navbar = () => {
         <Link to="/ayurvedic">Ayurvedic Eyecare</Link>
         <Link to="/kid_games_home">Games for Kids</Link>
         <Link to="/infant_eye_care">Infant Eye care</Link>
-        <Link to="/contactus">Contact us</Link>
+        <Link to="/doctorcontact">Doctor Contact</Link>
       </div>
       {/* <!-- right header section --> */}
       <div className="items-center space-x-3 hidden md:flex">
