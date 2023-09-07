@@ -3,23 +3,64 @@ import axios from 'axios';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 function VoiceToText() {
-  const [data, setData] = useState({}); // Initialize data as an object
-  const [loading, setLoading] = useState(true); // Added loading state
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [attempts, setAttempts] = useState({ success: 0, failure: 0 }); // Track attempts
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/v1/sighted/')
+      .get('http://localhost:5000/api/v1/sighted/') // Updated API endpoint
       .then((res) => {
         setData(res.data);
-        setLoading(false); // Set loading to false when data is received
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false); // Set loading to false on error
+        setLoading(false);
       });
   }, []);
 
   const { transcript, listening } = useSpeechRecognition();
+
+  const handleSuccessfulAttempt = () => {
+    if (attempts.success < 4) {
+      setAttempts({ ...attempts, success: attempts.success + 1 });
+    } else {
+      window.location.href = '/pass';
+    }
+  };
+
+  const handleFailedAttempt = () => {
+    if (attempts.failure < 3) {
+      setAttempts({ ...attempts, failure: attempts.failure + 1 });
+    } else {
+      window.location.href = '/fail';
+    }
+  };
+
+  const handleSpeechRecognitionResult = () => {
+    if (transcript.toLowerCase() === data.message.toLowerCase()) {
+      handleSuccessfulAttempt();
+    } else {
+      handleFailedAttempt();
+    }
+  };
+
+  const startListeningAndUpdateData = () => {
+    SpeechRecognition.startListening();
+    
+    // After starting listening, initiate a GET request to update data
+    axios
+      .get('http://localhost:5000/api/v1/sighted/')
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    handleSpeechRecognitionResult();
+  };
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -29,20 +70,19 @@ function VoiceToText() {
             <p>Loading data...</p>
           ) : (
             <div>
-              {/* Access the "message" property from the data object */}
-              <div>{data.message}</div>
+              <div className='mb-16 justify-center items-center'>{data.message}</div>
             </div>
           )}
         </div>
         <h2 className="text-2xl font-semibold mb-4">Voice to Text</h2>
         <div className="mb-4">
           <p className="text-lg mb-2">Transcript:</p>
-          <div className="bg-gray-100 p-2 rounded-md h-32 overflow-y-auto">
+          <div className="bg-gray-100 p-2 rounded-md h-16 overflow-y-auto">
             {transcript}
           </div>
         </div>
         <button
-          onClick={SpeechRecognition.startListening}
+          onClick={startListeningAndUpdateData}
           disabled={listening}
           className={`bg-blue-500 text-white px-4 py-2 rounded-md mr-8 ${
             listening && 'opacity-50 cursor-not-allowed'
