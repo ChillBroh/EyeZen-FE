@@ -51,14 +51,19 @@ const CreateFact = () => {
     }
 
     // Convert the comma-separated text to an array
-    const descriptionArray = descriptionText.split(",").map((item) => item.trim());
+    const descriptionArray = descriptionText
+      .split(",")
+      .map((item) => item.trim());
 
     try {
-      const response = await axios.post("http://localhost:5000/api/infantFact", {
-        title: title,
-        description: descriptionArray,
-        imageURL: imageUrl,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/infantFact",
+        {
+          title: title,
+          description: descriptionArray,
+          imageURL: imageUrl,
+        }
+      );
 
       if (response.status === 201) {
         setTitle("");
@@ -92,7 +97,9 @@ const CreateFact = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Description (Comma-separated):</label>
+          <label className="block text-gray-700">
+            Description (Comma-separated):
+          </label>
           <input
             type="text"
             value={descriptionText}

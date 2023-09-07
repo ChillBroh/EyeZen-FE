@@ -8,6 +8,6 @@ module.exports = {
   theme: {
     extend: {},
   },
-  darkMode: "class",
+  darkMode: "className",
   plugins: [require("tw-elements-react/dist/plugin.cjs")],
 };
