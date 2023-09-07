@@ -86,7 +86,7 @@ const InfantQuiz = () => {
             ))}
           </ul>
         </section>
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-1">
         <Button btnName="Start Quiz" />
       </div>
       </div>
