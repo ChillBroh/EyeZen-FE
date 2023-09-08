@@ -8,6 +8,7 @@ import MainQuizHome from "../pages/mainQuiz/MainQuizHome";
 import CreateFact from "../pages/infantQuiz/InfantFact";
 import InfantQuiz from "../pages/infantQuiz/InfantQuiz";
 import Home from "../pages/Home";
+import AyurvedicHome from "../pages/ayurvedicHome/AyurvedicHome";
 
 const Router = () => {
   return (
@@ -29,6 +30,9 @@ const Router = () => {
 
       {/* Infant Eye Care Home Page */}
       <Route path="/infant_facts" element={<CreateFact />} />
+
+      {/* Infant Eye Care Home Page */}
+      <Route path="/ayurvedic" element={<AyurvedicHome />} />
     </Routes>
   );
 };
