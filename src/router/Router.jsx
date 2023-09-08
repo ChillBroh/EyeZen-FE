@@ -10,6 +10,8 @@ import CreateFact from "../pages/infantQuiz/InfantFact";
 import InfantQuiz from "../pages/infantQuiz/InfantQuiz";
 import Home from "../pages/Home";
 import QuizPage from "../pages/mainQuiz/QuizPage";
+import NearSighted from "../pages/sighted-test/NearSighted";
+import NearSightedTestView from "../pages/sighted-test/NearSightedTestView";
 
 const Router = () => {
   return (
@@ -36,6 +38,12 @@ const Router = () => {
 
       {/* Infant Eye Care Home Page */}
       <Route path="/infant_facts" element={<CreateFact />} />
+
+
+      {/* -----------sighted test Routes--------------------- */}
+      <Route path="/near-sighted" element={<NearSighted />} />
+      <Route path="/test-view" element={<NearSightedTestView />} />
+
     </Routes>
   );
 };
