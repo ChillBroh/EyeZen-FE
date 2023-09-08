@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { useSpeechSynthesis } from 'react-speech-kit';
+import speaker from "../../assets/sigthted-test/speaker.svg"
+
 
 function VoiceToText() {
   const [words, setWords] = useState([]);
   const [loading, setLoading] = useState(true);
   const [attempts, setAttempts] = useState({ success: 0, failure: 0 });
   const [currentWordIndex, setCurrentWordIndex] = useState(null);
+  const [isHidden, setIsHidden] = useState(false);
+  
+  
+
+  const { speak } = useSpeechSynthesis();
+
+  const predefinedText = "Please make sure to cover your one eye before start the test by clicking the blue button below and do the test for both eyes.";
+
+
 
   useEffect(() => {
     axios
@@ -57,18 +69,33 @@ function VoiceToText() {
     setCurrentWordIndex(newWordIndex);
 
     handleSpeechRecognitionResult();
+    setIsHidden(true);
   };
+
+
+  const handleSpeak = () => {
+    speak({ text: predefinedText, rate: 0.6 });
+  };
+
+
+  
 
   return (
     <div className="flex justify-center items-center h-screen w-screen">
       <div className="max-w-lg lg:items-center justify-between">
-        <div>
+
+        <div className='flex items-center gap-5 bg-[#004AAD]  justify-center p-2 rounded-md cursor-pointer hover:bg-[#0003ad] mb-24' style={{ visibility: isHidden ? 'hidden' : 'visible' }} onClick={handleSpeak}>
+            <img src={speaker} alt='speaker' className='w-[50px] ' />
+            <h1 className='font-semibold text-3xl text-white' >Instructions</h1>
+        </div>
+
+        <div className=''>
           {loading ? (
             <p>Loading data...</p>
           ) : (
             <div>
               {currentWordIndex !== null && (
-                <div className='mb-16 flex justify-center items-center'>{words[currentWordIndex].word}</div>
+                <div className='mb-24 flex justify-center items-center'>{words[currentWordIndex].word}</div>
               )}
             </div>
           )}
@@ -76,8 +103,8 @@ function VoiceToText() {
         
        <div className='position-absolute'>
         <div className="mb-4">
-            <p className="text-lg mb-2">Transcript:</p>
-            <div className="bg-gray-100  rounded-md h-16 lg:w-[500px] overflow-y-auto">
+            
+            <div className="bg-gray-100  rounded-md h-16 lg:w-[500px] overflow-y-auto" style={{ visibility: isHidden ? 'visible' : 'hidden' }}>
                 {transcript}
             </div>
             </div>
