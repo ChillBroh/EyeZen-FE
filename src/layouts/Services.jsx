@@ -53,8 +53,11 @@ const Services = () => {
             </div>
           </div>
           <div className="-mx-4 grid lg:grid-cols-3 gap-6">
-            {categories.map((category) => (
-              <div className="mb-8 rounded-[20px] bg-white p-2 shadow-md  hover:shadow-lg md:px-7  grid grid-cols-2 justify-center">
+            {categories.map((category, index) => (
+              <div
+                className="mb-8 rounded-[20px] bg-white p-2 shadow-md  hover:shadow-lg md:px-7  grid grid-cols-2 justify-center"
+                key={index}
+              >
                 <div className=" text-black text-3xl mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
                   {category.icon}
                 </div>

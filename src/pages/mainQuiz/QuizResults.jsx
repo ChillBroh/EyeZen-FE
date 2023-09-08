@@ -2,8 +2,11 @@ import React from "react";
 import ResultsShow from "../../assets/mainquiz/Quizresults.jpg";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const QuizResults = () => {
+  const { finalPercentage } = useParams();
+
   return (
     <div className="mx-auto max-w-2xl mt-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
       <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -12,17 +15,22 @@ const QuizResults = () => {
           <div className="text-5xl font-bold ">Your Results</div>
           <div>
             <h1 className="text-xl text-[#004AAD] mt-5 font-bold">
-              Score Obtained : 50%
+              Score Obtained : {finalPercentage}%
             </h1>
             <div className="ml-16">
               <h1 className="text-xl mt-5  font-bold">Vision Condition</h1>
               <div className="text-xl mt-5 ml-16 ">
-                <p>
+                {finalPercentage < 75 ? (
                   <ul className="list-disc">
                     <li>Vison is seems to be bit weak</li>
                     <li>Recommend meeting an Ophthalmologist</li>
                   </ul>
-                </p>
+                ) : (
+                  <ul className="list-disc">
+                    <li>Vison is seems good</li>
+                    <li>Use our advice section to keep your eye healthy</li>
+                  </ul>
+                )}
               </div>
             </div>
           </div>
