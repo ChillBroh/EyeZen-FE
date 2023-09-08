@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import data from "../../assets/databse/data";
 
 const Questions = (props) => {
-  const questions = data;
+  const questions = props.data;
 
   // Initialize an array to store the checked state for each option
   const [checkedOptions, setCheckedOptions] = useState(
@@ -42,7 +41,7 @@ const Questions = (props) => {
   return (
     <div>
       <h1 className="text-3xl text-center mt-16">
-        {questions[props.num].question}
+        {questions[props.num].questions}
       </h1>
       <div className="mt-16 text-3xl ml-48 sm:ml-16 xs:ml-0">
         <ul>
@@ -55,7 +54,7 @@ const Questions = (props) => {
                   id={`q${index}-option`}
                   className="mx-16 ml-32 mt-10 hover:cursor-pointer"
                   checked={checkedOptions[props.num] === index}
-                  onClick={() => selectRadio(value, index)}
+                  onChange={() => selectRadio(value, index)}
                 />
                 <label
                   htmlFor={`q${index}-option`}
