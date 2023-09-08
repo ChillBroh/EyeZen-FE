@@ -12,6 +12,11 @@ import Home from "../pages/Home";
 import QuizPage from "../pages/mainQuiz/QuizPage";
 import NearSighted from "../pages/sighted-test/NearSighted";
 import NearSightedTestView from "../pages/sighted-test/NearSightedTestView";
+import AyurvedicHome from "../pages/ayurvedicHome/AyurvedicHome";
+import AyurvedicTreatments from "../pages/ayurvedicTreatments/AyurvedicTreatments";
+import Treatment from "../pages/ayurvedicTreatment/Treatment";
+import VideoTutorials from "../pages/ayurvedicVideoTutorials/VideoTutorials";
+import AyurvedicVideo from "../pages/ayurvedicVideo/AyurvedicVideo";
 
 const Router = () => {
   return (
@@ -44,6 +49,36 @@ const Router = () => {
       <Route path="/near-sighted" element={<NearSighted />} />
       <Route path="/test-view" element={<NearSightedTestView />} />
 
+
+      {/* Ayurvedic Home Page */}
+      <Route path="/ayurvedic" element={<AyurvedicHome />} />
+
+      {/* Ayurvedic Treatments Page */}
+      <Route path="/ayurvedic/treatments" element={<AyurvedicTreatments />} />
+
+      {/* Ayurvedic singale treatment Page */}
+      <Route path="/treatment/:id" element={<Treatment />} />
+
+      {/* Ayurvedic Video Tutorials Page */}
+      <Route path="/ayurvedic/videoTutorials" element={<VideoTutorials />} />
+
+      {/* Ayurvedic Video view Page */}
+      <Route path="/view/:videoId" element={<AyurvedicVideo />} />
+
+      {/* Doctor contact home Page */}
+      <Route path="/doctorContact" element={<AyurvedicHome />} />
+
+      {/* Doctor List Page */}
+      <Route path="/doctorContact/doctorList" element={<AyurvedicHome />} />
+
+      {/* Doctor Page */}
+      <Route
+        path="/doctorContact/doctorList/doctor"
+        element={<AyurvedicHome />}
+      />
+
+      {/* Doctor map Page */}
+      <Route path="/doctorContact/doctorMap" element={<AyurvedicHome />} />
     </Routes>
   );
 };
