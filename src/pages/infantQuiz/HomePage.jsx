@@ -103,7 +103,7 @@ const InfantQuizHome = () => {
       infiniteLoop={true}
       showStatus={false}
       autoPlay={true}
-      interval={4000}
+      interval={10000}
       style={{ marginBottom: "20px"}}
       className="shadow-xl shadow-gray-400"
     >

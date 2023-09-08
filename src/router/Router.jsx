@@ -17,6 +17,7 @@ import AyurvedicTreatments from "../pages/ayurvedicTreatments/AyurvedicTreatment
 import Treatment from "../pages/ayurvedicTreatment/Treatment";
 import VideoTutorials from "../pages/ayurvedicVideoTutorials/VideoTutorials";
 import AyurvedicVideo from "../pages/ayurvedicVideo/AyurvedicVideo";
+import ManageQuiz from "../pages/infantQuiz/ManageQuiz";
 
 const Router = () => {
   return (
@@ -43,6 +44,9 @@ const Router = () => {
 
       {/* Infant Eye Care Home Page */}
       <Route path="/infant_facts" element={<CreateFact />} />
+
+      {/* Infant Quiz Manage Page */}
+      <Route path="/infant_quiz_manage" element={<ManageQuiz />} />
 
 
       {/* -----------sighted test Routes--------------------- */}
