@@ -9,17 +9,20 @@ const Data = [
   {
     id: 1,
     question: "hehe hello2",
+    options: ["option 1", "option 2", "option 3"],
     answer: "option 1",
   },
   {
     id: 1,
     question: "hehe hello3",
-    answer: "option 1",
+    options: ["option 2", "option 3"],
+    answer: "option 2",
   },
   {
     id: 1,
     question: "hehe hello4",
-    answer: "option 1",
+    options: ["option 4", "option 5"],
+    answer: "option 4",
   },
 ];
 

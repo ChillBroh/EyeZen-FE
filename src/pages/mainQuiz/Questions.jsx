@@ -4,12 +4,41 @@ import data from "../../assets/databse/data";
 const Questions = (props) => {
   const questions = data;
 
-  const [checked, setChecked] = useState(false);
-  const selectRadio = () => {
-    setChecked(true);
-    props.onRadioSelect(true);
-    console.log(checked);
+  // Initialize an array to store the checked state for each option
+  const [checkedOptions, setCheckedOptions] = useState(
+    Array(questions.length).fill(false)
+  );
+
+  //array to get input answers
+  const [input, setInput] = useState([]);
+
+  //array with predefine answers
+  const answers = questions.map((item) => item.answer);
+  let correctCount = 0;
+
+  //generate final calculation
+  answers.forEach((value, index) => {
+    if (value === input[index]) {
+      correctCount = correctCount + 1;
+    }
+  });
+
+  const finalPercentage = (correctCount / answers.length) * 100;
+
+  const selectRadio = (value, index) => {
+    const updatedValues = [...input];
+    updatedValues[props.num] = value;
+
+    setInput(updatedValues);
+
+    const updatedCheckedOptions = [...checkedOptions];
+    updatedCheckedOptions[props.num] = index;
+
+    // Update the state with the new array
+    setCheckedOptions(updatedCheckedOptions);
+    props.onFinalPercentatge(finalPercentage);
   };
+
   return (
     <div>
       <h1 className="text-3xl text-center mt-16">
@@ -25,7 +54,8 @@ const Questions = (props) => {
                   name="answers"
                   id={`q${index}-option`}
                   className="mx-16 ml-32 mt-10 hover:cursor-pointer"
-                  onClick={selectRadio}
+                  checked={checkedOptions[props.num] === index}
+                  onClick={() => selectRadio(value, index)}
                 />
                 <label
                   htmlFor={`q${index}-option`}
