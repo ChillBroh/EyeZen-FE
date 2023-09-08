@@ -101,7 +101,7 @@ function VoiceToText() {
     <div className="flex justify-center items-center h-screen w-screen">
       <div className="max-w-lg lg:items-center justify-between">
         <div
-          className="flex items-center gap-5 bg-[#004AAD]  justify-center p-2 rounded-md cursor-pointer hover:bg-[#1f2037] mb-24"
+          className="flex items-center gap-5 bg-[#004AAD]  justify-center p-2 rounded-md cursor-pointer hover:bg-blue-600 mb-24"
           style={{ visibility: isHidden ? "hidden" : "visible" }}
           onClick={handleSpeak}
         >
@@ -147,7 +147,7 @@ function VoiceToText() {
             <button
               onClick={startListeningAndUpdateData}
               disabled={listening}
-              className={`bg-[#004AAD] text-white px-4 py-2 hover:bg-[#1f2037] rounded-md mb-4 lg:w-full ${
+              className={`bg-[#004AAD] text-white px-4 py-2 hover:bg-blue-600 rounded-md mb-4 lg:w-full ${
                 listening && "opacity-50 cursor-not-allowed"
               }`}
             >

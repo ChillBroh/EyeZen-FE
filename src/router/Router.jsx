@@ -14,6 +14,7 @@ import NearSighted from "../pages/sighted-test/NearSighted";
 import NearSightedTestView from "../pages/sighted-test/NearSightedTestView";
 import SightPass from "../pages/sighted-test/EyeSightedPass"
 import SightFail from "../pages/sighted-test/EyeSightedFail"
+import AddTextForm from  "../pages/sighted-test/AddTextForm"
 
 const Router = () => {
   return (
@@ -47,6 +48,7 @@ const Router = () => {
       <Route path="/test-view" element={<NearSightedTestView />} />
       <Route path="/eye-sight-pass" element={<SightPass />} />
       <Route path="/eye-sight-fail" element={<SightFail />} />
+      <Route path="/addText-form" element={<AddTextForm />} />
       
 
     </Routes>
