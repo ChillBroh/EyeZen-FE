@@ -20,7 +20,10 @@ const Router = () => {
       {/* main Quiz */}
       <Route path="/main_quiz" element={<MainQuizHome />} />
       <Route path="/main_questions" element={<QuizPage />} />
-      <Route path="/main_quiz_results" element={<QuizResults />} />
+      <Route
+        path="/main_quiz_results/:finalPercentage"
+        element={<QuizResults />}
+      />
 
       {/* Handle a 404 Not Found route */}
       <Route path="*" element={<NotFound />} />

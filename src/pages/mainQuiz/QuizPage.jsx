@@ -9,24 +9,21 @@ const QuizPage = () => {
 
   const questionIndex = 0;
   const [currentIndex, setCurrentIndex] = useState(questionIndex);
-  const [checked, setChecked] = useState(false);
+  const [finalPercentage, setFinalPercentage] = useState(0);
+  const getfinalPercentage = (finalPercentage) => {
+    setFinalPercentage(finalPercentage);
+  };
   // Event handler for next button
   const onNext = () => {
-    if (checked) {
-      setChecked(false);
-      if (currentIndex < quiz.length - 1) {
-        setCurrentIndex(currentIndex + 1);
-      } else {
-        navigate("/main_quiz_results");
-      }
+    if (currentIndex < quiz.length - 1) {
+      setCurrentIndex(currentIndex + 1);
     } else {
-      alert("Nt checked");
+      navigate(`/main_quiz_results/${finalPercentage}`);
     }
   };
 
   //evnet handler for prev button
   const onPrev = () => {
-    setChecked(false);
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     } else {
@@ -34,9 +31,6 @@ const QuizPage = () => {
     }
   };
 
-  const handleRadioSelect = (isChecked) => {
-    setChecked(isChecked);
-  };
   return (
     <div className="mx-auto max-w-2xl mt-24 px-4  sm:px-6  lg:max-w-7xl lg:px-8">
       <div>
@@ -44,7 +38,7 @@ const QuizPage = () => {
           {`Question  ${currentIndex + 1}`}
         </h1>
       </div>
-      <Questions num={currentIndex} onRadioSelect={handleRadioSelect} />
+      <Questions num={currentIndex} onFinalPercentatge={getfinalPercentage} />
       <hr className="my-12 h-0.5 border-t-0 bg-gray-500 opacity-100 dark:opacity-60" />
       <div className="grid grid-cols-2 ">
         <div className="flex justify-start">

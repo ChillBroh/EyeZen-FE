@@ -9,14 +9,14 @@ const Data = [
   {
     id: 1,
     question: "hehe hello2",
-    options: ["option 1", "option 2"],
+    options: ["option 1", "option 2", "option 3"],
     answer: "option 1",
   },
   {
     id: 1,
     question: "hehe hello3",
     options: ["option 2", "option 3"],
-    answer: "option 3",
+    answer: "option 2",
   },
   {
     id: 1,
