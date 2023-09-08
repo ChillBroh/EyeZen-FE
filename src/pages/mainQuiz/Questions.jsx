@@ -1,40 +1,42 @@
 import React, { useState } from "react";
-import data from "../../assets/databse/data";
+import Data from "../../assets/infantVisionImg/databse/data";
 
-const Questions = (props) => {
-  const questions = data;
-
-  const [checked, setChecked] = useState(false);
+const Questions = () => {
+  const [checked, setChecked] = useState(undefined);
   const selectRadio = () => {
     setChecked(true);
-    props.onRadioSelect(true);
+    console.log("Radio Checked");
   };
   return (
     <div>
       <h1 className="text-3xl text-center mt-16">
-        {questions[props.num].question}
+        Have you experienced any sudden and severe vision loss in one or both
+        eyes?
       </h1>
-      <div className="mt-16 text-3xl ml-48 sm:ml-16 xs:ml-0">
+      <div className="mt-16 text-2xl ml-48 sm:ml-16 xs:ml-0">
         <ul>
-          {questions[props.num].options.map((value, index) => (
-            <div key={index}>
-              <li>
-                <input
-                  type="radio"
-                  name="answers"
-                  id={`q${index}-option`}
-                  className="mx-16 ml-32 mt-10 hover:cursor-pointer"
-                  onClick={selectRadio}
-                />
-                <label
-                  htmlFor={`q${index}-option`}
-                  className="hover:cursor-pointer"
-                >
-                  {value}
-                </label>
-              </li>
-            </div>
-          ))}
+          <li>
+            <input
+              type="radio"
+              name="answers"
+              id="option1"
+              value={checked}
+              onChange={selectRadio}
+              className="mx-16 ml-32 mt-10"
+            />
+            <label htmlFor="option1">Yes</label>
+          </li>
+          <li>
+            <input
+              type="radio"
+              name="answers"
+              id="option1"
+              value={checked}
+              onChange={selectRadio}
+              className="mx-16 ml-32 mt-10"
+            />
+            <label htmlFor="option1">No</label>
+          </li>
         </ul>
       </div>
     </div>
