@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import QuizResults from "../pages/mainQuiz/QuizResults";
 
 // Import React components
 import NotFound from "../pages/NotFound";
@@ -19,6 +20,7 @@ const Router = () => {
       {/* main Quiz */}
       <Route path="/main_quiz" element={<MainQuizHome />} />
       <Route path="/main_questions" element={<QuizPage />} />
+      <Route path="/main_quiz_results" element={<QuizResults />} />
 
       {/* Handle a 404 Not Found route */}
       <Route path="*" element={<NotFound />} />
