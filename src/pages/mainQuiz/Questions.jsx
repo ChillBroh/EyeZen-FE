@@ -3,6 +3,8 @@ import data from "../../assets/databse/data";
 
 const Questions = (props) => {
   const questions = data;
+  console.log(questions[1].options);
+  console.log(data);
 
   const [checked, setChecked] = useState(false);
   const selectRadio = () => {
@@ -10,6 +12,7 @@ const Questions = (props) => {
     props.onRadioSelect(true);
     console.log(checked);
   };
+
   return (
     <div>
       <h1 className="text-3xl text-center mt-16">
