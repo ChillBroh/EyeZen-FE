@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import QuizResults from "../pages/mainQuiz/QuizResults";
 
 // Import React components
 import NotFound from "../pages/NotFound";
@@ -8,6 +9,9 @@ import MainQuizHome from "../pages/mainQuiz/MainQuizHome";
 import CreateFact from "../pages/infantQuiz/InfantFact";
 import InfantQuiz from "../pages/infantQuiz/InfantQuiz";
 import Home from "../pages/Home";
+import QuizPage from "../pages/mainQuiz/QuizPage";
+import NearSighted from "../pages/sighted-test/NearSighted";
+import NearSightedTestView from "../pages/sighted-test/NearSightedTestView";
 import AyurvedicHome from "../pages/ayurvedicHome/AyurvedicHome";
 import AyurvedicTreatments from "../pages/ayurvedicTreatments/AyurvedicTreatments";
 import Treatment from "../pages/ayurvedicTreatment/Treatment";
@@ -22,6 +26,11 @@ const Router = () => {
 
       {/* main Quiz */}
       <Route path="/main_quiz" element={<MainQuizHome />} />
+      <Route path="/main_questions" element={<QuizPage />} />
+      <Route
+        path="/main_quiz_results/:finalPercentage"
+        element={<QuizResults />}
+      />
 
       {/* Handle a 404 Not Found route */}
       <Route path="*" element={<NotFound />} />
@@ -34,6 +43,12 @@ const Router = () => {
 
       {/* Infant Eye Care Home Page */}
       <Route path="/infant_facts" element={<CreateFact />} />
+
+
+      {/* -----------sighted test Routes--------------------- */}
+      <Route path="/near-sighted" element={<NearSighted />} />
+      <Route path="/test-view" element={<NearSightedTestView />} />
+
 
       {/* Ayurvedic Home Page */}
       <Route path="/ayurvedic" element={<AyurvedicHome />} />
