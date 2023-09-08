@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="w-full bg-black py-16 px-10 grid md:grid-cols-2 gap-8 text-gray-300 bottom-0">
+    <div className="w-full bg-black py-16 px-10 grid md:grid-cols-2 gap-8 text-gray-300 bottom-0 m-0">
       <div className="">
         <h3 className="text-2xl font-bold text-[#41A4FF]">EyeZen</h3>
         <p className="py-4">

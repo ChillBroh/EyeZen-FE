@@ -27,7 +27,7 @@ function VoiceToText() {
     if (attempts.success < 4) {
       setAttempts({ ...attempts, success: attempts.success + 1 });
     } else {
-      window.location.href = '/pass';
+      window.location.href = '/eye-sight-pass';
     }
   };
 
@@ -35,7 +35,7 @@ function VoiceToText() {
     if (attempts.failure < 3) {
       setAttempts({ ...attempts, failure: attempts.failure + 1 });
     } else {
-      window.location.href = '/fail';
+      window.location.href = '/eye-sight-fail';
     }
   };
 
@@ -60,44 +60,48 @@ function VoiceToText() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="max-w-lg mx-auto p-4 lg:items-center">
+    <div className="flex justify-center items-center h-screen w-screen">
+      <div className="max-w-lg lg:items-center justify-between">
         <div>
           {loading ? (
             <p>Loading data...</p>
           ) : (
             <div>
               {currentWordIndex !== null && (
-                <div className='mb-16 justify-center items-center'>{words[currentWordIndex].word}</div>
+                <div className='mb-16 flex justify-center items-center'>{words[currentWordIndex].word}</div>
               )}
             </div>
           )}
         </div>
-        <h2 className="text-2xl font-semibold mb-4">Voice to Text</h2>
+        
+       <div className='position-absolute'>
         <div className="mb-4">
-          <p className="text-lg mb-2">Transcript:</p>
-          <div className="bg-gray-100 p-2 rounded-md h-16 overflow-y-auto">
-            {transcript}
-          </div>
-        </div>
-        <button
-          onClick={startListeningAndUpdateData}
-          disabled={listening}
-          className={`bg-blue-500 text-white px-4 py-2 rounded-md mr-8 ${
-            listening && 'opacity-50 cursor-not-allowed'
-          }`}
-        >
-          Start Listening
-        </button>
-        <button
-          onClick={SpeechRecognition.stopListening}
-          disabled={!listening}
-          className={`bg-red-500 text-white px-4 py-2 rounded-md ${
-            !listening && 'opacity-50 cursor-not-allowed'
-          }`}
-        >
-          Stop Listening
-        </button>
+            <p className="text-lg mb-2">Transcript:</p>
+            <div className="bg-gray-100  rounded-md h-16 lg:w-[500px] overflow-y-auto">
+                {transcript}
+            </div>
+            </div>
+            <div className='flex justify-between'>
+                    <button
+                    onClick={startListeningAndUpdateData}
+                    disabled={listening}
+                    className={`bg-[#004AAD] text-white px-4 py-2 rounded-md mr-4 lg:w-full ${
+                        listening && 'opacity-50 cursor-not-allowed'
+                    }`}
+                    >
+                    Start Listening
+                    </button>
+                    <button
+                    onClick={SpeechRecognition.stopListening}
+                    disabled={!listening}
+                    className={`bg-red-500 text-white px-4 py-2 rounded-md lg:w-full ${
+                        !listening && 'opacity-50 cursor-not-allowed'
+                    }`}
+                    >
+                    Stop Listening
+                    </button>
+            </div>
+       </div>
       </div>
     </div>
   );

@@ -12,6 +12,8 @@ import Home from "../pages/Home";
 import QuizPage from "../pages/mainQuiz/QuizPage";
 import NearSighted from "../pages/sighted-test/NearSighted";
 import NearSightedTestView from "../pages/sighted-test/NearSightedTestView";
+import SightPass from "../pages/sighted-test/EyeSightedPass"
+import SightFail from "../pages/sighted-test/EyeSightedFail"
 
 const Router = () => {
   return (
@@ -43,6 +45,9 @@ const Router = () => {
       {/* -----------sighted test Routes--------------------- */}
       <Route path="/near-sighted" element={<NearSighted />} />
       <Route path="/test-view" element={<NearSightedTestView />} />
+      <Route path="/eye-sight-pass" element={<SightPass />} />
+      <Route path="/eye-sight-fail" element={<SightFail />} />
+      
 
     </Routes>
   );
