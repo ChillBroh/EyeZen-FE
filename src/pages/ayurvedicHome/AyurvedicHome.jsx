@@ -1,11 +1,9 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
 import hero from "../../assets/ayurvedic/ayurveda.jpg";
 import Faq from "../../components/Faq";
 import TipsCarousel from "../../components/TipsCarousel";
-
-// Define card data
+import { Link } from "react-router-dom";
 
 const AyurvedicHome = () => {
   return (
@@ -38,15 +36,24 @@ const AyurvedicHome = () => {
       </div>
       <div className="grid lg:grid-cols-3 lg:gap-4 gap-3 mt-5 lg:px-24 px-12">
         {/* Button Cards */}
-        <div className="bg-gray-200 hover:bg-[#004AAD] hover:text-white text-[#004AAD] font-bold py-10 rounded-lg text-center cursor-pointer">
+        <Link
+          to="/ayurvedic/treatments"
+          className="bg-gray-200 hover:bg-[#004AAD] hover:text-white text-[#004AAD] font-bold py-10 rounded-lg text-center cursor-pointer"
+        >
           Ayurvedic Treatments
-        </div>
-        <div className="bg-gray-200 text-[#004AAD] hover:bg-[#004AAD] hover:text-white font-bold py-10 rounded-lg text-center cursor-pointer">
+        </Link>
+        <Link
+          to="/ayurvedic/videoTutorials"
+          className="bg-gray-200 text-[#004AAD] hover:bg-[#004AAD] hover:text-white font-bold py-10 rounded-lg text-center cursor-pointer"
+        >
           Video Tutorials
-        </div>
-        <div className="bg-gray-200 text-[#004AAD] hover:bg-[#004AAD] hover:text-white font-bold py-10 rounded-lg text-center cursor-pointer">
+        </Link>
+        <Link
+          to="/doctorContact/doctorList"
+          className="bg-gray-200 text-[#004AAD] hover:bg-[#004AAD] hover:text-white font-bold py-10 rounded-lg text-center cursor-pointer"
+        >
           Ayurvedic Eye Doctor Contact
-        </div>
+        </Link>
       </div>
       <div>
         <Faq />
