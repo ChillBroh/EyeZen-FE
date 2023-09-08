@@ -105,7 +105,7 @@ const videoData = [
   {
     id: 1,
     videoUrl:
-      "https://res.cloudinary.com/dpgelkpd4/video/upload/v1694188634/Ayurvedic_Eye_Care_1.mp4",
+      "https://res.cloudinary.com/dpgelkpd4/video/upload/v1694188634/Ayurvedaeyes_x50rhd.mp4",
     thumbnailUrl: Treatment03,
     title: "Ayurvedic Eye Care - Part 1",
     description:
@@ -115,7 +115,7 @@ const videoData = [
   {
     id: 2,
     videoUrl:
-      "https://res.cloudinary.com/dpgelkpd4/video/upload/v1694188634/Ayurvedic_Eye_Care_2.mp4",
+      "https://res.cloudinary.com/dpgelkpd4/video/upload/v1694188634/Ayurvedaeyes_x50rhd.mp4",
     thumbnailUrl: Treatment02,
     title: "Ayurvedic Eye Care - Part 2",
     description: "Discover Ayurvedic remedies for common eye problems.",
@@ -124,7 +124,7 @@ const videoData = [
   {
     id: 3,
     videoUrl:
-      "https://res.cloudinary.com/dpgelkpd4/video/upload/v1694188634/Ayurvedic_Eye_Care_3.mp4",
+      "https://res.cloudinary.com/dpgelkpd4/video/upload/v1694188634/Ayurvedaeyes_x50rhd.mp4",
     thumbnailUrl: Treatment01,
     title: "Ayurvedic Eye Massage Techniques",
     description:
