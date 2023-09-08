@@ -1,10 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import babyVisionImage1 from '../../assets/infantVisionImg/baby-vision1.jpg';
 import babyVisionImage2 from '../../assets/infantVisionImg/baby-vision2.jpg';
 import babyVisionImage3 from '../../assets/infantVisionImg/baby-vision3.jpg';
 
 const InfantQuizHome = () => {
-  const titleRef = useRef(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [babyVisionImage1, babyVisionImage2, babyVisionImage3];
   const faqData = [
@@ -29,23 +28,6 @@ const InfantQuizHome = () => {
   };
 
   useEffect(() => {
-    const titleText = "Caring for Your Infant's Eyes";
-    let currentText = '';
-    let currentIndex = 0;
-
-    const typeTitle = () => {
-      if (currentIndex < titleText.length) {
-        currentText += titleText[currentIndex];
-        titleRef.current.textContent = currentText;
-        currentIndex++;
-        setTimeout(typeTitle, 50); // Typing speed in milliseconds
-      }
-    };
-
-    typeTitle();
-  }, []);
-
-  useEffect(() => {
     const imageInterval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 4000);
@@ -57,28 +39,31 @@ const InfantQuizHome = () => {
 
   return (
     <div>
-      <section className="bg-gradient-to-b from-indigo-200 from-1% via-white py-5 pr-12 pl-8 mb-8" style={{ backgroundPosition: '0% 5%' }}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
-          <div>
+      <section className="py-15 pl-8 pr-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center relative z-10">
+          <div className='pl-60'>
             {/* Title */}
-            <h1 className="text-3xl font-extralight text-white mb-4">
-              <span ref={titleRef}></span>
+            <h1 className="text-5xl font-sans font-bold text-black mb-2">
+              Infant
+            </h1>
+            <h1 className="text-5xl font-sans text-blue-600 font-bold mb-4">
+              Eye Care
             </h1>
             {/* Description */}
-            <p className="text-lg text-gray-400 mb-8">
+            <p className="text-lg text-gray-400">
               Ensuring healthy eyes for your little one's bright future.
             </p>
-            <p className="text-lg text-gray-400 mb-8">
-              We understand that your little one's eyes are their window to the world. As parents ourselves, we know the importance of ensuring your child's visual health from the very beginning. That's why we're here to guide you on a journey of care, knowledge, and nurturing for those precious little peepers.
-            </p>
+            <div>
+            <button class="rounded-full bg-blue-600 py-2 px-8 mt-4 text-white font-bold">Take the quiz</button>
+            </div>
           </div>
-          <div className="group">
+          <div className="group pr-60">
             {/* Image */}
             <img
               src={images[currentImageIndex]}
               alt="Animated"
               style={{ height: '300px' }}
-              className="w-full rounded-lg shadow-lg transform rotate-3 transition-transform duration-300 group-hover:rotate-12"
+              className="w-full rounded-lg shadow-lg transform rotate-0 transition-transform duration-300"
             />
           </div>
         </div>
