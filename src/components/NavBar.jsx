@@ -40,8 +40,8 @@ const Navbar = () => {
     setNav(!nav);
   };
 
-  function classNames(...classNamees) {
-    return classNamees.filter(Boolean).join(" ");
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
   }
 
   return (
