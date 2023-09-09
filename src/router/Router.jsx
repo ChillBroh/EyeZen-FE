@@ -26,6 +26,9 @@ import ColorBlind from "../pages/vision Tests/ColorBlind";
 import ContrastSensitivity from "../pages/vision Tests/ContrastSensitivity";
 import DepthPrecision from "../pages/vision Tests/DepthPrecision";
 import MacularDegeneration from "../pages/vision Tests/MacularDegeneration";
+import Questionnaire from "../pages/infantQuiz/Questionnaire";
+import CreateQuizQuestion from "../pages/infantQuiz/CreateQuiz";
+import ViewQuiz from "../pages/infantQuiz/ViewQuiz";
 
 const Router = () => {
   return (
@@ -62,7 +65,21 @@ const Router = () => {
       <Route path="/infant_quiz" element={<InfantQuiz />} />
 
       {/* Infant Eye Care Home Page */}
+      <Route path="/infant_questionnaire" element={<Questionnaire />} />
+
+      {/* Infant Eye Care Home Page */}
       <Route path="/infant_facts" element={<CreateFact />} />
+
+      {/* Infant Quiz Create Page */}
+      <Route path="/infant_create_quiz" element={<CreateQuizQuestion />} />
+
+      {/* Infant Quiz Manage Page */}
+      <Route path="/infant_view_quiz" element={<ViewQuiz />} />
+
+
+      {/* -----------sighted test Routes--------------------- */}
+      <Route path="/near-sighted" element={<NearSighted />} />
+      <Route path="/test-view" element={<NearSightedTestView />} />
 
       {/* Ayurvedic Home Page */}
       <Route path="/ayurvedic" element={<AyurvedicHome />} />
