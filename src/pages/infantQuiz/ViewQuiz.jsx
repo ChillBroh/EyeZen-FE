@@ -4,6 +4,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 
 const ViewQuiz = () => {
   const [questions, setQuestions] = useState([]);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,14 +26,49 @@ const ViewQuiz = () => {
   }, []);
 
   const handleQuestionUpdate = (question) => {
-    // Implement the logic to update the question (e.g., navigate to an update page)
-    console.log("Update question:", question);
+    // Set the selected question for editing
+    setSelectedQuestion(question);
   };
 
-  const handleQuestionDelete = (questionId) => {
-    // Implement the logic to delete the question
-    console.log("Delete question with ID:", questionId);
-    // You can make an axios DELETE request to delete the question on the server
+  const handleQuestionDelete = async (questionId) => {
+    try {
+      // Send a DELETE request to your backend API to delete the question
+      await axios.delete(`http://localhost:5000/api/infantQuiz/${questionId}`);
+
+      // Remove the deleted question from the state
+      setQuestions((prevQuestions) =>
+        prevQuestions.filter((question) => question._id !== questionId)
+      );
+
+      // Clear the selected question
+      setSelectedQuestion(null);
+    } catch (error) {
+      console.error("Error deleting question:", error);
+      // Handle the error (e.g., show a notification)
+    }
+  };
+
+  const handleSaveChanges = async () => {
+    try {
+      // Send a PUT request to your backend API to update the question
+      await axios.put(
+        `http://localhost:5000/api/infantQuiz/${selectedQuestion._id}`,
+        selectedQuestion
+      );
+
+      // Update the question in the state
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((question) =>
+          question._id === selectedQuestion._id ? selectedQuestion : question
+        )
+      );
+
+      // Clear the selected question
+      setSelectedQuestion(null);
+    } catch (error) {
+      console.error("Error updating question:", error);
+      // Handle the error (e.g., show a notification)
+    }
   };
 
   return (
@@ -47,7 +83,7 @@ const ViewQuiz = () => {
               <h3 className="text-lg font-semibold mb-2">{question.question}</h3>
               <ul>
                 {question.answers?.map((answer, index) => (
-                  <li key={answer._id}>
+                  <li key={answer.id}>
                     {answer.answer} {answer.isCorrect && "(Correct)"}
                   </li>
                 ))}
@@ -72,6 +108,59 @@ const ViewQuiz = () => {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Display the selected question for editing */}
+      {selectedQuestion && (
+        <div className="mt-4 p-4 border rounded-lg shadow-lg">
+          <h3 className="text-lg font-semibold mb-2">Edit Question</h3>
+          <input
+            type="text"
+            value={selectedQuestion.question}
+            onChange={(e) => {
+              // Update the selected question's question field
+              const updatedQuestion = { ...selectedQuestion };
+              updatedQuestion.question = e.target.value;
+              setSelectedQuestion(updatedQuestion);
+            }}
+            className="w-full px-3 py-2 border rounded shadow-sm mb-2 focus:outline-none focus:ring focus:border-blue-500"
+          />
+          <h4 className="text-md font-semibold mb-2">Edit Answers</h4>
+          <ul>
+            {selectedQuestion.answers?.map((answer, index) => (
+              <li key={answer.id} className="mb-2">
+                <input
+                  type="text"
+                  value={answer.answer}
+                  onChange={(e) => {
+                    // Update the selected question's answer
+                    const updatedQuestion = { ...selectedQuestion };
+                    updatedQuestion.answers[index].answer = e.target.value;
+                    setSelectedQuestion(updatedQuestion);
+                  }}
+                  className="w-full px-3 py-2 border rounded shadow-sm mb-1 focus:outline-none focus:ring focus:border-blue-500"
+                />
+                <button
+                  onClick={() => {
+                    // Remove the selected question's answer
+                    const updatedQuestion = { ...selectedQuestion };
+                    updatedQuestion.answers.splice(index, 1);
+                    setSelectedQuestion(updatedQuestion);
+                  }}
+                  className="text-red-600 hover:text-red-800"
+                >
+                  Remove Answer
+                </button>
+              </li>
+            ))}
+          </ul>
+          <button
+            onClick={handleSaveChanges}
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800 focus:outline-none focus:ring focus:border-blue-500"
+          >
+            Save Changes
+          </button>
         </div>
       )}
     </div>
