@@ -35,6 +35,7 @@ import TreatmentForm from "../pages/adminForms/TreatmentForm";
 import VideoTutorialForm from "../pages/adminForms/VideoTutorialForm";
 import ViewQuestions from "../pages/mainQuiz/GetAllQuestions";
 import UpdateQuiz from "../pages/mainQuiz/UpdateQuiz";
+import ColorBlindTest from "../pages/vision Tests/inside tests/ColorBlindTest";
 
 const Router = () => {
   return (
@@ -53,12 +54,15 @@ const Router = () => {
       <Route path="view-all-questions" element={<ViewQuestions />} />
       <Route path="update-main-quiz/:id" element={<UpdateQuiz />} />
 
-      {/* eye tests */}
+      {/* eye tests home pages*/}
       <Route path="/test-home" element={<AllTestHome />} />
       <Route path="/color-blind" element={<ColorBlind />} />
       <Route path="/contrast-sensitvity" element={<ContrastSensitivity />} />
       <Route path="/depth-precision" element={<DepthPrecision />} />
       <Route path="/macular-degeneration" element={<MacularDegeneration />} />
+
+      {/* eye tests */}
+      <Route path="/color-blind-test" element={<ColorBlindTest />} />
 
       {/* -----------sighted test Routes--------------------- */}
       <Route path="/near-sighted" element={<NearSighted />} />
