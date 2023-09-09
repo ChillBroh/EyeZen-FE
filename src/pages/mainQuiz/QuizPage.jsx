@@ -36,7 +36,7 @@ const QuizPage = () => {
     if (currentIndex < allquestions.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      navigate(`/main_quiz_results/${finalPercentage}`);
+      navigate(`/main-quiz-results/${finalPercentage}`);
     }
   };
 
