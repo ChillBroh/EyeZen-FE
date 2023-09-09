@@ -13,10 +13,20 @@ import QuizPage from "../pages/mainQuiz/QuizPage";
 import NearSighted from "../pages/sighted-test/NearSighted";
 import NearSightedTestView from "../pages/sighted-test/NearSightedTestView";
 import AyurvedicHome from "../pages/ayurvedicHome/AyurvedicHome";
-import AyurvedicTreatments from "../pages/ayurvedicTreatments/AyurvedicTreatments";
-import Treatment from "../pages/ayurvedicTreatment/Treatment";
-import VideoTutorials from "../pages/ayurvedicVideoTutorials/VideoTutorials";
-import AyurvedicVideo from "../pages/ayurvedicVideo/AyurvedicVideo";
+import AyurvedicTreatments from "../pages/ayurvedicHome/AyurvedicTreatments";
+import Treatment from "../pages/ayurvedicHome/Treatment";
+import VideoTutorials from "../pages/ayurvedicHome/VideoTutorials";
+import AyurvedicVideo from "../pages/ayurvedicHome/AyurvedicVideo";
+import DoctorContactHome from "../pages/doctorContactHome/DoctorContactHome";
+import DoctorList from "../pages/doctorContactHome/DoctorList";
+import DoctorDetails from "../pages/doctorContactHome/DoctorDetails";
+import Map from "../pages/doctorContactHome/Map";
+import AllTestHome from "../pages/vision Tests/AllTestHome";
+import ColorBlind from "../pages/vision Tests/ColorBlind";
+import ContrastSensitivity from "../pages/vision Tests/ContrastSensitivity";
+import DepthPrecision from "../pages/vision Tests/DepthPrecision";
+import MacularDegeneration from "../pages/vision Tests/MacularDegeneration";
+import CreateQuiz from "../pages/mainQuiz/CreateQuiz";
 
 const Router = () => {
   return (
@@ -25,12 +35,24 @@ const Router = () => {
       <Route path="/" element={<Home />} />
 
       {/* main Quiz */}
-      <Route path="/main_quiz" element={<MainQuizHome />} />
-      <Route path="/main_questions" element={<QuizPage />} />
+      <Route path="/main-quiz" element={<MainQuizHome />} />
+      <Route path="/main-questions" element={<QuizPage />} />
       <Route
-        path="/main_quiz_results/:finalPercentage"
+        path="/main-quiz-results/:finalPercentage"
         element={<QuizResults />}
       />
+      <Route path="create-main-quiz" element={<CreateQuiz />} />
+
+      {/* eye tests */}
+      <Route path="/test-home" element={<AllTestHome />} />
+      <Route path="/color-blind" element={<ColorBlind />} />
+      <Route path="/contrast-sensitvity" element={<ContrastSensitivity />} />
+      <Route path="/depth-precision" element={<DepthPrecision />} />
+      <Route path="/macular-degeneration" element={<MacularDegeneration />} />
+
+      {/* -----------sighted test Routes--------------------- */}
+      <Route path="/near-sighted" element={<NearSighted />} />
+      <Route path="/test-view" element={<NearSightedTestView />} />
 
       {/* Handle a 404 Not Found route */}
       <Route path="*" element={<NotFound />} />
@@ -43,12 +65,6 @@ const Router = () => {
 
       {/* Infant Eye Care Home Page */}
       <Route path="/infant_facts" element={<CreateFact />} />
-
-
-      {/* -----------sighted test Routes--------------------- */}
-      <Route path="/near-sighted" element={<NearSighted />} />
-      <Route path="/test-view" element={<NearSightedTestView />} />
-
 
       {/* Ayurvedic Home Page */}
       <Route path="/ayurvedic" element={<AyurvedicHome />} />
@@ -66,19 +82,16 @@ const Router = () => {
       <Route path="/view/:videoId" element={<AyurvedicVideo />} />
 
       {/* Doctor contact home Page */}
-      <Route path="/doctorContact" element={<AyurvedicHome />} />
+      <Route path="/doctorContact" element={<DoctorContactHome />} />
 
       {/* Doctor List Page */}
-      <Route path="/doctorContact/doctorList" element={<AyurvedicHome />} />
+      <Route path="/doctorContact/doctorList" element={<DoctorList />} />
 
       {/* Doctor Page */}
-      <Route
-        path="/doctorContact/doctorList/doctor"
-        element={<AyurvedicHome />}
-      />
+      <Route path="/doctor/:email" element={<DoctorDetails />} />
 
       {/* Doctor map Page */}
-      <Route path="/doctorContact/doctorMap" element={<AyurvedicHome />} />
+      <Route path="/doctorContact/doctorMap" element={<Map />} />
     </Routes>
   );
 };

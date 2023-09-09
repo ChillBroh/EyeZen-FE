@@ -1,6 +1,7 @@
 import Treatment01 from "../assets/ayurvedic/treatment01.jpg";
 import Treatment02 from "../assets/ayurvedic/Tharpanam.jpg";
 import Treatment03 from "../assets/ayurvedic/treatment2.jpg";
+import Doctor from "../assets/ayurvedic/doctor.jpeg";
 
 const treatmentsData = [
   {
@@ -105,7 +106,7 @@ const videoData = [
   {
     id: 1,
     videoUrl:
-      "https://res.cloudinary.com/dpgelkpd4/video/upload/v1694188634/Ayurvedic_Eye_Care_1.mp4",
+      "https://res.cloudinary.com/dpgelkpd4/video/upload/v1694188634/Ayurvedaeyes_x50rhd.mp4",
     thumbnailUrl: Treatment03,
     title: "Ayurvedic Eye Care - Part 1",
     description:
@@ -115,7 +116,7 @@ const videoData = [
   {
     id: 2,
     videoUrl:
-      "https://res.cloudinary.com/dpgelkpd4/video/upload/v1694188634/Ayurvedic_Eye_Care_2.mp4",
+      "https://res.cloudinary.com/dpgelkpd4/video/upload/v1694188634/Ayurvedaeyes_x50rhd.mp4",
     thumbnailUrl: Treatment02,
     title: "Ayurvedic Eye Care - Part 2",
     description: "Discover Ayurvedic remedies for common eye problems.",
@@ -124,7 +125,7 @@ const videoData = [
   {
     id: 3,
     videoUrl:
-      "https://res.cloudinary.com/dpgelkpd4/video/upload/v1694188634/Ayurvedic_Eye_Care_3.mp4",
+      "https://res.cloudinary.com/dpgelkpd4/video/upload/v1694188634/Ayurvedaeyes_x50rhd.mp4",
     thumbnailUrl: Treatment01,
     title: "Ayurvedic Eye Massage Techniques",
     description:
@@ -133,4 +134,97 @@ const videoData = [
   },
 ];
 
-export { treatmentsData, videoData };
+const doctorData = [
+  {
+    name: "Dr. John Doe",
+    email: "john.doe@example.com",
+    mobile: "123-456-7890",
+    specialization: "Ophthalmologist",
+    type: "Ayurvedic",
+    town: "Galle",
+    latitude: "6.0367",
+    longitude: "80.2170",
+    about:
+      "Dr. Ayurveda Sharma is a highly skilled Ayurvedic Ophthalmologist with over 15 years of experience in holistic eye care. He is dedicated to helping patients maintain and improve their eye health through Ayurvedic practices.",
+    qualifications: "MD in Ophthalmology",
+    experience: "10+ years",
+    servicesOffered: ["Cataract Surgery", "LASIK", "Glaucoma Treatment"],
+    officeHours: "Mon-Fri: 9 AM - 5 PM",
+    acceptedPaymentMethods: ["Cash", "Credit Card"],
+    profilePicUrl: Doctor,
+  },
+  {
+    name: "Dr. Sarah Smith",
+    email: "sarah.smith@example.com",
+    mobile: "987-654-3210",
+    specialization: "Optometrist",
+    type: "Optician",
+    town: "Colombo",
+    latitude: "6.9271",
+    longitude: "79.8612",
+    about:
+      "Dr. Ayurveda Sharma is a highly skilled Ayurvedic Ophthalmologist with over 15 years of experience in holistic eye care. He is dedicated to helping patients maintain and improve their eye health through Ayurvedic practices.",
+    qualifications: "OD (Doctor of Optometry)",
+    experience: "8+ years",
+    servicesOffered: ["Eye Examinations", "Contact Lens Fitting"],
+    officeHours: "Mon-Sat: 10 AM - 6 PM",
+    acceptedPaymentMethods: ["Cash", "Debit Card", "Insurance"],
+    profilePicUrl: Doctor,
+  },
+  {
+    name: "Dr. Lisa Johnson",
+    email: "lisa.johnson@example.com",
+    mobile: "555-123-4567",
+    specialization: "Pediatric Ophthalmologist",
+    type: "Retina Specialist",
+    town: "Kandy",
+    latitude: "7.2906",
+    longitude: "80.6337",
+    about:
+      "Dr. Ayurveda Sharma is a highly skilled Ayurvedic Ophthalmologist with over 15 years of experience in holistic eye care. He is dedicated to helping patients maintain and improve their eye health through Ayurvedic practices.",
+    qualifications: "MD in Pediatric Ophthalmology",
+    experience: "12+ years",
+    servicesOffered: ["Pediatric Eye Exams", "Strabismus Treatment"],
+    officeHours: "Tue-Fri: 8:30 AM - 4:30 PM",
+    acceptedPaymentMethods: ["Cash", "Credit Card", "Medicaid"],
+    profilePicUrl: Doctor,
+  },
+  {
+    name: "Dr. Michael Brown",
+    email: "michael.brown@example.com",
+    mobile: "111-222-3333",
+    specialization: "Retina Specialist",
+    type: "Ayurvedic",
+    town: "Jaffna",
+    latitude: "9.6617",
+    longitude: "80.0250",
+    about:
+      "Dr. Ayurveda Sharma is a highly skilled Ayurvedic Ophthalmologist with over 15 years of experience in holistic eye care. He is dedicated to helping patients maintain and improve their eye health through Ayurvedic practices.",
+    qualifications: "MD in Retina Surgery",
+    experience: "15+ years",
+    servicesOffered: ["Retina Surgery", "Macular Degeneration Treatment"],
+    officeHours: "Mon-Wed: 9 AM - 3 PM",
+    acceptedPaymentMethods: ["Cash", "Credit Card", "Medicare"],
+    profilePicUrl: Doctor,
+  },
+  {
+    name: "Dr. Emily Clark",
+    email: "emily.clark@example.com",
+    mobile: "333-444-5555",
+    specialization: "Cornea Specialist",
+    type: "Neuro-Ophthalmologist",
+    town: "Trincomalee",
+    latitude: "8.5871",
+    longitude: "81.2150",
+    about:
+      "Dr. Ayurveda Sharma is a highly skilled Ayurvedic Ophthalmologist with over 15 years of experience in holistic eye care. He is dedicated to helping patients maintain and improve their eye health through Ayurvedic practices.",
+    qualifications: "MD in Cornea Surgery",
+    experience: "9+ years",
+    servicesOffered: ["Cornea Transplants", "Keratoconus Treatment"],
+    officeHours: "Thu-Sat: 10 AM - 5 PM",
+    acceptedPaymentMethods: ["Cash", "Debit Card"],
+    profilePicUrl: Doctor,
+  },
+];
+
+export { treatmentsData, videoData, doctorData };
