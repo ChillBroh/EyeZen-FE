@@ -10,16 +10,31 @@ const CreateQuiz = () => {
 
   //store database states
 
-  const [Disease, setDisease] = useState("");
-  const [Question, setQuestion] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [disease, setDisease] = useState("");
+  const [questions, setQuestion] = useState("");
   const [Option1, setOption1] = useState("");
+  const [Option2, setOption2] = useState("");
+  const [options, setOptions] = useState([]);
+  const [answer, setAnswer] = useState("");
 
   //send data to database
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (Disease === "" || amount === 0 || Option1 === "") {
+    const newOptions = {
+      0: Option1,
+      1: Option2,
+    };
+
+    setOptions([newOptions]);
+
+    if (
+      disease === "" ||
+      Option1 === "" ||
+      Option2 === "" ||
+      questions === "" ||
+      answer === ""
+    ) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -30,7 +45,7 @@ const CreateQuiz = () => {
 
     try {
       const result = await Swal.fire({
-        title: "Confirm Expenses Details",
+        title: "Confirm question Details",
         showDenyButton: true,
         confirmButtonText: "confirm",
         denyButtonText: `cancel`,
@@ -40,16 +55,16 @@ const CreateQuiz = () => {
         const response = await axios.post(
           "http://localhost:5000/api/mainQuiz",
           {
-            Disease,
-            Question,
-            amount,
-            Option1,
+            questions,
+            options,
+            answer,
+            disease,
           }
         );
         Swal.fire(response.data.message, "", "success");
         navigate("/");
       } else {
-        Swal.fire("Expense adding Cancelled!", "", "error");
+        Swal.fire("Question adding Cancelled!", "", "error");
       }
     } catch (err) {
       // using err instead of error
@@ -58,6 +73,9 @@ const CreateQuiz = () => {
         title: "Oops...",
         text: err.message,
       });
+    } finally {
+      setOption1("");
+      setOption2("");
     }
   };
 
@@ -88,11 +106,6 @@ const CreateQuiz = () => {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10 sm:px-4 sm:py-15 lg:max-w-7xl lg:px-8">
-      <Link to={`/`}>
-        <button type="button" data-te-ripple-init data-te-ripple-color="light">
-          <AiTwotoneHome className="text-black hover:text-red-700 text-4xl" />
-        </button>
-      </Link>
       <form>
         <div className="space-y-12">
           <div>
@@ -176,23 +189,42 @@ const CreateQuiz = () => {
                   />
                 </div>
               </div>
-              {/* amount */}
+              {/* option2 */}
               <div className="sm:col-span-3">
                 <label
-                  htmlFor="amount"
+                  htmlFor="option2"
                   className="block text-lg font-medium leading-6 text-gray-900"
                 >
-                  Add Amount
+                  Option2
                 </label>
                 <div className="mt-2">
                   <input
-                    type="number"
-                    name="amount"
-                    id="amount"
-                    placeholder="Amount spent"
+                    type="text"
+                    name="option2"
+                    id="option2"
                     className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     onChange={(e) => {
-                      setAmount(e.target.value);
+                      setOption2(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
+              {/* answer */}
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="ans"
+                  className="block text-lg font-medium leading-6 text-gray-900"
+                >
+                  Answer
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="ans"
+                    id="ans"
+                    className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    onChange={(e) => {
+                      setAnswer(e.target.value);
                     }}
                   />
                 </div>
