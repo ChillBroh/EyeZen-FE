@@ -33,6 +33,12 @@ import CreateQuiz from "../pages/mainQuiz/CreateQuiz";
 import DoctorForm from "../pages/adminForms/DoctorForm";
 import TreatmentForm from "../pages/adminForms/TreatmentForm";
 import VideoTutorialForm from "../pages/adminForms/VideoTutorialForm";
+import AdminDoctorList from "../pages/adminForms/AdminDoctorList";
+import UpdateDoctor from "../pages/adminForms/UpdateDoctor";
+import AdminTreatmentList from "../pages/adminForms/AdminTreatmentList";
+import UpdateTreatment from "../pages/adminForms/UpdateTreatment";
+import AdminVideoTutorialList from "../pages/adminForms/AdminVideoTutorialList";
+import UpdateVideoTutorial from "../pages/adminForms/UpdateVideoTutorial";
 
 const Router = () => {
   return (
@@ -120,6 +126,30 @@ const Router = () => {
 
       {/* Treatment Form */}
       <Route path="/videoTutorialForm" element={<VideoTutorialForm />} />
+
+      {/* Admin Doctor List */}
+      <Route path="/adminDoctorList" element={<AdminDoctorList />} />
+
+      {/* Admin Doctor Update */}
+      <Route path="/update-doctor/:email" element={<UpdateDoctor />} />
+
+      {/* Admin Treatment List */}
+      <Route path="/adminTreatmentList" element={<AdminTreatmentList />} />
+
+      {/* Admin Treatment Update */}
+      <Route path="/update-treatment/:id" element={<UpdateTreatment />} />
+
+      {/* Admin VideoTutorial List */}
+      <Route
+        path="/adminTVideoTutorialList"
+        element={<AdminVideoTutorialList />}
+      />
+
+      {/* Admin VideoTutorial Update */}
+      <Route
+        path="/update-video-tutorial/:id"
+        element={<UpdateVideoTutorial />}
+      />
     </Routes>
   );
 };
