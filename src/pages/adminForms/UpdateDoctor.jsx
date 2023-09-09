@@ -36,8 +36,6 @@ const UpdateDoctor = () => {
 
   const [loading2, setLoading2] = useState(false);
 
-  const [file, setFile] = useState("");
-
   const [doctorInfo, setDoctorInfo] = useState({
     // Initialize with existing doctor's information
     name: "",
@@ -411,8 +409,6 @@ const UpdateDoctor = () => {
 
               {loading2 && (
                 <div style={overlayStyles}>
-                  {" "}
-                  {/* Apply the overlay styles when loading2 is true */}
                   <Spinner />
                 </div>
               )}

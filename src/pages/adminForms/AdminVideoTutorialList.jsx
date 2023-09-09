@@ -52,7 +52,7 @@ const AdminVideoTutorialList = () => {
   return (
     <div className="pb-14 lg:px-20 py-3">
       <div className="lg:px-12 px-4 lg:pt-8 lg:pb-3 pt-3 pb-3">
-        <div className="lg:flex lg:flex lg:justify-between items-start grid grid-rows-2">
+        <div className="lg:flex lg:justify-between items-start grid grid-rows-2">
           <div className="lg:w-1/2">
             <span className="text-xl font-bold">Admin </span>
             <span className="text-xl font-bold text-[#004AAD]">

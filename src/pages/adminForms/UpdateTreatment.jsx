@@ -34,8 +34,6 @@ const UpdateTreatment = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const [file, setFile] = useState("");
-
   const [treatmentInfo, setTreatmentInfo] = useState({
     // Initialize with existing treatment's information
     title: "",

@@ -34,8 +34,6 @@ const UpdateVideoTutorial = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const [file, setFile] = useState("");
-
   const [videoTutorialInfo, setVideoTutorialInfo] = useState({
     // Initialize with existing video tutorial's information
     title: "",
