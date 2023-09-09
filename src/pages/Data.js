@@ -142,8 +142,8 @@ const doctorData = [
     specialization: "Ophthalmologist",
     type: "Ayurvedic",
     town: "Galle",
-    latitude: "6.0367", // Updated latitude for Galle, Sri Lanka
-    longitude: "80.2170", // Updated longitude for Galle, Sri Lanka
+    latitude: "6.0367",
+    longitude: "80.2170",
     about:
       "Dr. Ayurveda Sharma is a highly skilled Ayurvedic Ophthalmologist with over 15 years of experience in holistic eye care. He is dedicated to helping patients maintain and improve their eye health through Ayurvedic practices.",
     qualifications: "MD in Ophthalmology",
@@ -159,9 +159,9 @@ const doctorData = [
     mobile: "987-654-3210",
     specialization: "Optometrist",
     type: "Optician",
-    town: "Colombo", // Updated town to Colombo, Sri Lanka
-    latitude: "6.9271", // Updated latitude for Colombo, Sri Lanka
-    longitude: "79.8612", // Updated longitude for Colombo, Sri Lanka
+    town: "Colombo",
+    latitude: "6.9271",
+    longitude: "79.8612",
     about:
       "Dr. Ayurveda Sharma is a highly skilled Ayurvedic Ophthalmologist with over 15 years of experience in holistic eye care. He is dedicated to helping patients maintain and improve their eye health through Ayurvedic practices.",
     qualifications: "OD (Doctor of Optometry)",
@@ -177,9 +177,9 @@ const doctorData = [
     mobile: "555-123-4567",
     specialization: "Pediatric Ophthalmologist",
     type: "Retina Specialist",
-    town: "Kandy", // Updated town to Kandy, Sri Lanka
-    latitude: "7.2906", // Updated latitude for Kandy, Sri Lanka
-    longitude: "80.6337", // Updated longitude for Kandy, Sri Lanka
+    town: "Kandy",
+    latitude: "7.2906",
+    longitude: "80.6337",
     about:
       "Dr. Ayurveda Sharma is a highly skilled Ayurvedic Ophthalmologist with over 15 years of experience in holistic eye care. He is dedicated to helping patients maintain and improve their eye health through Ayurvedic practices.",
     qualifications: "MD in Pediatric Ophthalmology",
@@ -195,9 +195,9 @@ const doctorData = [
     mobile: "111-222-3333",
     specialization: "Retina Specialist",
     type: "Ayurvedic",
-    town: "Jaffna", // Updated town to Jaffna, Sri Lanka
-    latitude: "9.6617", // Updated latitude for Jaffna, Sri Lanka
-    longitude: "80.0250", // Updated longitude for Jaffna, Sri Lanka
+    town: "Jaffna",
+    latitude: "9.6617",
+    longitude: "80.0250",
     about:
       "Dr. Ayurveda Sharma is a highly skilled Ayurvedic Ophthalmologist with over 15 years of experience in holistic eye care. He is dedicated to helping patients maintain and improve their eye health through Ayurvedic practices.",
     qualifications: "MD in Retina Surgery",
@@ -213,9 +213,9 @@ const doctorData = [
     mobile: "333-444-5555",
     specialization: "Cornea Specialist",
     type: "Neuro-Ophthalmologist",
-    town: "Trincomalee", // Updated town to Trincomalee, Sri Lanka
-    latitude: "8.5871", // Updated latitude for Trincomalee, Sri Lanka
-    longitude: "81.2150", // Updated longitude for Trincomalee, Sri Lanka
+    town: "Trincomalee",
+    latitude: "8.5871",
+    longitude: "81.2150",
     about:
       "Dr. Ayurveda Sharma is a highly skilled Ayurvedic Ophthalmologist with over 15 years of experience in holistic eye care. He is dedicated to helping patients maintain and improve their eye health through Ayurvedic practices.",
     qualifications: "MD in Cornea Surgery",
