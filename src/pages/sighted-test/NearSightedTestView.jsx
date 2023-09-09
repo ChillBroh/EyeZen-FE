@@ -97,22 +97,26 @@ function VoiceToText() {
     }
   }, [transcript]);
 
+  
+
   return (
-    <div className="flex justify-center items-center h-screen w-screen">
+    <div className="flex justify-center items-center h-screen w-screen relative">
       <div className="max-w-lg lg:items-center justify-between">
         <div
-          className="flex items-center gap-5 bg-[#004AAD]  justify-center p-2 rounded-md cursor-pointer hover:bg-blue-600 mb-24"
+          className="flex items-center gap-5 bg-[#004AAD] justify-center p-2 rounded-md cursor-pointer hover:bg-blue-600 mb-24 animate-pulse"
           style={{ visibility: isHidden ? "hidden" : "visible" }}
           onClick={handleSpeak}
         >
           <img src={speaker} alt="speaker" className="w-[50px] " />
           <h1
-            className="font-semibold"
+            className="font-semibold  text-white "
             style={{ fontSize: `${fontSizes[currentFontSizeIndex]}px` }}
           >
             Click here for Instructions
           </h1>
+          
         </div>
+
 
         <div className="">
           {loading ? (
@@ -122,7 +126,7 @@ function VoiceToText() {
               {currentWordIndex !== null && (
                 <div className="mb-24 flex justify-center items-center">
                   <span
-                    style={{
+                    style={{ visibility: isHidden ? "visible" : "hidden",
                       fontSize: `${fontSizes[currentFontSizeIndex]}px`,
                     }}
                   >
