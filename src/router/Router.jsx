@@ -21,6 +21,9 @@ import DoctorContactHome from "../pages/doctorContactHome/DoctorContactHome";
 import DoctorList from "../pages/doctorContactHome/DoctorList";
 import DoctorDetails from "../pages/doctorContactHome/DoctorDetails";
 import Map from "../pages/doctorContactHome/Map";
+import DoctorForm from "../pages/adminForms/DoctorForm";
+import TreatmentForm from "../pages/adminForms/TreatmentForm";
+import VideoTutorialForm from "../pages/adminForms/VideoTutorialForm";
 
 const Router = () => {
   return (
@@ -78,6 +81,15 @@ const Router = () => {
 
       {/* Doctor map Page */}
       <Route path="/doctorContact/doctorMap" element={<Map />} />
+
+      {/* Doctor Form */}
+      <Route path="/doctorForm" element={<DoctorForm />} />
+
+      {/* Treatment Form */}
+      <Route path="/treatmentForm" element={<TreatmentForm />} />
+
+      {/* Treatment Form */}
+      <Route path="/videoTutorialForm" element={<VideoTutorialForm />} />
     </Routes>
   );
 };

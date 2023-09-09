@@ -1,11 +1,25 @@
-import React, { useState } from "react";
-import { treatmentsData } from "../Data";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 
 const AyurvedicTreatments = () => {
   // State for search query and filter
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedType, setSelectedType] = useState("All Types");
+
+  // State to store treatments data
+  const [treatmentsData, setTreatmentsData] = useState([]);
+
+  useEffect(() => {
+    // Make an HTTP GET request to fetch data from the backend
+    Axios.get("http://localhost:5000/api/treatments")
+      .then((response) => {
+        setTreatmentsData(response.data); // Set the data received from the backend to state
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
 
   // Filter treatments based on search query and selected type
   const filteredTreatments = treatmentsData.filter((treatment) => {
@@ -59,13 +73,13 @@ const AyurvedicTreatments = () => {
         <div className="flex flex-wrap -mx-4">
           {filteredTreatments.map((treatment) => (
             <Link
-              to={`/treatment/${treatment.id}`}
-              key={treatment.id}
+              to={`/treatment/${treatment._id}`}
+              key={treatment._id}
               className="w-full md:w-1/2 lg:w-1/3 px-4 mb-4 flex"
             >
               <div className="flex flex-col h-full border rounded-lg p-4 hover:shadow-lg transition duration-300 relative">
                 <img
-                  src={treatment.image}
+                  src={treatment.photoUrl}
                   alt={treatment.title}
                   className="w-full h-40 object-cover rounded-lg mb-2"
                 />

@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { videoData } from "../Data";
+import Axios from "axios";
 
 const AyurvedicVideo = () => {
   const { videoId } = useParams();
 
+  // State to store treatments data
+  const [videoData, setVideoData] = useState([]);
+
+  useEffect(() => {
+    // Make an HTTP GET request to fetch data from the backend
+    Axios.get("http://localhost:5000/api/videoTutorial")
+      .then((response) => {
+        setVideoData(response.data); // Set the data received from the backend to state
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
+
   // Find the video data based on the videoId
-  const video = videoData.find((video) => video.id.toString() === videoId);
+  const video = videoData.find((video) => video._id === videoId);
 
   if (!video) {
     return <div>Video not found</div>;

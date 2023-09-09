@@ -1,14 +1,27 @@
-import Doctor from "../../assets/ayurvedic/doctor.jpeg";
-import React, { useState } from "react";
-import { doctorData } from "../Data";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DoctorLocationModal from "./DoctorPin";
+import Axios from "axios";
 
 const DoctorDetails = () => {
   // Extract the email parameter from the URL
   const { email } = useParams();
 
   const [isMapOpen, setIsMapOpen] = useState(false);
+
+  // State to store treatments data
+  const [doctorData, setDoctorData] = useState([]);
+
+  useEffect(() => {
+    // Make an HTTP GET request to fetch data from the backend
+    Axios.get("http://localhost:5000/api/doctors")
+      .then((response) => {
+        setDoctorData(response.data); // Set the data received from the backend to state
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
 
   // Find the doctor with the matching email
   const doctor = doctorData.find((doc) => doc.email === email);
@@ -66,8 +79,8 @@ const DoctorDetails = () => {
 
         <div className="p-20 flex justify-center items-center">
           <img
-            className="rounded-full max-h-96 w-96 object-cover"
-            src={Doctor}
+            className="w-96 h-96 rounded-full object-cover"
+            src={doctor.profilePicUrl}
             alt=""
           />
         </div>
