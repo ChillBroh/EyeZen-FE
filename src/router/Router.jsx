@@ -21,8 +21,9 @@ import DoctorContactHome from "../pages/doctorContactHome/DoctorContactHome";
 import DoctorList from "../pages/doctorContactHome/DoctorList";
 import DoctorDetails from "../pages/doctorContactHome/DoctorDetails";
 import Map from "../pages/doctorContactHome/Map";
-import ManageQuiz from "../pages/infantQuiz/ManageQuiz";
 import Questionnaire from "../pages/infantQuiz/Questionnaire";
+import CreateQuizQuestion from "../pages/infantQuiz/CreateQuiz";
+import ViewQuiz from "../pages/infantQuiz/ViewQuiz";
 
 const Router = () => {
   return (
@@ -53,8 +54,11 @@ const Router = () => {
       {/* Infant Eye Care Home Page */}
       <Route path="/infant_facts" element={<CreateFact />} />
 
+      {/* Infant Quiz Create Page */}
+      <Route path="/infant_create_quiz" element={<CreateQuizQuestion />} />
+
       {/* Infant Quiz Manage Page */}
-      <Route path="/infant_quiz_manage" element={<ManageQuiz />} />
+      <Route path="/infant_view_quiz" element={<ViewQuiz />} />
 
 
       {/* -----------sighted test Routes--------------------- */}

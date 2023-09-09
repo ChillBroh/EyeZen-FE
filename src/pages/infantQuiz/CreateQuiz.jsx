@@ -35,7 +35,7 @@ const CreateQuizQuestion = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/api/infantQuiz/", {
+      const response = await axios.post("http://localhost:5000/api/infantQuiz", {
         question: question,
         answers: answers,
       });
