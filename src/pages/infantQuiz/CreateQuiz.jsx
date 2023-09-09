@@ -117,6 +117,14 @@ const CreateQuizQuestion = () => {
         >
           Create Question
         </button>
+        <button
+          onClick={() => {
+            window.location.href = '/infant_view_quiz';
+          }}
+          className="bg-blue-600 text-white ml-5 px-4 py-2 rounded hover:bg-blue-800 focus:outline-none focus:ring focus:border-blue-500"
+        >
+          Back
+        </button>
       </form>
     </div>
   );

@@ -1,85 +1,125 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 
 const ViewQuiz = () => {
   const [questions, setQuestions] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState(""); // State for search term
+  const selectedQuestionRef = useRef(null); // Create a ref for the selected question
 
   useEffect(() => {
-    // Fetch quiz questions from the backend when the component mounts
-    axios
-      .get("http://localhost:5000/api/infantQuiz")
-      .then((response) => {
+    const fetchQuestions = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/infantQuiz");
         if (response.data && response.data.length > 0) {
-          // Flatten the nested array of questions
           const flattenedQuestions = response.data.flat();
           setQuestions(flattenedQuestions);
         }
         setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching questions:", error);
         setLoading(false);
-      });
+      }
+    };
+
+    fetchQuestions();
   }, []);
 
+  useEffect(() => {
+    // When the selectedQuestion changes, scroll to it
+    if (selectedQuestion) {
+      selectedQuestionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [selectedQuestion]);
+
   const handleQuestionUpdate = (question) => {
-    // Set the selected question for editing
     setSelectedQuestion(question);
   };
 
   const handleQuestionDelete = async (questionId) => {
     try {
-      // Send a DELETE request to your backend API to delete the question
       await axios.delete(`http://localhost:5000/api/infantQuiz/${questionId}`);
-
-      // Remove the deleted question from the state
       setQuestions((prevQuestions) =>
         prevQuestions.filter((question) => question._id !== questionId)
       );
-
-      // Clear the selected question
       setSelectedQuestion(null);
     } catch (error) {
       console.error("Error deleting question:", error);
-      // Handle the error (e.g., show a notification)
     }
   };
 
   const handleSaveChanges = async () => {
     try {
-      // Send a PUT request to your backend API to update the question
       await axios.put(
         `http://localhost:5000/api/infantQuiz/${selectedQuestion._id}`,
         selectedQuestion
       );
-
-      // Update the question in the state
       setQuestions((prevQuestions) =>
         prevQuestions.map((question) =>
           question._id === selectedQuestion._id ? selectedQuestion : question
         )
       );
-
-      // Clear the selected question
       setSelectedQuestion(null);
     } catch (error) {
       console.error("Error updating question:", error);
-      // Handle the error (e.g., show a notification)
     }
   };
 
+  // Filter questions based on the search term
+  const filteredQuestions = questions.filter((question) =>
+    question.question.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Quiz Questions List</h2>
+    <div className="mx-20">
+      {/* Add Question Button */}
+      <button
+        onClick={() => {
+          window.location.href = '/infant_create_quiz';
+        }}
+        className="bg-blue-500 text-white px-4 py-2 rounded-3xl mt-10 flex items-center justify-center hover:bg-blue-700 focus:outline-none focus:ring focus:border-green-500"
+      >
+        <span className="mr-2">
+          <FaPlus />
+        </span>
+        Add Question
+      </button>
+
+      <h2 className="text-2xl font-semibold mb-4 mt-10 text-center text-black">Quiz Questions List</h2>
+
+    <div className="flex">
+        {/* Search input */}
+      <input
+        type="text"
+        placeholder="Search questions"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="w-1/2 py-2 border rounded shadow-sm mb-4 focus:outline-none focus:ring focus:border-blue-500 mx-auto"
+      />
+    </div>
+
       {loading ? (
         <div>Loading...</div>
-      ) : (
-        <div>
-          {questions?.map((question) => (
-            <div key={question._id} className="mb-4 border p-4 rounded-lg shadow-lg">
+      ) : filteredQuestions.length > 0 ? (
+        <div className="w-3/4 mx-auto">
+          {filteredQuestions.map((question) => (
+            <div
+              key={question._id}
+              className={`mb-4 border p-4 rounded-lg shadow-lg ${
+                question._id === selectedQuestion?._id ? "bg-blue-100" : ""
+              }`}
+              ref={(ref) => {
+                // Set a ref for the selected question
+                if (question._id === selectedQuestion?._id) {
+                  selectedQuestionRef.current = ref;
+                }
+              }}
+            >
               <h3 className="text-lg font-semibold mb-2">{question.question}</h3>
               <ul>
                 {question.answers?.map((answer, index) => (
@@ -109,9 +149,10 @@ const ViewQuiz = () => {
             </div>
           ))}
         </div>
+      ) : (
+        <p>No questions available.</p>
       )}
 
-      {/* Display the selected question for editing */}
       {selectedQuestion && (
         <div className="mt-4 p-4 border rounded-lg shadow-lg">
           <h3 className="text-lg font-semibold mb-2">Edit Question</h3>
@@ -119,7 +160,6 @@ const ViewQuiz = () => {
             type="text"
             value={selectedQuestion.question}
             onChange={(e) => {
-              // Update the selected question's question field
               const updatedQuestion = { ...selectedQuestion };
               updatedQuestion.question = e.target.value;
               setSelectedQuestion(updatedQuestion);
@@ -134,7 +174,6 @@ const ViewQuiz = () => {
                   type="text"
                   value={answer.answer}
                   onChange={(e) => {
-                    // Update the selected question's answer
                     const updatedQuestion = { ...selectedQuestion };
                     updatedQuestion.answers[index].answer = e.target.value;
                     setSelectedQuestion(updatedQuestion);
@@ -143,7 +182,6 @@ const ViewQuiz = () => {
                 />
                 <button
                   onClick={() => {
-                    // Remove the selected question's answer
                     const updatedQuestion = { ...selectedQuestion };
                     updatedQuestion.answers.splice(index, 1);
                     setSelectedQuestion(updatedQuestion);
