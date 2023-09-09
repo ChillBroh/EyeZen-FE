@@ -29,6 +29,7 @@ import MacularDegeneration from "../pages/vision Tests/MacularDegeneration";
 import Questionnaire from "../pages/infantQuiz/Questionnaire";
 import CreateQuizQuestion from "../pages/infantQuiz/CreateQuiz";
 import ViewQuiz from "../pages/infantQuiz/ViewQuiz";
+import CreateQuiz from "../pages/mainQuiz/CreateQuiz";
 
 const Router = () => {
   return (
@@ -43,6 +44,7 @@ const Router = () => {
         path="/main-quiz-results/:finalPercentage"
         element={<QuizResults />}
       />
+      <Route path="create-main-quiz" element={<CreateQuiz />} />
 
       {/* eye tests */}
       <Route path="/test-home" element={<AllTestHome />} />
@@ -75,7 +77,6 @@ const Router = () => {
 
       {/* Infant Quiz Manage Page */}
       <Route path="/infant_view_quiz" element={<ViewQuiz />} />
-
 
       {/* -----------sighted test Routes--------------------- */}
       <Route path="/near-sighted" element={<NearSighted />} />
