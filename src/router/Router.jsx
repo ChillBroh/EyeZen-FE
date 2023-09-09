@@ -33,6 +33,8 @@ import CreateQuiz from "../pages/mainQuiz/CreateQuiz";
 import DoctorForm from "../pages/adminForms/DoctorForm";
 import TreatmentForm from "../pages/adminForms/TreatmentForm";
 import VideoTutorialForm from "../pages/adminForms/VideoTutorialForm";
+import ViewQuestions from "../pages/mainQuiz/GetAllQuestions";
+import UpdateQuiz from "../pages/mainQuiz/UpdateQuiz";
 import AdminDoctorList from "../pages/adminForms/AdminDoctorList";
 import UpdateDoctor from "../pages/adminForms/UpdateDoctor";
 import AdminTreatmentList from "../pages/adminForms/AdminTreatmentList";
@@ -54,6 +56,8 @@ const Router = () => {
         element={<QuizResults />}
       />
       <Route path="create-main-quiz" element={<CreateQuiz />} />
+      <Route path="view-all-questions" element={<ViewQuestions />} />
+      <Route path="update-main-quiz/:id" element={<UpdateQuiz />} />
 
       {/* eye tests */}
       <Route path="/test-home" element={<AllTestHome />} />

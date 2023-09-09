@@ -19,8 +19,7 @@ const AllTestHome = () => {
         {/* left side */}
         <div>
           <div className="text-3xl lg:text-7xl">
-            Tests for <br />{" "}
-            <span className="text-[#004AAD]">Eye Diseases</span>
+            Tests for <span className="text-[#004AAD]">Eye Diseases</span>
           </div>
           <div>
             <p className="font-bold text-xl mt-4 lg:mt-10 mb-4 lg:mb-10">
