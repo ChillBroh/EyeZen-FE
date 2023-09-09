@@ -30,6 +30,9 @@ import Questionnaire from "../pages/infantQuiz/Questionnaire";
 import CreateQuizQuestion from "../pages/infantQuiz/CreateQuiz";
 import ViewQuiz from "../pages/infantQuiz/ViewQuiz";
 import CreateQuiz from "../pages/mainQuiz/CreateQuiz";
+import DoctorForm from "../pages/adminForms/DoctorForm";
+import TreatmentForm from "../pages/adminForms/TreatmentForm";
+import VideoTutorialForm from "../pages/adminForms/VideoTutorialForm";
 import ViewQuestions from "../pages/mainQuiz/GetAllQuestions";
 import UpdateQuiz from "../pages/mainQuiz/UpdateQuiz";
 
@@ -112,6 +115,15 @@ const Router = () => {
 
       {/* Doctor map Page */}
       <Route path="/doctorContact/doctorMap" element={<Map />} />
+
+      {/* Doctor Form */}
+      <Route path="/doctorForm" element={<DoctorForm />} />
+
+      {/* Treatment Form */}
+      <Route path="/treatmentForm" element={<TreatmentForm />} />
+
+      {/* Treatment Form */}
+      <Route path="/videoTutorialForm" element={<VideoTutorialForm />} />
     </Routes>
   );
 };

@@ -1,11 +1,25 @@
-import React, { useState } from "react";
-import { doctorData } from "../Data";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Axios from "axios";
 
 const DoctorList = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const selectedTypeQuery = queryParams.get("type") || "All Types";
+
+  // State to store treatments data
+  const [doctorData, setDoctorData] = useState([]);
+
+  useEffect(() => {
+    // Make an HTTP GET request to fetch data from the backend
+    Axios.get("http://localhost:5000/api/doctors")
+      .then((response) => {
+        setDoctorData(response.data); // Set the data received from the backend to state
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
 
   // State for search query, specialization, town, and type
   const [searchQuery, setSearchQuery] = useState("");

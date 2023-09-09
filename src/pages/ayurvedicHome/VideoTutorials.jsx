@@ -1,11 +1,25 @@
-import React, { useState } from "react";
-import { videoData } from "../Data";
+import React, { useEffect, useState } from "react";
 import VideoCard from "../../components/VideoCard";
+import Axios from "axios";
 
 const VideoTutorials = () => {
   // State for search query and filter
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedType, setSelectedType] = useState("All Types");
+
+  // State to store treatments data
+  const [videoData, setVideoData] = useState([]);
+
+  useEffect(() => {
+    // Make an HTTP GET request to fetch data from the backend
+    Axios.get("http://localhost:5000/api/videoTutorial")
+      .then((response) => {
+        setVideoData(response.data); // Set the data received from the backend to state
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
 
   // Filter videoData based on search query and selected type
   const filteredVideos = videoData.filter((video) => {
@@ -55,11 +69,11 @@ const VideoTutorials = () => {
         <div className="flex flex-wrap -mx-4">
           {filteredVideos.map((video) => (
             <VideoCard
-              key={video.id}
+              key={video._id}
               thumbnailUrl={video.thumbnailUrl}
               title={video.title}
               description={video.description}
-              videoId={video.id}
+              videoId={video._id}
             />
           ))}
         </div>
