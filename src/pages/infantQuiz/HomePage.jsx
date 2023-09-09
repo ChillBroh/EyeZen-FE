@@ -56,6 +56,10 @@ const InfantQuizHome = () => {
       });
   }, []);
 
+  const handleButtonClick = () => {
+    window.location.href = '/infant_questionnaire'; // Change the URL to navigate to the '/quiz' route
+  };
+
   return (
     <div>
       <section className="py-15 pl-8 pr-8 mb-8">
@@ -73,7 +77,7 @@ const InfantQuizHome = () => {
               Ensuring healthy eyes for your little one's bright future.
             </p>
             <div>
-              <button className="rounded-full bg-blue-600 py-2 px-8 mt-4 text-white font-bold">
+              <button className="rounded-full bg-blue-600 py-2 px-8 mt-4 text-white font-bold" onClick={handleButtonClick}>
                 Take the quiz
               </button>
             </div>
