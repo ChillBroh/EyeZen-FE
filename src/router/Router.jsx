@@ -30,6 +30,8 @@ import Questionnaire from "../pages/infantQuiz/Questionnaire";
 import CreateQuizQuestion from "../pages/infantQuiz/CreateQuiz";
 import ViewQuiz from "../pages/infantQuiz/ViewQuiz";
 import CreateQuiz from "../pages/mainQuiz/CreateQuiz";
+import ViewQuestions from "../pages/mainQuiz/GetAllQuestions";
+import UpdateQuiz from "../pages/mainQuiz/UpdateQuiz";
 
 const Router = () => {
   return (
@@ -45,6 +47,8 @@ const Router = () => {
         element={<QuizResults />}
       />
       <Route path="create-main-quiz" element={<CreateQuiz />} />
+      <Route path="view-all-questions" element={<ViewQuestions />} />
+      <Route path="update-main-quiz/:id" element={<UpdateQuiz />} />
 
       {/* eye tests */}
       <Route path="/test-home" element={<AllTestHome />} />

@@ -1,24 +1,40 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useNavigate, useParams } from "react-router";
 
-const CreateQuiz = () => {
+const UpdateQuiz = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
 
   //store database states
-
-  const [disease, setDisease] = useState("");
-  const [questions, setQuestion] = useState("");
-  const [Option1, setOption1] = useState("");
-  const [Option2, setOption2] = useState("");
+  const [allQ, setAll] = useState({});
+  const [disease, setDisease] = useState(allQ.disease);
+  const [questions, setQuestion] = useState(allQ.questions);
+  const [Option1, setOption1] = useState(allQ.Options[0]);
+  const [Option2, setOption2] = useState(allQ.options[1]);
   const [options, setOptions] = useState([]);
-  const [answer, setAnswer] = useState("");
+  const [answer, setAnswer] = useState(allQ.answer);
+  const [isLoading, setIsLoading] = useState(true);
+
+  //get all data
+  useEffect(() => {
+    const getQ = async () => {
+      try {
+        const respons = await axios.get("");
+        setAll(respons.data);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err);
+        setIsLoading(false);
+      }
+    };
+    getQ();
+  });
 
   //send data to database
-  const handleSubmit = async (e) => {
+  const handleEdit = async (e) => {
     e.preventDefault();
-
     const newOptions = {
       0: Option1,
       1: Option2,
@@ -43,15 +59,15 @@ const CreateQuiz = () => {
 
     try {
       const result = await Swal.fire({
-        title: "Confirm question Details",
+        title: "Confirm Expenses Details Update",
         showDenyButton: true,
         confirmButtonText: "confirm",
         denyButtonText: `cancel`,
       });
 
       if (result.isConfirmed) {
-        const response = await axios.post(
-          "http://localhost:5000/api/mainQuiz",
+        const response = await axios.put(
+          `http://localhost:5000/api/mainQuiz/${id}`,
           {
             questions,
             options,
@@ -60,20 +76,16 @@ const CreateQuiz = () => {
           }
         );
         Swal.fire(response.data.message, "", "success");
-        navigate("/view-all-questions");
+        navigate("/create-main-quiz");
       } else {
-        Swal.fire("Question adding Cancelled!", "", "error");
+        Swal.fire("Expense adding Cancelled!", "", "error");
       }
     } catch (err) {
-      // using err instead of error
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: err.message,
       });
-    } finally {
-      setOption1("");
-      setOption2("");
     }
   };
 
@@ -240,9 +252,9 @@ const CreateQuiz = () => {
                 <button
                   type="submit"
                   className="rounded-md text-right bg-black px-3 py-2 text-lg font-semibold text-white shadow-sm hover:bg-[#41A4FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  onClick={handleSubmit}
+                  onClick={handleEdit}
                 >
-                  Submit
+                  Update
                 </button>
               </div>
             </div>
@@ -253,4 +265,4 @@ const CreateQuiz = () => {
   );
 };
 
-export default CreateQuiz;
+export default UpdateQuiz;
