@@ -3,9 +3,76 @@ import ResultsShow from "../../assets/mainquiz/Quizresults.png";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import jsPDF from "jspdf";
 
 const QuizResults = () => {
   const { finalPercentage } = useParams();
+
+  const generatePDF = () => {
+    const doc = new jsPDF();
+
+    // Define styles
+    // const titleStyle = { fontSize: 24, textColor: [0, 0, 255] }; // Blue color
+    const subtitleStyle = { fontSize: 18 };
+    const scoreStyle = { fontSize: 18, textColor: [255, 0, 0] }; // Red color
+    const suggestionStyle = { fontSize: 12 };
+    const footerStyle = { fontSize: 10, textColor: [128, 128, 128] }; // Gray color
+
+    // Measure the width of the subtitle text
+    const subtitleText = "Eyezen Vision Test Results";
+    const subtitleWidth =
+      (doc.getStringUnitWidth(subtitleText) * subtitleStyle.fontSize) /
+      doc.internal.scaleFactor;
+
+    // Calculate the X position to center the subtitle
+    const pageWidth = doc.internal.pageSize.width;
+    const subtitleX = (pageWidth - subtitleWidth) / 2;
+
+    // Add title
+    // doc.setTextColor.apply(doc, titleStyle.textColor);
+    // doc.setFontSize(titleStyle.fontSize);
+    // doc.text("EyeZen", subtitleX, 10);
+
+    // Add subtitle centered horizontally
+    doc.setTextColor(0); // Reset text color to black
+    doc.setFontSize(subtitleStyle.fontSize);
+    doc.text(subtitleText, subtitleX, 20);
+
+    // Add score
+    doc.setTextColor.apply(doc, scoreStyle.textColor);
+    doc.setFontSize(scoreStyle.fontSize);
+    doc.text(`Score Obtained: ${finalPercentage}%`, 20, 30);
+
+    // Add suggestions
+    doc.setFontSize(suggestionStyle.fontSize);
+    doc.text("Vision Condition:", 50, 40);
+    if (finalPercentage <= 50) {
+      doc.text("Vision seems to be a bit weak", 50, 50);
+      doc.text("Recommendation: Meet an ophthalmologist", 50, 60);
+    } else {
+      // Add other conditions and recommendations as needed
+    }
+
+    // Add Disease
+    doc.setTextColor.apply(doc, scoreStyle.textColor);
+    doc.setFontSize(scoreStyle.fontSize);
+    doc.text(`Posiibble Diseases`, 20, 80);
+
+    // Add suggestions
+    doc.setFontSize(suggestionStyle.fontSize);
+    doc.text("Color Blindness: 85%", 50, 90);
+    doc.text("Myopia : 55%", 50, 100);
+    doc.text("Macular Degeneration : 25%", 50, 110);
+    doc.text("Contrast Sensitivity : 10%", 50, 120);
+
+    // Add footer
+    doc.setTextColor.apply(doc, footerStyle.textColor);
+    doc.setFontSize(footerStyle.fontSize);
+    doc.text("EyeZen Vision Test", 10, 280);
+
+    // Save the PDF or open it in a new tab
+    doc.save("Eyezen_vision_test_results.pdf");
+  };
 
   return (
     <div className="mx-auto max-w-2xl mt-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -80,16 +147,16 @@ const QuizResults = () => {
             <div className="text-red-600 ml-32 mt-5 font-bold">
               <ul>
                 <Link to={"/color-blind"}>
-                  <li>Color Blind</li>
+                  <li>Color Blind : 85%</li>
                 </Link>
                 <Link to={"/near-sighted"}>
-                  <li>Myopia</li>
+                  <li>Myopia : 55%</li>
                 </Link>
                 <Link to={"/macular-degeneration"}>
-                  <li>Maculart Degeneration</li>
+                  <li>Maculart Degeneration : 25%</li>
                 </Link>
                 <Link to={"/contrast-sensitvity"}>
-                  <li>Contrast Sensitivity</li>
+                  <li>Contrast Sensitivity : 10%</li>
                 </Link>
               </ul>
               <p className="mt-5 text-black">
@@ -97,10 +164,15 @@ const QuizResults = () => {
               </p>
             </div>
           </div>
-          <div className="flex justify-center ">
+          <div className="flex justify-center space-x-8">
             <Link to="/">
               <Button btnName="Back To Home" />
             </Link>
+            <Button
+              btnName="Print Results"
+              color="black"
+              onClick={generatePDF}
+            />
           </div>
         </div>
         {/* right pane */}
