@@ -10,7 +10,8 @@ import CreateFact from "../pages/infantQuiz/InfantFact";
 import InfantQuiz from "../pages/infantQuiz/InfantQuiz";
 import Home from "../pages/Home";
 import QuizPage from "../pages/mainQuiz/QuizPage";
-import NearSighted from "../pages/sighted-test/NearSighted";
+import SightedText from "../pages/sighted-test/SightedText";
+import FarSightedTestView from "../pages/sighted-test/FarSightedTestView";
 import NearSightedTestView from "../pages/sighted-test/NearSightedTestView";
 import AyurvedicHome from "../pages/ayurvedicHome/AyurvedicHome";
 import AyurvedicTreatments from "../pages/ayurvedicHome/AyurvedicTreatments";
@@ -52,8 +53,8 @@ const Router = () => {
       <Route path="/macular-degeneration" element={<MacularDegeneration />} />
 
       {/* -----------sighted test Routes--------------------- */}
-      <Route path="/near-sighted" element={<NearSighted />} />
-      <Route path="/test-view" element={<NearSightedTestView />} />
+      <Route path="/far-sighted" element={<SightedText />} />
+      <Route path="/test-view" element={<FarSightedTestView />} />
 
       {/* Handle a 404 Not Found route */}
       <Route path="*" element={<NotFound />} />
@@ -95,12 +96,13 @@ const Router = () => {
       <Route path="/doctorContact/doctorMap" element={<Map />} />
 
       {/* -----------sighted test Routes--------------------- */}
-      <Route path="/near-sighted" element={<NearSighted />} />
-      <Route path="/test-view" element={<NearSightedTestView />} />
+      <Route path="/far-sighted" element={<SightedText />} />
+      <Route path="/test-view" element={<FarSightedTestView />} />
+      <Route path="/near-test-view" element={<NearSightedTestView />} />
       <Route path="/eye-sight-pass" element={<SightPass />} />
       <Route path="/eye-sight-fail" element={<SightFail />} />
       <Route path="/addText-form" element={<AddTextForm />} />
-      
+      <Route path="/near-sighted" element={<SightedText />} />
 
     </Routes>
   );

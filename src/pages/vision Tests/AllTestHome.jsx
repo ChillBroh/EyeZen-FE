@@ -3,8 +3,8 @@ import EyeCheck from "../../assets/eyetests/doctor-testing-patient-eyesight.jpg"
 import { Link } from "react-router-dom";
 
 const diseases = [
-  { path: "/myopia", name: "Myopia" },
-  { path: "/near-sighted", name: "Hyperopia" },
+  { path: "/near-sighted", name: "Myopia" },
+  { path: "/far-sighted", name: "Far-sighted" }, //Hyperopia 
   { path: "/color-blind", name: "Color Blind" },
   { path: "/contrast-sensitvity", name: "Contrast Sensitivity" },
   { path: "/depth-precision", name: "Depth Precision" },
