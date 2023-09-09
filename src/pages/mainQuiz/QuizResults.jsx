@@ -1,5 +1,5 @@
 import React from "react";
-import ResultsShow from "../../assets/mainquiz/Quizresults.jpg";
+import ResultsShow from "../../assets/mainquiz/Quizresults.png";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
