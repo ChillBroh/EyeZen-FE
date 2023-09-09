@@ -51,6 +51,10 @@ const InfantQuiz = () => {
       setActiveIndex(index === activeIndex ? null : index);
     };
   
+    const handleButtonClick = () => {
+      window.location.href = '/infant_questionnaire'; // Change the URL to navigate to the '/quiz' route
+    };
+
     return (
       <div>
         <section className="pt-20 pb-5 px-8 mx-auto mb-2" style={{width: "80%"}}>
@@ -87,7 +91,7 @@ const InfantQuiz = () => {
           </ul>
         </section>
         <div className="flex justify-center mt-1">
-        <Button btnName="Start Quiz" />
+        <Button btnName="Start Quiz" onClick={handleButtonClick}/>
       </div>
       </div>
     );
