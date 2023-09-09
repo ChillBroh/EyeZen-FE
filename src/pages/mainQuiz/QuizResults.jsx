@@ -85,8 +85,8 @@ const QuizResults = () => {
                 <Link to={"/near-sighted"}>
                   <li>Myopia</li>
                 </Link>
-                <Link to={"/depth-precision"}>
-                  <li>Depth Precision</li>
+                <Link to={"/macular-degeneration"}>
+                  <li>Maculart Degeneration</li>
                 </Link>
                 <Link to={"/contrast-sensitvity"}>
                   <li>Contrast Sensitivity</li>

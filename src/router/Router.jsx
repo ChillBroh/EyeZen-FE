@@ -36,6 +36,7 @@ import VideoTutorialForm from "../pages/adminForms/VideoTutorialForm";
 import ViewQuestions from "../pages/mainQuiz/GetAllQuestions";
 import UpdateQuiz from "../pages/mainQuiz/UpdateQuiz";
 import ColorBlindTest from "../pages/vision Tests/inside tests/ColorBlindTest";
+import MacularDegenerationTest from "../pages/vision Tests/inside tests/MacularDegenerationTest";
 
 const Router = () => {
   return (
@@ -63,6 +64,10 @@ const Router = () => {
 
       {/* eye tests */}
       <Route path="/color-blind-test" element={<ColorBlindTest />} />
+      <Route
+        path="/macular-degeneration-test"
+        element={<MacularDegenerationTest />}
+      />
 
       {/* -----------sighted test Routes--------------------- */}
       <Route path="/near-sighted" element={<NearSighted />} />
