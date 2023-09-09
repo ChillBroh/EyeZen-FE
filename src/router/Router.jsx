@@ -26,6 +26,7 @@ import ColorBlind from "../pages/vision Tests/ColorBlind";
 import ContrastSensitivity from "../pages/vision Tests/ContrastSensitivity";
 import DepthPrecision from "../pages/vision Tests/DepthPrecision";
 import MacularDegeneration from "../pages/vision Tests/MacularDegeneration";
+import CreateQuiz from "../pages/mainQuiz/CreateQuiz";
 
 const Router = () => {
   return (
@@ -40,6 +41,7 @@ const Router = () => {
         path="/main-quiz-results/:finalPercentage"
         element={<QuizResults />}
       />
+      <Route path="create-main-quiz" element={<CreateQuiz />} />
 
       {/* eye tests */}
       <Route path="/test-home" element={<AllTestHome />} />
