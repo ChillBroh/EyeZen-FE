@@ -9,9 +9,9 @@ const QuizResults = () => {
 
   return (
     <div className="mx-auto max-w-2xl mt-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2">
-        {/* right pane */}
-        <div className="grid grid-rows-4 sm:flex sm:flex-col">
+      <div className="grid grid-cols-2 sm:flex sm:flex-col xs:flex xs:flex-col">
+        {/* left pane */}
+        <div className="grid grid-rows-4 sm:flex sm:flex-col  xs:flex xs:flex-col">
           <div className="text-5xl font-bold ">Your Results</div>
           <div>
             <h1 className="text-xl text-[#004AAD] mt-5 font-bold">
@@ -54,7 +54,7 @@ const QuizResults = () => {
             </Link>
           </div>
         </div>
-        {/* left pane */}
+        {/* right pane */}
         <div className="flex justify-center mb-16">
           <img src={ResultsShow} alt="Girl with a snell chart" />
         </div>

@@ -32,7 +32,7 @@ const MainQuizHome = () => {
         </div>
       </div>
       <div className="flex justify-center">
-        <Link to="/main_questions">
+        <Link to="/main-questions">
           <Button btnName="Start Quiz" />
         </Link>
       </div>

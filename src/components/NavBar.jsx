@@ -7,7 +7,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 const inside_nav = [
   {
-    path: "/main_quiz",
+    path: "/main-quiz",
     display: "Main Quiz",
   },
   {
@@ -15,7 +15,7 @@ const inside_nav = [
     display: "Infant Eyecare Quiz",
   },
   {
-    path: "/tests",
+    path: "/test-home",
     display: "Eye Checkup Tests for Adults",
   },
   {

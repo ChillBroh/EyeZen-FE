@@ -21,6 +21,11 @@ import DoctorContactHome from "../pages/doctorContactHome/DoctorContactHome";
 import DoctorList from "../pages/doctorContactHome/DoctorList";
 import DoctorDetails from "../pages/doctorContactHome/DoctorDetails";
 import Map from "../pages/doctorContactHome/Map";
+import AllTestHome from "../pages/vision Tests/AllTestHome";
+import ColorBlind from "../pages/vision Tests/ColorBlind";
+import ContrastSensitivity from "../pages/vision Tests/ContrastSensitivity";
+import DepthPrecision from "../pages/vision Tests/DepthPrecision";
+import MacularDegeneration from "../pages/vision Tests/MacularDegeneration";
 
 const Router = () => {
   return (
@@ -29,12 +34,23 @@ const Router = () => {
       <Route path="/" element={<Home />} />
 
       {/* main Quiz */}
-      <Route path="/main_quiz" element={<MainQuizHome />} />
-      <Route path="/main_questions" element={<QuizPage />} />
+      <Route path="/main-quiz" element={<MainQuizHome />} />
+      <Route path="/main-questions" element={<QuizPage />} />
       <Route
-        path="/main_quiz_results/:finalPercentage"
+        path="/main-quiz-results/:finalPercentage"
         element={<QuizResults />}
       />
+
+      {/* eye tests */}
+      <Route path="/test-home" element={<AllTestHome />} />
+      <Route path="/color-blind" element={<ColorBlind />} />
+      <Route path="/contrast-sensitvity" element={<ContrastSensitivity />} />
+      <Route path="/depth-precision" element={<DepthPrecision />} />
+      <Route path="/macular-degeneration" element={<MacularDegeneration />} />
+
+      {/* -----------sighted test Routes--------------------- */}
+      <Route path="/near-sighted" element={<NearSighted />} />
+      <Route path="/test-view" element={<NearSightedTestView />} />
 
       {/* Handle a 404 Not Found route */}
       <Route path="*" element={<NotFound />} />
@@ -47,10 +63,6 @@ const Router = () => {
 
       {/* Infant Eye Care Home Page */}
       <Route path="/infant_facts" element={<CreateFact />} />
-
-      {/* -----------sighted test Routes--------------------- */}
-      <Route path="/near-sighted" element={<NearSighted />} />
-      <Route path="/test-view" element={<NearSightedTestView />} />
 
       {/* Ayurvedic Home Page */}
       <Route path="/ayurvedic" element={<AyurvedicHome />} />
