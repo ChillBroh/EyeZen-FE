@@ -1,106 +1,68 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function VoiceToText() {
-  const [words, setWords] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [attempts, setAttempts] = useState({ success: 0, failure: 0 });
-  const [currentWordIndex, setCurrentWordIndex] = useState(null);
+const NearSightedTestView = () => {
+  const [characters, setCharacters] = useState(['E', 'F P', 'T  O  Z', 'L P E D', 'P E C F D', 'E D F C Z P', 'F E L O P Z D ', 'D E F P O T E C', 'L E F O D F C T', 'F D P L T C E O']);
+  const [fontSizes, setFontSizes] = useState([400, 300, 200, 140, 120, 80, 60, 40, 30, 20]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isListening, setIsListening] = useState(false);
+  const [transcript, setTranscript] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get('http://localhost:5000/api/word')
-      .then((res) => {
-        setWords(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  }, []);
+    const startSpeechRecognition = () => {
+      if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition = new SpeechRecognition();
+        recognition.continuous = true;
 
-  const { transcript, listening } = useSpeechRecognition();
+        recognition.onstart = () => {
+          setIsListening(true);
+        };
 
-  const handleSuccessfulAttempt = () => {
-    if (attempts.success < 4) {
-      setAttempts({ ...attempts, success: attempts.success + 1 });
-    } else {
-      window.location.href = '/pass';
-    }
-  };
+        recognition.onend = () => {
+          setIsListening(false);
+        };
 
-  const handleFailedAttempt = () => {
-    if (attempts.failure < 3) {
-      setAttempts({ ...attempts, failure: attempts.failure + 1 });
-    } else {
-      window.location.href = '/fail';
-    }
-  };
+        recognition.onresult = (event) => {
+          const last = event.results.length - 1;
+          const spokenWord = event.results[last][0].transcript.toLowerCase().trim();
 
-  const handleSpeechRecognitionResult = () => {
-    if (currentWordIndex !== null) {
-      if (transcript.toLowerCase() === words[currentWordIndex].word.toLowerCase()) {
-        handleSuccessfulAttempt();
+          if (spokenWord === 'yes' || spokenWord === 'yas' || spokenWord === 'years' || spokenWord === 'ears') {
+            if (currentIndex < characters.length - 1) {
+              setCurrentIndex(currentIndex + 1);
+            }
+          } else if (spokenWord === 'no') {
+            // Navigate to 'near-sighted-result' path
+            navigate('/near-sighted-result');
+          } else {
+            // Reset the transcript for any other spoken words
+            setTranscript('');
+          }
+        };
+
+        recognition.start();
+
+        return () => {
+          recognition.stop();
+        };
       } else {
-        handleFailedAttempt();
+        // Fallback for unsupported browsers (inform the user that speech recognition is not available)
+        console.log('Speech recognition is not supported in this browser.');
       }
-    }
-  };
+    };
 
-  const startListeningAndUpdateData = () => {
-    SpeechRecognition.startListening();
-
-    // Generate a new random index to display a different word
-    const newWordIndex = Math.floor(Math.random() * words.length);
-    setCurrentWordIndex(newWordIndex);
-
-    handleSpeechRecognitionResult();
-  };
+    startSpeechRecognition();
+  }, [currentIndex, characters, navigate]);
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="max-w-lg mx-auto p-4 lg:items-center">
-        <div>
-          {loading ? (
-            <p>Loading data...</p>
-          ) : (
-            <div>
-              {currentWordIndex !== null && (
-                <div className='mb-16 justify-center items-center'>{words[currentWordIndex].word}</div>
-              )}
-            </div>
-          )}
-        </div>
-        <h2 className="text-2xl font-semibold mb-4">Voice to Text</h2>
-        <div className="mb-4">
-          <p className="text-lg mb-2">Transcript:</p>
-          <div className="bg-gray-100 p-2 rounded-md h-16 overflow-y-auto">
-            {transcript}
-          </div>
-        </div>
-        <button
-          onClick={startListeningAndUpdateData}
-          disabled={listening}
-          className={`bg-blue-500 text-white px-4 py-2 rounded-md mr-8 ${
-            listening && 'opacity-50 cursor-not-allowed'
-          }`}
-        >
-          Start Listening
-        </button>
-        <button
-          onClick={SpeechRecognition.stopListening}
-          disabled={!listening}
-          className={`bg-red-500 text-white px-4 py-2 rounded-md ${
-            !listening && 'opacity-50 cursor-not-allowed'
-          }`}
-        >
-          Stop Listening
-        </button>
-      </div>
+    <div className='h-screen flex justify-center items-center'>
+      <h1 className='font-bold' style={{ fontSize: `${fontSizes[currentIndex]}px` }}>
+        {characters[currentIndex]}
+      </h1>
+      {isListening}
     </div>
   );
-}
+};
 
-export default VoiceToText;
+export default NearSightedTestView;
