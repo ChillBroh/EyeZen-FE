@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import UpdateQuiz from "../pages/mainQuiz/UpdateQuiz";
 
 const Table = (props) => {
   const navigate = useNavigate();
@@ -33,7 +32,7 @@ const Table = (props) => {
   };
 
   return (
-    <div className="mx-auto max-w-2xl px-4  sm:px-6  lg:max-w-7xl lg:px-8 mb-24">
+    <div className="mx-auto  px-4  sm:px-6   lg:px-8 mb-24">
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -43,6 +42,9 @@ const Table = (props) => {
                   <tr>
                     <th scope="col" className=" px-6 py-4">
                       No
+                    </th>
+                    <th scope="col" className=" px-6 py-4">
+                      Disease
                     </th>
                     <th scope="col" className=" px-6 py-4">
                       Question
@@ -69,6 +71,9 @@ const Table = (props) => {
                         {index + 1}
                       </td>
                       <td className="whitespace-wrap  px-6 py-4">
+                        {value.disease}
+                      </td>
+                      <td className="whitespace-wrap  px-6 py-4">
                         {value.questions}
                       </td>
                       <td className="whitespace-wrap  px-6 py-4">
@@ -87,7 +92,6 @@ const Table = (props) => {
                               btnName="Delete"
                               color="red"
                               size="13px"
-                              p="8px"
                               onClick={() => handleDelete(value._id)}
                             />
                           </div>
@@ -97,7 +101,6 @@ const Table = (props) => {
                                 btnName="Edit"
                                 color="black"
                                 size="13px"
-                                p="8px"
                               />
                             </Link>
                           </div>

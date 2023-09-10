@@ -9,16 +9,14 @@ const UpdateQuiz = () => {
   const navigate = useNavigate();
 
   //store database states
-  const [allQ, setAll] = useState([]);
+  const [formData, setFormData] = useState({
+    questions: "",
+    options: [],
+    answer: "",
+    disease: "",
+  });
 
   const [isLoading, setIsLoading] = useState(true);
-  const [disease, setDisease] = useState("");
-  const [questions, setQuestion] = useState("");
-  const [options, setOptions] = useState("");
-  const [option1, setOption1] = useState("");
-  const [option2, setOption2] = useState("");
-
-  const [answer, setAnswer] = useState(allQ.answer);
 
   //get all data
   useEffect(() => {
@@ -27,15 +25,8 @@ const UpdateQuiz = () => {
         const respons = await axios.get(
           `http://localhost:5000/api/mainQuiz/${id}`
         );
-        setAll(respons.data.data.updatedQ);
+        setFormData(respons.data.data.updatedQ);
         setIsLoading(false);
-
-        if (Array.isArray(allQ.options) && allQ.options.length > 0) {
-          const option1 = allQ.options[0];
-          const option2 = allQ.options[1];
-          setOption1(option1);
-          setOption2(option2);
-        }
       } catch (err) {
         console.log(err);
         setIsLoading(false);
@@ -44,23 +35,24 @@ const UpdateQuiz = () => {
     getQ();
   }, [id]);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    console.log(formData);
+  };
   //send data to database
   const handleEdit = async (e) => {
     e.preventDefault();
-    const newOptions = {
-      0: option1,
-      1: option2,
-    };
-
-    setOptions([newOptions]);
-    console.log(disease, option1, option2, questions, answer, options);
 
     if (
-      disease === "" ||
-      option1 === "" ||
-      option2 === "" ||
-      questions === "" ||
-      answer === ""
+      formData.answer === "" ||
+      formData.disease === "" ||
+      formData.options[0] === "" ||
+      formData.options[1] === "" ||
+      formData.answer === ""
     ) {
       Swal.fire({
         icon: "error",
@@ -72,28 +64,24 @@ const UpdateQuiz = () => {
 
     try {
       const result = await Swal.fire({
-        title: "Confirm Question Details Update",
+        title: "Confirm question Details",
         showDenyButton: true,
         confirmButtonText: "confirm",
         denyButtonText: `cancel`,
       });
 
       if (result.isConfirmed) {
-        const response = await axios.put(
+        const response = await axios.patch(
           `http://localhost:5000/api/mainQuiz/${id}`,
-          {
-            questions,
-            options,
-            answer,
-            disease,
-          }
+          formData
         );
         Swal.fire(response.data.message, "", "success");
-        navigate("/create-main-quiz");
+        navigate("/view-all-questions");
       } else {
         Swal.fire("Question adding Cancelled!", "", "error");
       }
     } catch (err) {
+      // using err instead of error
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -153,11 +141,9 @@ const UpdateQuiz = () => {
                       <select
                         id="disease"
                         name="disease"
-                        defaultValue={allQ.disease}
+                        defaultValue={formData.disease}
                         className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        onChange={(e) => {
-                          setDisease(e.target.value);
-                        }}
+                        onChange={handleChange}
                       >
                         <option>--Select one--</option>
                         <option value={"Myopia"}>Myopia</option>
@@ -191,14 +177,12 @@ const UpdateQuiz = () => {
                       <textarea
                         rows={10}
                         type="text"
-                        name="question"
+                        name="questions"
                         id="question"
                         className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         placeholder="Question"
-                        defaultValue={allQ.questions}
-                        onChange={(e) => {
-                          setQuestion(e.target.value);
-                        }}
+                        defaultValue={formData.questions}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -213,12 +197,17 @@ const UpdateQuiz = () => {
                     <div className="mt-2">
                       <input
                         type="text"
-                        name="option1"
+                        name="options"
                         id="option1"
-                        defaultValue={allQ.options[0]}
+                        defaultValue={formData.options[0]}
                         className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         onChange={(e) => {
-                          setOption1(e.target.value);
+                          const updatedOptions = [...formData.options];
+                          updatedOptions[0] = e.target.value;
+                          setFormData({
+                            ...formData,
+                            options: updatedOptions,
+                          });
                         }}
                       />
                     </div>
@@ -234,12 +223,17 @@ const UpdateQuiz = () => {
                     <div className="mt-2">
                       <input
                         type="text"
-                        name="option2"
+                        name="options"
                         id="option2"
-                        defaultValue={allQ.options[1]}
+                        defaultValue={formData.options[1]}
                         className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         onChange={(e) => {
-                          setOption2(e.target.value);
+                          const updatedOptions = [...formData.options];
+                          updatedOptions[1] = e.target.value;
+                          setFormData({
+                            ...formData,
+                            options: updatedOptions,
+                          });
                         }}
                       />
                     </div>
@@ -255,13 +249,11 @@ const UpdateQuiz = () => {
                     <div className="mt-2">
                       <input
                         type="text"
-                        name="ans"
+                        name="answer"
                         id="ans"
-                        defaultValue={allQ.answer}
+                        defaultValue={formData.answer}
                         className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        onChange={(e) => {
-                          setAnswer(e.target.value);
-                        }}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>

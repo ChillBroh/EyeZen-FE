@@ -12,19 +12,13 @@ const CreateQuiz = () => {
   const [questions, setQuestion] = useState("");
   const [Option1, setOption1] = useState("");
   const [Option2, setOption2] = useState("");
-  const [options, setOptions] = useState([]);
   const [answer, setAnswer] = useState("");
 
   //send data to database
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newOptions = {
-      0: Option1,
-      1: Option2,
-    };
-
-    setOptions([newOptions]);
+    const newOptions = [Option1, Option2];
 
     if (
       disease === "" ||
@@ -54,7 +48,7 @@ const CreateQuiz = () => {
           "http://localhost:5000/api/mainQuiz",
           {
             questions,
-            options,
+            options: newOptions,
             answer,
             disease,
           }
@@ -130,8 +124,8 @@ const CreateQuiz = () => {
                     }}
                   >
                     <option>--Select one--</option>
-                    <option value={"Myopia"}>Myopia</option>
-                    <option value={"Hyperopia"}>Hyperopia</option>
+                    <option value={"Nearsightedness"}>Nearsightedness</option>
+                    <option value={"Farsightedness"}>Farsightedness</option>
                     <option value={"Color Blindness"}>Color Blindness</option>
                     <option value={"Contrast Sensitvity"}>
                       Contrast Sensitivity

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Table from "../../components/Table";
 import Loader from "../../components/Loader";
+import Button from "../../components/Button";
+import { Link } from "react-router-dom";
 
 const GetAllQuestions = () => {
   const [questions, setQuestions] = useState([]);
@@ -26,7 +28,13 @@ const GetAllQuestions = () => {
         <Loader />
       ) : (
         <div>
-          <p className="text-center mt-16 text-5xl font-bold">All Questions</p>
+          <div className="flex justify-center mt-16 items-center space-x-4">
+            <p className="text-center text-5xl font-bold ">All Questions</p>
+            <Link to={"/create-main-quiz"}>
+              <Button btnName="Add a quesion" />
+            </Link>
+          </div>
+
           <Table data={questions} />
         </div>
       )}

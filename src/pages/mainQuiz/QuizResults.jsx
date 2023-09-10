@@ -164,15 +164,22 @@ const QuizResults = () => {
               </p>
             </div>
           </div>
-          <div className="flex justify-center space-x-8">
-            <Link to="/">
-              <Button btnName="Back To Home" />
-            </Link>
-            <Button
-              btnName="Print Results"
-              color="black"
-              onClick={generatePDF}
-            />
+          <div className="grid grid-rows-2 ">
+            <div className="flex justify-center space-x-8 ">
+              <Link to="/">
+                <Button btnName="Back To Home" />
+              </Link>
+              <Button
+                btnName="Print Results"
+                color="black"
+                onClick={generatePDF}
+              />
+            </div>
+            <div className="flex justify-center">
+              <Link to={"/doctorContact/doctorList"}>
+                <Button btnName="Book an Appoinment" />
+              </Link>
+            </div>
           </div>
         </div>
         {/* right pane */}
