@@ -6,8 +6,6 @@ import Spinner from "../../components/Loader";
 const DoctorForm = () => {
   const [loading2, setLoading2] = useState(false);
 
-  const [file, setFile] = useState("");
-
   const [doctorInfo, setDoctorInfo] = useState({
     name: "",
     email: "",
@@ -20,9 +18,9 @@ const DoctorForm = () => {
     about: "",
     qualifications: "",
     experience: "",
-    servicesOffered: "", // Initialize as an empty string
+    servicesOffered: "",
     officeHours: "",
-    acceptedPaymentMethods: "", // Initialize as an empty string
+    acceptedPaymentMethods: "",
     profilePicUrl: "",
   });
 
@@ -36,7 +34,7 @@ const DoctorForm = () => {
   const handleImageUpload = async (event) => {
     const formData = new FormData();
     formData.append("file", event.target.files[0]);
-    formData.append("upload_preset", "upload"); // Replace with your Cloudinary upload preset
+    formData.append("upload_preset", "upload");
 
     try {
       const response = await axios.post(
@@ -85,7 +83,7 @@ const DoctorForm = () => {
         .map((item) => item.trim()),
     };
 
-    // Send the updatedDoctorInfo object to your backend along with the image URL
+    // Send the updatedDoctorInfo object to backend along with the image URL
     try {
       setLoading2(true);
 
@@ -94,7 +92,7 @@ const DoctorForm = () => {
         updatedDoctorInfo
       );
 
-      // Handle the response from the backend if needed
+      // Handle the response from the backend
       console.log("Backend response:", response.data);
 
       Swal.fire({

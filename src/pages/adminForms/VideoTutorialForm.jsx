@@ -5,9 +5,7 @@ import Spinner from "../../components/Loader";
 
 const VideoTutorialForm = () => {
   const [loading, setLoading] = useState(false);
-  const [videoFile, setVideoFile] = useState(null); // Store the selected video file
   const [videoUrl, setVideoUrl] = useState(""); // Store the Cloudinary video URL
-  const [thumbnailFile, setThumbnailFile] = useState(null); // Store the selected thumbnail image file
   const [thumbnailUrl, setThumbnailUrl] = useState(""); // Store the Cloudinary thumbnail image URL
 
   const [videoTutorialInfo, setVideoTutorialInfo] = useState({
@@ -24,7 +22,7 @@ const VideoTutorialForm = () => {
   const handleVideoUpload = async (event) => {
     const formData = new FormData();
     formData.append("file", event.target.files[0]);
-    formData.append("upload_preset", "upload"); // Replace with your Cloudinary upload preset
+    formData.append("upload_preset", "upload");
 
     try {
       const response = await axios.post(
@@ -58,7 +56,7 @@ const VideoTutorialForm = () => {
   const handleThumbnailUpload = async (event) => {
     const formData = new FormData();
     formData.append("file", event.target.files[0]);
-    formData.append("upload_preset", "upload"); // Replace with your Cloudinary upload preset
+    formData.append("upload_preset", "upload");
 
     try {
       const response = await axios.post(
@@ -103,11 +101,10 @@ const VideoTutorialForm = () => {
       setLoading(true);
 
       const response = await axios.post(
-        "http://localhost:5000/api/videoTutorial", // Replace with your backend API endpoint
+        "http://localhost:5000/api/videoTutorial",
         updatedVideoTutorialInfo
       );
 
-      // Handle the response from the backend if needed
       console.log("Backend response:", response.data);
 
       Swal.fire({

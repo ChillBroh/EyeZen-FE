@@ -5,7 +5,6 @@ import Spinner from "../../components/Loader";
 
 const TreatmentForm = () => {
   const [loading, setLoading] = useState(false);
-  const [file, setFile] = useState(null); // Store the selected image file
   const [imgUrl, setImgUrl] = useState(""); // Store the Cloudinary image URL
 
   const [treatmentInfo, setTreatmentInfo] = useState({
@@ -22,7 +21,7 @@ const TreatmentForm = () => {
   const handleImageUpload = async (event) => {
     const formData = new FormData();
     formData.append("file", event.target.files[0]);
-    formData.append("upload_preset", "upload"); // Replace with your Cloudinary upload preset
+    formData.append("upload_preset", "upload");
 
     try {
       const response = await axios.post(
@@ -66,11 +65,11 @@ const TreatmentForm = () => {
       setLoading(true);
 
       const response = await axios.post(
-        "http://localhost:5000/api/treatments", // Replace with your backend API endpoint
+        "http://localhost:5000/api/treatments",
         updatedTreatmentInfo
       );
 
-      // Handle the response from the backend if needed
+      // Handle the response from the backend
       console.log("Backend response:", response.data);
 
       Swal.fire({

@@ -71,30 +71,41 @@ const AyurvedicTreatments = () => {
       <div className="lg:px-28 px-12 py-3">
         {/* Cards */}
         <div className="flex flex-wrap -mx-4">
-          {filteredTreatments.map((treatment) => (
-            <Link
-              to={`/treatment/${treatment._id}`}
-              key={treatment._id}
-              className="w-full md:w-1/2 lg:w-1/3 px-4 mb-4 flex"
-            >
-              <div className="flex flex-col h-full border rounded-lg p-4 hover:shadow-lg transition duration-300 relative">
-                <img
-                  src={treatment.photoUrl}
-                  alt={treatment.title}
-                  className="w-full h-40 object-cover rounded-lg mb-2"
-                />
-                <h3 className="text-lg font-semibold mb-2">
-                  {treatment.title}
-                </h3>
-                <p className="text-gray-600 pb-8">{treatment.description}</p>
-                <div className="absolute bottom-4 right-4">
-                  <button className="text-blue-500 hover:text-blue-700">
-                    Read More
-                  </button>
+          {filteredTreatments.map((treatment) => {
+            // Define a maximum length for the description
+            const maxLength = 100;
+
+            // Shorten the description if it's longer than the maximum length
+            const truncatedDescription =
+              treatment.description.length > maxLength
+                ? treatment.description.substring(0, maxLength) + "..."
+                : treatment.description;
+
+            return (
+              <Link
+                to={`/treatment/${treatment._id}`}
+                key={treatment._id}
+                className="w-full md:w-1/2 lg:w-1/3 px-4 mb-4 flex"
+              >
+                <div className="flex flex-col h-full border rounded-lg p-4 hover:shadow-lg transition duration-300 relative">
+                  <img
+                    src={treatment.photoUrl}
+                    alt={treatment.title}
+                    className="w-full h-40 object-cover rounded-lg mb-2"
+                  />
+                  <h3 className="text-lg font-semibold mb-2">
+                    {treatment.title}
+                  </h3>
+                  <p className="text-gray-600 pb-8">{truncatedDescription}</p>
+                  <div className="absolute bottom-4 right-4">
+                    <button className="text-blue-500 hover:text-blue-700">
+                      Read More
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>
