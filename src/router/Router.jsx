@@ -30,6 +30,7 @@ import MacularDegeneration from "../pages/vision Tests/MacularDegeneration";
 import SightPass from "../pages/sighted-test/EyeSightedPass"
 import SightFail from "../pages/sighted-test/EyeSightedFail"
 import AddTextForm from  "../pages/sighted-test/AddTextForm"
+import NearSightedTextResult from "../pages/sighted-test/NearSightedResult"
 
 const Router = () => {
   return (
@@ -103,6 +104,7 @@ const Router = () => {
       <Route path="/eye-sight-fail" element={<SightFail />} />
       <Route path="/addText-form" element={<AddTextForm />} />
       <Route path="/near-sighted" element={<SightedText />} />
+      <Route path="/near-sighted-result" element={<NearSightedTextResult />} />
 
     </Routes>
   );
