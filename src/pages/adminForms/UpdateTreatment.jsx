@@ -158,7 +158,7 @@ const UpdateTreatment = () => {
                     ? imgUrl
                     : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                 }
-                alt="treatment-image"
+                alt="treatmentimage"
               />
             </div>
             <form onSubmit={handleSubmit}>
