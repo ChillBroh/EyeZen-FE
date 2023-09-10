@@ -35,7 +35,7 @@ const AdminHome = () => {
       <div className="lg:px-28 px-12 py-3">
         <span className="text-xl font-bold ">Sections</span>
       </div>
-      <div className="grid lg:grid-cols-3 lg:gap-4 gap-3 mt-5 lg:px-24 px-12 pb-28">
+      <div className="grid lg:grid-cols-3 lg:gap-4 gap-3 mt-5 lg:px-24 px-12 lg:pb-5">
         {/* Button Cards */}
         <Link
           to="/adminTreatmentList"
@@ -54,6 +54,27 @@ const AdminHome = () => {
           className="bg-gray-200 text-[#004AAD] hover:bg-[#004AAD] hover:text-white font-bold py-10 rounded-lg text-center cursor-pointer"
         >
           Doctor Contacts
+        </Link>
+      </div>
+      <div className="grid lg:grid-cols-3 lg:gap-4 gap-3 lg:mt-5 mt-4 lg:px-24 px-12 pb-28">
+        {/* Button Cards */}
+        <Link
+          to="/admin"
+          className="bg-gray-200 hover:bg-[#004AAD] hover:text-white text-[#004AAD] font-bold py-10 rounded-lg text-center cursor-pointer"
+        >
+          Quizes
+        </Link>
+        <Link
+          to="/admin"
+          className="bg-gray-200 text-[#004AAD] hover:bg-[#004AAD] hover:text-white font-bold py-10 rounded-lg text-center cursor-pointer"
+        >
+          section
+        </Link>
+        <Link
+          to="/admin"
+          className="bg-gray-200 text-[#004AAD] hover:bg-[#004AAD] hover:text-white font-bold py-10 rounded-lg text-center cursor-pointer"
+        >
+          section
         </Link>
       </div>
     </div>
