@@ -47,10 +47,17 @@ const MacularDegenerationTest = () => {
         The tests that we propose do not have a medical value and we remind you
         that only your optometrist can give a proper diagnostic.
       </div>
-      <div>
-        <Link to={"/doctorContact/doctorList"}>
-          <Button btnName="Book an Appoinment" />
-        </Link>
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div>
+          <Link to={"/doctorContact/doctorList"}>
+            <Button btnName="Book an Appoinment" />
+          </Link>
+        </div>
+        <div>
+          <Link to={"/test-home"}>
+            <Button btnName="Try For another Test" color="black" />
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -6,8 +6,8 @@ const diseases = [
   { path: "/myopia", name: "Myopia" },
   { path: "/near-sighted", name: "Hyperopia" },
   { path: "/color-blind", name: "Color Blind" },
-  { path: "/contrast-sensitvity", name: "Contrast Sensitivity" },
-  { path: "/depth-precision", name: "Depth Precision" },
+  { path: "/contrast-sensitvity1", name: "Contrast Sensitivity" },
+  { path: "/depth-precision1", name: "Depth Precision" },
   { path: "/macular-degeneration", name: "Macular Degeneration" },
 ];
 
