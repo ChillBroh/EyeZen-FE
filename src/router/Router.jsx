@@ -43,6 +43,7 @@ import AdminTreatmentList from "../pages/adminForms/AdminTreatmentList";
 import UpdateTreatment from "../pages/adminForms/UpdateTreatment";
 import AdminVideoTutorialList from "../pages/adminForms/AdminVideoTutorialList";
 import UpdateVideoTutorial from "../pages/adminForms/UpdateVideoTutorial";
+import AdminHome from "../pages/adminForms/AdminHome";
 
 const Router = () => {
   return (
@@ -130,6 +131,9 @@ const Router = () => {
 
       {/* Doctor map Page */}
       <Route path="/doctorContact/doctorMap" element={<Map />} />
+
+      {/* Admin Treatment Update */}
+      <Route path="/admin" element={<AdminHome />} />
 
       {/* Doctor Form */}
       <Route path="/doctorForm" element={<DoctorForm />} />

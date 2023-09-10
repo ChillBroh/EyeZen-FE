@@ -79,6 +79,7 @@ const AdminDoctorList = () => {
               Doctor List
             </span>
           </div>
+
           <div className="mb-4 lg:mb-0 lg:w-1/2">
             <select
               onChange={(e) => setSelectedSpecialization(e.target.value)}
@@ -120,6 +121,16 @@ const AdminDoctorList = () => {
                 </option>
               ))}
             </select>
+          </div>
+          <div className="lg:w-1/2 lg:ml-3 lg:pb-0 pb-4">
+            <div className="w-full">
+              <Link
+                to="/doctorForm"
+                className="text-white bg-[#004AAD] hover:bg-[#003899] text-center transition duration-300 inline-block w-full px-4 py-2 rounded-lg"
+              >
+                Add Doctor
+              </Link>
+            </div>
           </div>
         </div>
         <input

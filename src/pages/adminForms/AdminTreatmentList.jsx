@@ -53,14 +53,16 @@ const AdminTreatmentList = () => {
   return (
     <div className="pb-14 lg:px-20 py-3">
       <div className="lg:px-12 px-4 lg:pt-8 lg:pb-3 pt-3 pb-3">
-        <div className="lg:flex lg:justify-between items-start grid grid-rows-2">
+        <div className="lg:flex lg:justify-between items-start grid lg:mb-4">
           <div className="lg:w-1/2">
             <span className="text-xl font-bold">Admin </span>
-            <span className="text-xl font-bold text-[#004AAD]">
+            <span className="text-xl font-bold text-[#004AAD] ">
               Treatment List
             </span>
           </div>
-          <div className="lg:w-1/2">
+        </div>
+        <div className="lg:flex justify-between grid">
+          <div className="pt-2">
             <input
               type="text"
               placeholder="Search by title, type"
@@ -68,6 +70,14 @@ const AdminTreatmentList = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-gray-200 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#004AAD]"
             />
+          </div>
+          <div className="pt-2">
+            <Link
+              to="/treatmentForm"
+              className="text-white bg-[#004AAD] hover:bg-[#003899] transition duration-300 inline-block px-4 py-2 rounded-lg"
+            >
+              Add Treatment
+            </Link>
           </div>
         </div>
       </div>
