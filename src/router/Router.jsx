@@ -49,6 +49,7 @@ import UpdateTreatment from "../pages/adminForms/UpdateTreatment";
 import AdminVideoTutorialList from "../pages/adminForms/AdminVideoTutorialList";
 import UpdateVideoTutorial from "../pages/adminForms/UpdateVideoTutorial";
 import AdminHome from "../pages/adminForms/AdminHome";
+import NearSighted from "../pages/sighted-test/SightedText";
 
 const Router = () => {
   return (

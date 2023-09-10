@@ -59,16 +59,16 @@ const AdminHome = () => {
       <div className="grid lg:grid-cols-3 lg:gap-4 gap-3 lg:mt-5 mt-4 lg:px-24 px-12 pb-28">
         {/* Button Cards */}
         <Link
-          to="/admin"
+          to="/view-all-questions"
           className="bg-gray-200 hover:bg-[#004AAD] hover:text-white text-[#004AAD] font-bold py-10 rounded-lg text-center cursor-pointer"
         >
-          Quizes
+          Main Quizes
         </Link>
         <Link
-          to="/admin"
+          to="/infant_view_quiz"
           className="bg-gray-200 text-[#004AAD] hover:bg-[#004AAD] hover:text-white font-bold py-10 rounded-lg text-center cursor-pointer"
         >
-          section
+          Infant Quizes
         </Link>
         <Link
           to="/admin"

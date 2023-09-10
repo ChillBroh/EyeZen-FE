@@ -4,7 +4,6 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { useSpeechSynthesis } from "react-speech-kit";
-import speaker from "../../assets/sigthted-test/speaker.svg";
 
 function VoiceToText() {
   const [words, setWords] = useState([]);
@@ -97,8 +96,6 @@ function VoiceToText() {
     }
   }, [transcript]);
 
-  
-
   return (
     <div className="flex justify-center items-center h-screen w-screen relative">
       <div className="max-w-lg lg:items-center justify-between">
@@ -107,16 +104,14 @@ function VoiceToText() {
           style={{ visibility: isHidden ? "hidden" : "visible" }}
           onClick={handleSpeak}
         >
-          <img src={speaker} alt="speaker" className="w-[50px] " />
+          <img src="" alt="speaker" className="w-[50px] " />
           <h1
             className="font-semibold  text-white "
             style={{ fontSize: `${fontSizes[currentFontSizeIndex]}px` }}
           >
             Click here for Instructions
           </h1>
-          
         </div>
-
 
         <div className="">
           {loading ? (
@@ -126,7 +121,8 @@ function VoiceToText() {
               {currentWordIndex !== null && (
                 <div className="mb-24 flex justify-center items-center">
                   <span
-                    style={{ visibility: isHidden ? "visible" : "hidden",
+                    style={{
+                      visibility: isHidden ? "visible" : "hidden",
                       fontSize: `${fontSizes[currentFontSizeIndex]}px`,
                     }}
                   >

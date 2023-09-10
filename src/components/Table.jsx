@@ -86,21 +86,21 @@ const Table = (props) => {
                         {value.answer}
                       </td>
                       <td className="whitespace-wrap  px-6 py-4">
-                        <div className="grid grid-cols-2 ">
-                          <div className="mr-24">
+                        <div className="flex justify-center space-x-2">
+                          <div>
                             <Button
                               btnName="Delete"
                               color="red"
-                              size="13px"
+                              size="10px"
                               onClick={() => handleDelete(value._id)}
                             />
                           </div>
-                          <div className="ml-5">
+                          <div>
                             <Link to={`/update-main-quiz/${value._id}`}>
                               <Button
                                 btnName="Edit"
                                 color="black"
-                                size="13px"
+                                size="10px"
                               />
                             </Link>
                           </div>
