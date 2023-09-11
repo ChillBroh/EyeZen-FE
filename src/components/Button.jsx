@@ -8,7 +8,7 @@ const Button = (props) => {
 
   const btnClassName = props.className || "";
   return (
-    <div className="mt-16 mb-16">
+    <div>
       <button
         type="button"
         data-te-ripple-init
