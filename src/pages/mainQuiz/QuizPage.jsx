@@ -57,7 +57,7 @@ const QuizPage = () => {
         <>
           <div>
             <h1 className="text-5xl font-bold font-serif text-center">
-              {`Question  ${currentIndex + 1}`}
+              {`Question  ${currentIndex + 1} out of ${allquestions.length}`}
             </h1>
           </div>
           <Questions
@@ -67,10 +67,10 @@ const QuizPage = () => {
           />
           <hr className="my-12 h-0.5 border-t-0 bg-gray-500 opacity-100 dark:opacity-60" />
           <div className="grid grid-cols-2 ">
-            <div className="flex justify-start">
+            <div className="flex justify-start mb-10">
               <Button btnName="Prev" onClick={onPrev}></Button>
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-end mb-10">
               <Button btnName="Next" color="black" onClick={onNext}></Button>
             </div>
           </div>

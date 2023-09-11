@@ -18,6 +18,7 @@ const Button = (props) => {
           backgroundColor: props.color,
           fontSize: props.size,
           padding: props.p,
+          color: props.textColor,
         }}
         onClick={props.onClick}
       >
