@@ -9,19 +9,6 @@ const UpdateDoctor = () => {
   const { email } = useParams();
   const [doctor, setDoctor] = useState(null);
 
-  const overlayStyles = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.7)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: 1000,
-  };
-
   useEffect(() => {
     Axios.get(`http://localhost:5000/api/doctors/${email}`)
       .then((response) => {
@@ -408,7 +395,7 @@ const UpdateDoctor = () => {
               </div>
 
               {loading2 && (
-                <div style={overlayStyles}>
+                <div>
                   <Spinner />
                 </div>
               )}
@@ -425,7 +412,7 @@ const UpdateDoctor = () => {
           </div>
         </div>
       ) : (
-        <div style={overlayStyles}>
+        <div>
           <Spinner />
         </div>
       )}

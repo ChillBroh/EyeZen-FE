@@ -1,8 +1,21 @@
 import React from "react";
 
 const Loader = () => {
+  const overlayStyles = {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1000,
+  };
+
   return (
-    <div className="text-center mb-[500px]">
+    <div className="text-center mb-[500px]" style={overlayStyles}>
       <div
         className="inline-block h-8 w-8 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] text-primary opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
         role="status"
