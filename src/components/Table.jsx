@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../components/Button";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { initTE, Ripple } from "tw-elements";
 
 const Table = (props) => {
+  useEffect(() => {
+    initTE({ Ripple });
+  }, []);
   const navigate = useNavigate();
 
   const handleDelete = async (id) => {
@@ -87,22 +91,20 @@ const Table = (props) => {
                       </td>
                       <td className="whitespace-wrap  px-6 py-4">
                         <div className="flex justify-center space-x-2">
+                          <Link to={`/update-main-quiz/${value._id}`}>
+                            <div>
+                              <button className="text-blue-500 hover:text-blue-700 transition duration-300 inline-block px-3 py-1 rounded-lg bg-blue-100 hover:bg-blue-200">
+                                update
+                              </button>
+                            </div>
+                          </Link>
                           <div>
-                            <Button
-                              btnName="Delete"
-                              color="red"
-                              size="10px"
-                              onClick={() => handleDelete(value._id)}
-                            />
-                          </div>
-                          <div>
-                            <Link to={`/update-main-quiz/${value._id}`}>
-                              <Button
-                                btnName="Edit"
-                                color="black"
-                                size="10px"
-                              />
-                            </Link>
+                            <button
+                              onClick={handleDelete(value._id)}
+                              className="text-red-500 hover:text-red-700 transition duration-300 inline-block lg:ml-3 px-3 py-1 rounded-lg lg:mt-0 mt-2 bg-red-100 hover:bg-red-200"
+                            >
+                              Delete
+                            </button>
                           </div>
                         </div>
                       </td>
