@@ -10,7 +10,8 @@ import CreateFact from "../pages/infantQuiz/InfantFact";
 import InfantQuiz from "../pages/infantQuiz/InfantQuiz";
 import Home from "../pages/Home";
 import QuizPage from "../pages/mainQuiz/QuizPage";
-import NearSighted from "../pages/sighted-test/NearSighted";
+import SightedText from "../pages/sighted-test/SightedText";
+import FarSightedTestView from "../pages/sighted-test/FarSightedTestView";
 import NearSightedTestView from "../pages/sighted-test/NearSightedTestView";
 import AyurvedicHome from "../pages/ayurvedicHome/AyurvedicHome";
 import AyurvedicTreatments from "../pages/ayurvedicHome/AyurvedicTreatments";
@@ -26,6 +27,10 @@ import ColorBlind from "../pages/vision Tests/ColorBlind";
 import ContrastSensitivity from "../pages/vision Tests/ContrastSensitivity";
 import DepthPrecision from "../pages/vision Tests/DepthPrecision";
 import MacularDegeneration from "../pages/vision Tests/MacularDegeneration";
+import SightPass from "../pages/sighted-test/EyeSightedPass";
+import SightFail from "../pages/sighted-test/EyeSightedFail";
+import AddTextForm from "../pages/sighted-test/AddTextForm";
+import NearSightedTextResult from "../pages/sighted-test/NearSightedResult";
 import Questionnaire from "../pages/infantQuiz/Questionnaire";
 import CreateQuizQuestion from "../pages/infantQuiz/CreateQuiz";
 import ViewQuiz from "../pages/infantQuiz/ViewQuiz";
@@ -44,6 +49,7 @@ import UpdateTreatment from "../pages/adminForms/UpdateTreatment";
 import AdminVideoTutorialList from "../pages/adminForms/AdminVideoTutorialList";
 import UpdateVideoTutorial from "../pages/adminForms/UpdateVideoTutorial";
 import AdminHome from "../pages/adminForms/AdminHome";
+import NearSighted from "../pages/sighted-test/SightedText";
 
 const Router = () => {
   return (
@@ -77,8 +83,8 @@ const Router = () => {
       />
 
       {/* -----------sighted test Routes--------------------- */}
-      <Route path="/near-sighted" element={<NearSighted />} />
-      <Route path="/test-view" element={<NearSightedTestView />} />
+      <Route path="/far-sighted" element={<SightedText />} />
+      <Route path="/test-view" element={<FarSightedTestView />} />
 
       {/* Handle a 404 Not Found route */}
       <Route path="*" element={<NotFound />} />
@@ -131,6 +137,16 @@ const Router = () => {
 
       {/* Doctor map Page */}
       <Route path="/doctorContact/doctorMap" element={<Map />} />
+
+      {/* -----------sighted test Routes--------------------- */}
+      <Route path="/far-sighted" element={<SightedText />} />
+      <Route path="/test-view" element={<FarSightedTestView />} />
+      <Route path="/near-test-view" element={<NearSightedTestView />} />
+      <Route path="/eye-sight-pass" element={<SightPass />} />
+      <Route path="/eye-sight-fail" element={<SightFail />} />
+      <Route path="/addText-form" element={<AddTextForm />} />
+      <Route path="/near-sighted" element={<SightedText />} />
+      <Route path="/near-sighted-result" element={<NearSightedTextResult />} />
 
       {/* Admin Treatment Update */}
       <Route path="/admin" element={<AdminHome />} />

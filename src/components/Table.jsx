@@ -22,7 +22,7 @@ const Table = (props) => {
     if (confirmResult.isConfirmed) {
       try {
         await axios.delete(`http://localhost:5000/api/mainQuiz/${id}`);
-        Swal.fire("Expense Deleted!", "", "success");
+        Swal.fire("Question Deleted!", "", "success");
         navigate("/create-main-quiz");
       } catch (err) {
         console.log(err);
@@ -32,13 +32,13 @@ const Table = (props) => {
   };
 
   return (
-    <div className="mx-auto  px-4  sm:px-6   lg:px-8 mb-24">
+    <div className="mx-auto max-w-2xl px-4 lg:max-w-7xl sm:px-6   lg:px-8 mb-24">
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div className="overflow-hidden">
               <table className="min-w-full text-center text-sm font-light">
-                <thead className="border-b bg-[#004AAD] font-medium dark:border-neutral-800 dark:text-neutral-50">
+                <thead className="border-b bg-[#004AAD] font-medium dark:border-neutral-800 text-white">
                   <tr>
                     <th scope="col" className=" px-6 py-4">
                       No
@@ -65,7 +65,7 @@ const Table = (props) => {
                 </thead>
 
                 {props.data.map((value, index) => (
-                  <tbody key={value._id}>
+                  <tbody key={value._id} className="hover:bg-gray-200">
                     <tr className="border-b dark:border-neutral-500">
                       <td className="whitespace-wrap  px-6 py-4 font-medium">
                         {index + 1}
@@ -86,21 +86,21 @@ const Table = (props) => {
                         {value.answer}
                       </td>
                       <td className="whitespace-wrap  px-6 py-4">
-                        <div className="grid grid-cols-2 ">
-                          <div className="mr-24">
+                        <div className="flex justify-center space-x-2">
+                          <div>
                             <Button
                               btnName="Delete"
                               color="red"
-                              size="13px"
+                              size="10px"
                               onClick={() => handleDelete(value._id)}
                             />
                           </div>
-                          <div className="ml-5">
+                          <div>
                             <Link to={`/update-main-quiz/${value._id}`}>
                               <Button
                                 btnName="Edit"
                                 color="black"
-                                size="13px"
+                                size="10px"
                               />
                             </Link>
                           </div>

@@ -62,13 +62,13 @@ const AdminHome = () => {
           to="/view-all-questions"
           className="bg-gray-200 hover:bg-[#004AAD] hover:text-white text-[#004AAD] font-bold py-10 rounded-lg text-center cursor-pointer"
         >
-          Main Quiz
+          Main Quizes
         </Link>
         <Link
-          to="/admin"
+          to="/infant_view_quiz"
           className="bg-gray-200 text-[#004AAD] hover:bg-[#004AAD] hover:text-white font-bold py-10 rounded-lg text-center cursor-pointer"
         >
-          section
+          Infant Quizes
         </Link>
         <Link
           to="/admin"
