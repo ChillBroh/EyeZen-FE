@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Button from "../../components/Button";
 import Questions from "./Questions";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import axios from "axios";
 import Loader from "../../components/Loader";
@@ -48,6 +49,24 @@ const QuizPage = () => {
       alert("This is the first question!");
     }
   };
+  //exit button
+  const onExitBtn = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be Exit from this quiz!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Do it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Quiz Cancelled!", "", "success");
+
+        navigate("/");
+      }
+    });
+  };
 
   return (
     <div className="mx-auto max-w-2xl mt-24 px-4  sm:px-6  lg:max-w-7xl lg:px-8">
@@ -69,7 +88,20 @@ const QuizPage = () => {
           <hr className="my-12 h-0.5 border-t-0 bg-gray-500 opacity-100 dark:opacity-60" />
           <div className="grid grid-cols-2 ">
             <div className="flex justify-start mb-10">
-              <Button btnName="Prev" onClick={onPrev}></Button>
+              <Button
+                btnName="Prev"
+                color="black"
+                onClick={onPrev}
+                className="rounded-lg"
+              />
+            </div>
+            <div className="flex justify-end mb-10 ">
+              <Button
+                btnName="Exit"
+                color="red"
+                className="rounded-lg"
+                onClick={onExitBtn}
+              />
             </div>
           </div>
         </>
