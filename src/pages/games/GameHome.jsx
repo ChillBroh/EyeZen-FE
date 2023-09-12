@@ -1,6 +1,7 @@
 import React from "react";
 import Kids from "../../assets/games/kids with computer.jpg";
 import Button from "../../components/Button";
+import { Link } from "react-router-dom";
 
 const GameHome = () => {
   return (
@@ -22,9 +23,11 @@ const GameHome = () => {
                 typesetting industry. Lorem Ipsum has.....
               </p>
             </div>
-            <div className="mt-5 flex justify-center">
-              <Button btnName="Explore" className="rounded-lg" />
-            </div>
+            <Link to={"/color-vision-game"}>
+              <div className="mt-5 flex justify-center">
+                <Button btnName="Explore" className="rounded-lg" />
+              </div>
+            </Link>
           </div>
         </div>
         <div>
