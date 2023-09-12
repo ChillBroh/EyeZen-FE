@@ -46,7 +46,11 @@ const QuizPage = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     } else {
-      alert("This is the first question!");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "This is the first Question!",
+      });
     }
   };
   //exit button
