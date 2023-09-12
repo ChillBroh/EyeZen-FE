@@ -50,6 +50,7 @@ import AdminVideoTutorialList from "../pages/adminForms/AdminVideoTutorialList";
 import UpdateVideoTutorial from "../pages/adminForms/UpdateVideoTutorial";
 import AdminHome from "../pages/adminForms/AdminHome";
 import NearSighted from "../pages/sighted-test/SightedText";
+import GameHome from "../pages/games/GameHome";
 
 const Router = () => {
   return (
@@ -82,6 +83,8 @@ const Router = () => {
         element={<MacularDegenerationTest />}
       />
 
+      {/* games */}
+      <Route path="/games" element={<GameHome />} />
       {/* -----------sighted test Routes--------------------- */}
       <Route path="/far-sighted" element={<SightedText />} />
       <Route path="/test-view" element={<FarSightedTestView />} />
