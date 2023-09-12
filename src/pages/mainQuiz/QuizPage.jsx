@@ -64,14 +64,12 @@ const QuizPage = () => {
             num={currentIndex}
             onFinalPercentatge={getfinalPercentage}
             data={allquestions}
+            next={onNext}
           />
           <hr className="my-12 h-0.5 border-t-0 bg-gray-500 opacity-100 dark:opacity-60" />
           <div className="grid grid-cols-2 ">
             <div className="flex justify-start mb-10">
               <Button btnName="Prev" onClick={onPrev}></Button>
-            </div>
-            <div className="flex justify-end mb-10">
-              <Button btnName="Next" color="black" onClick={onNext}></Button>
             </div>
           </div>
         </>

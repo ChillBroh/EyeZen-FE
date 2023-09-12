@@ -36,6 +36,7 @@ const Questions = (props) => {
     // Update the state with the new array
     setCheckedOptions(updatedCheckedOptions);
     props.onFinalPercentatge(finalPercentage);
+    props.next();
   };
 
   return (
@@ -46,7 +47,7 @@ const Questions = (props) => {
       <div className="mt-16 text-3xl ml-48 sm:ml-16 xs:ml-0 lg:grid lg:grid-cols-2">
         {questions[props.num].options.map((value, index) => (
           <div key={index}>
-            <button onClick={() => selectBtn(value, index)}>ans</button>
+            <button onClick={() => selectBtn(value, index)}>{value}</button>
           </div>
         ))}
       </div>
