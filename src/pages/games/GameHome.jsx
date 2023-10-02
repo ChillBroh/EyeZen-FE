@@ -20,7 +20,7 @@ const GameHome = () => {
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever Lorem Ipsum is simply dummy text of the printing and
-                typesetting industry. Lorem Ipsum has.....
+                typesetting industry. Lorem Ipsum has
               </p>
             </div>
             <Link to={"/color-vision-game"}>
