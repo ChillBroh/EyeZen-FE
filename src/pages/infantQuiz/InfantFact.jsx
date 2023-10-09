@@ -3,10 +3,11 @@ import axios from "axios";
 import { storage } from "../../utils/FireBaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+import { FaTrash } from "react-icons/fa";
 
 const CreateFact = () => {
   const [title, setTitle] = useState("");
-  const [descriptionText, setDescriptionText] = useState(""); // Store as text
+  const [descriptionText, setDescriptionText] = useState([]); // Store as an array
   const [imageUrl, setImageUrl] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -42,6 +43,22 @@ const CreateFact = () => {
     }
   };
 
+  const handleDescriptionChange = (index, value) => {
+    const updatedDescriptions = [...descriptionText];
+    updatedDescriptions[index] = value;
+    setDescriptionText(updatedDescriptions);
+  };
+
+  const addDescriptionInput = () => {
+    setDescriptionText([...descriptionText, ""]);
+  };
+
+  const removeDescriptionInput = (index) => {
+    const updatedDescriptions = [...descriptionText];
+    updatedDescriptions.splice(index, 1);
+    setDescriptionText(updatedDescriptions);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,19 +67,19 @@ const CreateFact = () => {
       return;
     }
 
-    // Convert the comma-separated text to an array
-    const descriptionArray = descriptionText.split(",").map((item) => item.trim());
+    // Convert the array of descriptions to a comma-separated string
+    const descriptionArray = descriptionText.join(", ");
 
     try {
       const response = await axios.post("http://localhost:5000/api/infantFact", {
         title: title,
-        description: descriptionArray,
+        description: descriptionArray, // Send the string
         imageURL: imageUrl,
       });
 
       if (response.status === 201) {
         setTitle("");
-        setDescriptionText(""); // Clear the text input
+        setDescriptionText([]); // Clear the array
         setImageUrl("");
         setErrorMessage("");
         alert("Infant fact added successfully");
@@ -77,32 +94,51 @@ const CreateFact = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Add Infant Fact</h1>
+    <div className="max-w-md mx-auto p-4 mb-20">
+      <h1 className="text-3xl font-bold mb-4 text-blue-600 pt-10 font-sans text-center pb-8">Add Infant Fact</h1>
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700">Title:</label>
+        <div className="mb-10">
+          <label className="block text-gray-700">Title</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="border rounded px-3 py-2 w-full"
+            className="border rounded px-3 py-2 w-full bg-slate-100"
             required
             disabled={isUploading}
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Description (Comma-separated):</label>
-          <input
-            type="text"
-            value={descriptionText}
-            onChange={(e) => setDescriptionText(e.target.value)}
-            className="border rounded px-3 py-2 w-full"
-            required
+        <div className="mb-10">
+          <label className="block text-gray-700">Facts</label>
+          {descriptionText.map((description, index) => (
+            <div key={index} className="mb-2 relative">
+              <input
+                type="text"
+                value={description}
+                onChange={(e) => handleDescriptionChange(index, e.target.value)}
+                className="border rounded px-3 py-2 w-full bg-slate-100"
+                required
+                disabled={isUploading}
+              />
+              <button
+                type="button"
+                onClick={() => removeDescriptionInput(index)}
+                className="absolute top-0 right-0 mt-1 mr-2 p-1 text-red-500 cursor-pointer"
+              >
+                <FaTrash /> {/* Delete icon */}
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={addDescriptionInput}
+            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mt-2"
             disabled={isUploading}
-          />
+          >
+            Add Fact
+          </button>
         </div>
-        <div className="mb-4">
+        <div className="mb-10">
           <label className="block text-gray-700">Image:</label>
           <input
             type="file"

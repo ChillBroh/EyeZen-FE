@@ -15,18 +15,18 @@ const VideoCard = ({ thumbnailUrl, title, description, videoId }) => {
   };
 
   return (
-    <div className="w-full lg:w-1/3 p-4 flex relative">
+    <div className="w-full lg:w-1/3 p-4 flex">
       <Link to={`/view/${videoId}`} className="w-full">
-        <div className="flex-auto bg-white border rounded-lg overflow-hidden shadow-lg flex flex-col relative">
+        <div className="h-full mb-3 bg-white border rounded-lg overflow-hidden shadow-lg flex flex-col relative">
           <div
-            className="relative w-full h-48"
+            className="relative w-full h-40"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
             <img
               src={thumbnailUrl}
               alt={title}
-              className="w-full h-full object-cover"
+              className="w-full h-40 object-cover"
             />
             <div
               className={`absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white transition-opacity ${

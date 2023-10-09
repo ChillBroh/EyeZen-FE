@@ -6,8 +6,8 @@ const diseases = [
   { path: "/near-sighted", name: "Myopia" },
   { path: "/far-sighted", name: "Far-sighted" }, //Hyperopia 
   { path: "/color-blind", name: "Color Blind" },
-  { path: "/contrast-sensitvity", name: "Contrast Sensitivity" },
-  { path: "/depth-precision", name: "Depth Precision" },
+  { path: "/contrast-sensitvity1", name: "Contrast Sensitivity" },
+  { path: "/depth-precision1", name: "Depth Precision" },
   { path: "/macular-degeneration", name: "Macular Degeneration" },
 ];
 
@@ -19,8 +19,7 @@ const AllTestHome = () => {
         {/* left side */}
         <div>
           <div className="text-3xl lg:text-7xl">
-            Tests for <br />{" "}
-            <span className="text-[#004AAD]">Eye Diseases</span>
+            Tests for <span className="text-[#004AAD]">Eye Diseases</span>
           </div>
           <div>
             <p className="font-bold text-xl mt-4 lg:mt-10 mb-4 lg:mb-10">

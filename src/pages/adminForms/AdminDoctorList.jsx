@@ -1,38 +1,56 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Axios from "axios";
+import Swal from "sweetalert2";
 
-const DoctorList = () => {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const selectedTypeQuery = queryParams.get("type") || "All Types";
-
-  // State to store treatments data
+const AdminDoctorList = () => {
   const [doctorData, setDoctorData] = useState([]);
-
-  useEffect(() => {
-    // Make an HTTP GET request to fetch data from the backend
-    Axios.get("http://localhost:5000/api/doctors")
-      .then((response) => {
-        setDoctorData(response.data); // Set the data received from the backend to state
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []); // Empty dependency array ensures this effect runs only once on component mount
-
-  // State for search query, specialization, town, and type
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSpecialization, setSelectedSpecialization] = useState(
     "All Specializations"
   );
   const [selectedTown, setSelectedTown] = useState("All Towns");
-  const [selectedType, setSelectedType] = useState(selectedTypeQuery);
+  const [selectedType, setSelectedType] = useState("All Types");
 
-  // Filter doctors based on search by name, specialization, and town
+  useEffect(() => {
+    Axios.get("http://localhost:5000/api/doctors")
+      .then((response) => {
+        setDoctorData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  const handleDeleteDoctor = (email) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // User clicked the "Yes" button, proceed with deletion
+        Axios.delete(`http://localhost:5000/api/doctors/${email}`)
+          .then((response) => {
+            setDoctorData((prevData) =>
+              prevData.filter((doctor) => doctor.email !== email)
+            );
+          })
+          .catch((error) => {
+            console.error("Error deleting doctor:", error);
+          });
+      }
+    });
+  };
+
   const filteredDoctors = doctorData.filter((doctor) => {
     return (
       (doctor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        doctor.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
         searchQuery === "") &&
       (selectedSpecialization === "All Specializations" ||
         doctor.specialization === selectedSpecialization) &&
@@ -41,7 +59,6 @@ const DoctorList = () => {
     );
   });
 
-  // Get unique specializations, towns, and types for filtering
   const uniqueSpecializations = Array.from(
     new Set(doctorData.map((doctor) => doctor.specialization))
   );
@@ -55,13 +72,15 @@ const DoctorList = () => {
   return (
     <div className="pb-14 lg:px-20 py-3">
       <div className="lg:px-12 px-4 lg:pt-8 lg:pb-3 pt-3 pb-3">
-        <div className="lg:flex lg:flex lg:justify-between items-start grid grid-rows-3">
+        <div className="lg:flex lg:justify-between items-start grid grid-rows-3">
           <div className="lg:w-1/2">
-            <span className="text-xl font-bold">Eye Care </span>
-            <span className="text-xl font-bold text-[#004AAD]">Doctors</span>
+            <span className="text-xl font-bold">Admin </span>
+            <span className="text-xl font-bold text-[#004AAD]">
+              Doctor List
+            </span>
           </div>
+
           <div className="mb-4 lg:mb-0 lg:w-1/2">
-            {/* Filter by specialization */}
             <select
               onChange={(e) => setSelectedSpecialization(e.target.value)}
               value={selectedSpecialization}
@@ -76,7 +95,6 @@ const DoctorList = () => {
             </select>
           </div>
           <div className="lg:w-1/2 lg:ml-3">
-            {/* Filter by town */}
             <select
               onChange={(e) => setSelectedTown(e.target.value)}
               value={selectedTown}
@@ -91,7 +109,6 @@ const DoctorList = () => {
             </select>
           </div>
           <div className="lg:w-1/2 lg:ml-3 lg:pb-0 pb-4">
-            {/* Filter by type */}
             <select
               onChange={(e) => setSelectedType(e.target.value)}
               value={selectedType}
@@ -105,34 +122,40 @@ const DoctorList = () => {
               ))}
             </select>
           </div>
+          <div className="lg:w-1/2 lg:ml-3 lg:pb-0 pb-4">
+            <div className="w-full">
+              <Link
+                to="/doctorForm"
+                className="text-white bg-[#004AAD] hover:bg-[#003899] text-center transition duration-300 inline-block w-full px-4 py-2 rounded-lg"
+              >
+                Add Doctor
+              </Link>
+            </div>
+          </div>
         </div>
-
-        {/* Search bar */}
         <input
           type="text"
-          placeholder="Search by name"
+          placeholder="Search by name, email"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full bg-gray-200 border rounded-lg px-4 py-2 lg:mt-4 focus:outline-none focus:ring-2 focus:ring-[#004AAD]"
         />
       </div>
       <div className="lg:px-12 px-4 py-3">
-        {/* Table */}
         <div className="overflow-x-auto">
           <table className="w-full table-auto border-collapse">
             <thead>
               <tr className="bg-[#004AAD] text-white">
                 <th className="py-3 px-4 text-left">Profile Pic</th>
                 <th className="py-3 px-4 text-left">Name</th>
+                <th className="py-3 px-4 text-left">Email</th>
                 <th className="py-3 px-4 text-left">Specialization</th>
-                <th className="py-3 px-4 text-left">Type</th>
-                <th className="py-3 px-4 text-left">Town</th>
                 <th className="py-3 px-4 text-left">Action</th>
               </tr>
             </thead>
             <tbody>
               {filteredDoctors.map((doctor) => (
-                <tr key={doctor.name} className="border-t hover:bg-gray-100">
+                <tr key={doctor.email} className="border-t hover:bg-gray-100">
                   <td className="py-3 px-4">
                     <img
                       src={doctor.profilePicUrl}
@@ -141,16 +164,21 @@ const DoctorList = () => {
                     />
                   </td>
                   <td className="py-3 px-4">{doctor.name}</td>
+                  <td className="py-3 px-4">{doctor.email}</td>
                   <td className="py-3 px-4">{doctor.specialization}</td>
-                  <td className="py-3 px-4">{doctor.type}</td>
-                  <td className="py-3 px-4">{doctor.town}</td>
                   <td className="py-3 px-4">
                     <Link
-                      to={`/doctor/${doctor.email}`}
+                      to={`/update-doctor/${doctor.email}`}
                       className="text-blue-500 hover:text-blue-700 transition duration-300 inline-block px-3 py-1 rounded-lg bg-blue-100 hover:bg-blue-200"
                     >
-                      View
+                      Update
                     </Link>
+                    <button
+                      onClick={() => handleDeleteDoctor(doctor.email)}
+                      className="text-red-500 hover:text-red-700 transition duration-300 inline-block lg:ml-3 px-3 py-1 rounded-lg lg:mt-0 mt-2 bg-red-100 hover:bg-red-200"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -162,4 +190,4 @@ const DoctorList = () => {
   );
 };
 
-export default DoctorList;
+export default AdminDoctorList;

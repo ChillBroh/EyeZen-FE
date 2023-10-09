@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { treatmentsData } from "../Data";
+import Axios from "axios";
 
 const Treatment = () => {
   const { id } = useParams();
 
+  // State to store treatments data
+  const [treatmentsData, setTreatmentsData] = useState([]);
+
+  useEffect(() => {
+    // Make an HTTP GET request to fetch data from the backend
+    Axios.get("http://localhost:5000/api/treatments")
+      .then((response) => {
+        setTreatmentsData(response.data); // Set the data received from the backend to state
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
+
   const selectedTreatment = treatmentsData.find(
-    (treatment) => treatment.id === parseInt(id)
+    (treatment) => treatment._id === id
   );
 
   if (!selectedTreatment) {
@@ -30,7 +44,7 @@ const Treatment = () => {
       <div className="lg:px-28 px-12 py-4">
         <div className="rounded-3xl">
           <img
-            src={selectedTreatment.image}
+            src={selectedTreatment.photoUrl}
             alt={selectedTreatment.title}
             className="mx-auto "
             style={imageStyle}
