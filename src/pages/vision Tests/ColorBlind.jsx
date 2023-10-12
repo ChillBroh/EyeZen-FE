@@ -23,9 +23,11 @@ const ColorBlind = () => {
             in 1917. The test consists of a number of Ishihara plates, which are
             a type of pseudoisochromatic plate.
           </p>
-          <Link to={"/color-blind-test"}>
-            <Button btnName="Start Test" />
-          </Link>
+          <div className="flex justify-center mt-10">
+            <Link to={"/color-blind-test"}>
+              <Button btnName="Start Test" />
+            </Link>
+          </div>
         </div>
         <div className="flex justify-center mb-16">
           <img src={Ishihara} alt="number from ishihara" />

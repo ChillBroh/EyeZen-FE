@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../../components/Button";
 import Questions from "./Questions";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import axios from "axios";
