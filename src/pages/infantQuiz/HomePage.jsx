@@ -134,15 +134,28 @@ const InfantQuizHome = () => {
                 </div>
                 {/* Image on the right */}
                 <div className="w-1/2 p-4">
-                  <img
-                    src={fact.imageURL}
-                    alt={fact.title}
-                    style={{
-                      height: "200px",
-                      width: "100%",
-                      maxWidth: "400px",
-                    }}
-                  />
+                {fact.imageURL ? (
+  <img
+    src={fact.imageURL}
+    alt={fact.title}
+    style={{
+      height: "200px",
+      width: "100%",
+      maxWidth: "400px",
+    }}
+  />
+) : (
+  <img
+    src={babyVisionImage1}
+    alt={fact.title}
+    style={{
+      height: "200px",
+      width: "100%",
+      maxWidth: "400px",
+    }}
+  />
+)}
+
                 </div>
               </div>
             ))}
