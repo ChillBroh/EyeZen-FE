@@ -22,7 +22,7 @@ const TextForm = () => {
     const lettersOnlyRegex = /^[A-Za-z]+$/;
 
     if (!lettersOnlyRegex.test(text)) {
-      setErrorMessage('Please enter text without numbers or symbols.');
+      setErrorMessage('Please enter text without numbers, symbols or spaces');
       return;
     }
 

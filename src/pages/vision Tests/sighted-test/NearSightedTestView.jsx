@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const NearSightedTestView = () => {
   const [characters, setCharacters] = useState(['E', 'F P', 'T  O  Z', 'L P E D', 'P E C F D', 'E D F C Z P', 'F E L O P Z D ', 'D E F P O T E C']);
-  const [fontSizes, setFontSizes] = useState([400, 300, 200, 140, 120, 80, 60, 40]);
+  const [fontSizes, setFontSizes] = useState([400, 200, 150, 130, 100, 80, 60, 40]);
   const[result, setResult] = useState(['6/60', '6/30','6/20','6/15','6/12','6/9','6/8','6/6']);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isListening, setIsListening] = useState(false);
@@ -67,7 +67,7 @@ const NearSightedTestView = () => {
      <div>
 
        <div className='flex flex-col'>
-         <h1 className='font-bold' style={{ fontSize: `${fontSizes[currentIndex]}px` }}>
+         <h1 className='font-bold' style={{ fontSize: `${fontSizes[currentIndex]}px`, fontFamily:'courier' }}>
            {characters[currentIndex]}
          </h1>
          {isListening}
