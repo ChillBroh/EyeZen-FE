@@ -4,6 +4,7 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { useSpeechSynthesis } from "react-speech-kit";
+import Speaker from "../../../assets/sigthted-test/speaker1.png"
 
 function VoiceToText() {
   const [words, setWords] = useState([]);
@@ -17,7 +18,7 @@ function VoiceToText() {
   const { speak } = useSpeechSynthesis();
 
   const predefinedText =
-    "Please make sure to cover your one eye before starting the test by clicking the blue button below and do the test for both eyes. Say the word that you can see in the screen, when test started. to start the test press the button below.";
+    "Please make sure to cover your one eye before starting the test by clicking the blue button below and do the test by say the word";
 
   useEffect(() => {
     axios
@@ -81,7 +82,7 @@ function VoiceToText() {
   };
 
   const handleSpeak = () => {
-    speak({ text: predefinedText, rate: 0.6 });
+    speak({ text: predefinedText, rate: 0.7 });
   };
 
   // Handle the case when the transcript is empty
@@ -104,7 +105,7 @@ function VoiceToText() {
           style={{ visibility: isHidden ? "hidden" : "visible" }}
           onClick={handleSpeak}
         >
-          <img src="" alt="speaker" className="w-[50px] " />
+          <img src={Speaker} alt="speaker" className="w-[50px] " />
           <h1
             className="font-semibold  text-white "
             style={{ fontSize: `${fontSizes[currentFontSizeIndex]}px` }}
