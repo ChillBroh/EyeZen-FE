@@ -71,10 +71,10 @@ const AdminHome = () => {
           Infant Quizes
         </Link>
         <Link
-          to="/admin"
+          to="/addText-form"
           className="bg-gray-200 text-[#004AAD] hover:bg-[#004AAD] hover:text-white font-bold py-10 rounded-lg text-center cursor-pointer"
         >
-          section
+          Add Text for sighted Test
         </Link>
       </div>
     </div>
