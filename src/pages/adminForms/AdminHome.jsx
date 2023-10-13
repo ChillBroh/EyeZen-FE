@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import hero from "../../assets/main/home.png";
+import { AuthContext } from "../../context/authContext";
 
 const AdminHome = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div>
       <div className="grid lg:grid-cols-2 px-12 pt-10 lg:pt-0 lg:px-32 gap-10">
@@ -12,7 +14,7 @@ const AdminHome = () => {
             <span className="text-[46px] font-extrabold text-[#004AAD]">
               Admin
             </span>
-            <h2 className="pt-8 text-lg font-semibold">Isuru Madusanka</h2>
+            <h2 className="pt-8 text-2xl font-semibold">{user.name}</h2>
             <div className="pt-10">
               <Link
                 to="/admin"
