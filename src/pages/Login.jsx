@@ -1,33 +1,44 @@
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import hero from "../assets/main/home.png";
-import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext";
+import axios from "axios";
+import Loader from "../components/Loader";
+import { Form, Input } from "antd";
+import { MailOutlined, LockOutlined } from "@ant-design/icons";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
+  const { loading, error, dispatch } = useContext(AuthContext);
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (email === "admin@gmail.com" && password === "1234") {
-      navigate("/admin"); // Redirect to admin page
-    } else if (email === "user@gmail.com" && password === "1234") {
-      navigate("/"); // Redirect to home page
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Invalid email or password!",
+  const onFinish = async (values) => {
+    dispatch({ type: "LOGIN_START" });
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/login", {
+        email: values.email,
+        password: values.password,
       });
+      console.log(res.data);
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+
+      if (res.data.isAdmin === true) {
+        navigate("/admin");
+      }
+      if (res.data.isAdmin === false) {
+        navigate("/");
+      }
+    } catch (err) {
+      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+      const res = err.response.status === 401;
+      if (res) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Invalid Email or Password",
+        });
+      }
     }
   };
 
@@ -41,39 +52,67 @@ const Login = () => {
           <h2 className="pt-8 font-semibold">
             Unlock a World of Visual Wellness
           </h2>
-          <form onSubmit={handleFormSubmit}>
-            <div className="pt-6">
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                value={email}
-                onChange={handleEmailChange}
-              />
-            </div>
-            <div className="pt-4">
-              <input
-                type="password"
-                placeholder="Password"
-                className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-            </div>
-            <div className="pt-6">
-              <button
-                type="submit"
-                className="bg-[#004AAD] text-white font-bold px-6 py-3 rounded-md hover:bg-blue-800"
+
+          <Form name="basic" onFinish={onFinish} autoComplete="off">
+            <div className="mt-4">
+              <Form.Item
+                name="email"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your username!",
+                  },
+                  {
+                    type: "email",
+                    message: "The input is not valid E-mail!",
+                  },
+                ]}
+                hasFeedback
               >
-                Login
-              </button>
+                <Input
+                  prefix={<MailOutlined className="site-form-item-icon" />}
+                  placeholder="email"
+                  className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+                />
+              </Form.Item>
             </div>
-          </form>
-          <div className="pt-6">
-            <Link to="/register" className="text-[#004AAD] hover:underline">
-              Not a member ? Register
-            </Link>
-          </div>
+
+            <div className="mt-2">
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your password!",
+                  },
+                ]}
+                hasFeedback
+              >
+                <Input.Password
+                  prefix={<LockOutlined className="site-form-item-icon" />}
+                  placeholder="Password"
+                  className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+                />
+              </Form.Item>
+            </div>
+            <div className="mt-2 flex justify-center">
+              <Form.Item>
+                <button
+                  type="submit"
+                  className="bg-[#004AAD] text-white font-bold px-6 py-3 rounded-md hover:bg-blue-800"
+                >
+                  Login
+                </button>
+              </Form.Item>
+            </div>
+            <div className=" text-center">
+              <Link to="/register" className="text-[#004AAD] hover:underline">
+                Not a member ? Register
+              </Link>
+            </div>
+          </Form>
+
+          {loading && <Loader />}
         </div>
       </div>
 
