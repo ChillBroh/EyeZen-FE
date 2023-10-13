@@ -58,7 +58,8 @@ const Questionnaire = () => {
       .then((response) => {
         setScore(response.data.score);
         // Calculate the percentage here
-        const calculatedPercentage = (response.data.score / questions.length) * 100;
+        const calculatedPercentage =
+          (response.data.score / questions.length) * 100;
         setPercentage(calculatedPercentage);
       });
   };
@@ -69,37 +70,39 @@ const Questionnaire = () => {
 
   const generatePDF = () => {
     const doc = new jsPDF();
-  
+
     // Define styles
     const titleStyle = { fontSize: 24, textColor: [0, 0, 255] }; // Blue color
     const subtitleStyle = { fontSize: 18 };
     const scoreStyle = { fontSize: 18, textColor: [255, 0, 0] }; // Red color
     const suggestionStyle = { fontSize: 12 };
     const footerStyle = { fontSize: 10, textColor: [128, 128, 128] }; // Gray color
-  
+
     // Measure the width of the subtitle text
     const subtitleText = "Infant Vision Test Results";
-    const subtitleWidth = doc.getStringUnitWidth(subtitleText) * subtitleStyle.fontSize / doc.internal.scaleFactor;
-  
+    const subtitleWidth =
+      (doc.getStringUnitWidth(subtitleText) * subtitleStyle.fontSize) /
+      doc.internal.scaleFactor;
+
     // Calculate the X position to center the subtitle
     const pageWidth = doc.internal.pageSize.width;
     const subtitleX = (pageWidth - subtitleWidth) / 2;
-  
+
     // Add title
     doc.setTextColor.apply(doc, titleStyle.textColor);
     doc.setFontSize(titleStyle.fontSize);
     doc.text("EyeZen", subtitleX, 10);
-  
+
     // Add subtitle centered horizontally
     doc.setTextColor(0); // Reset text color to black
     doc.setFontSize(subtitleStyle.fontSize);
     doc.text(subtitleText, subtitleX, 20);
-  
+
     // Add score
     doc.setTextColor.apply(doc, scoreStyle.textColor);
     doc.setFontSize(scoreStyle.fontSize);
     doc.text(`Score Obtained: ${percentage.toFixed(2)}%`, 10, 30);
-  
+
     // Add suggestions
     doc.setFontSize(suggestionStyle.fontSize);
     doc.text("Vision Condition:", 10, 40);
@@ -109,12 +112,12 @@ const Questionnaire = () => {
     } else {
       // Add other conditions and recommendations as needed
     }
-  
+
     // Add footer
     doc.setTextColor.apply(doc, footerStyle.textColor);
     doc.setFontSize(footerStyle.fontSize);
     doc.text("EyeZen Infant Vision Test", 10, 280);
-  
+
     // Save the PDF or open it in a new tab
     doc.save("infant_vision_test_results.pdf");
   };
@@ -160,7 +163,7 @@ const Questionnaire = () => {
 
   const displayScore = () => {
     return (
-      <div>
+      <div className="py-20">
         {score !== null && (
           <div className="w-3/4 mx-auto mt-20 flex gap-8 mb-20">
             <div className="w-full">

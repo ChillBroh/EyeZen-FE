@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import hero from "../../assets/main/home.png";
+import { AuthContext } from "../../context/authContext";
 
 const AdminHome = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div>
       <div className="grid lg:grid-cols-2 px-12 pt-10 lg:pt-0 lg:px-32 gap-10">
@@ -12,7 +14,7 @@ const AdminHome = () => {
             <span className="text-[46px] font-extrabold text-[#004AAD]">
               Admin
             </span>
-            <h2 className="pt-8 text-lg font-semibold">Isuru Madusanka</h2>
+            <h2 className="pt-8 text-2xl font-semibold">{user.name}</h2>
             <div className="pt-10">
               <Link
                 to="/admin"
@@ -71,10 +73,10 @@ const AdminHome = () => {
           Infant Quizes
         </Link>
         <Link
-          to="/admin"
+          to="/addText-form"
           className="bg-gray-200 text-[#004AAD] hover:bg-[#004AAD] hover:text-white font-bold py-10 rounded-lg text-center cursor-pointer"
         >
-          section
+          Add Text for sighted Test
         </Link>
       </div>
     </div>
