@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import hero from "../assets/main/home.png";
+import { useState } from "react";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,9 +18,17 @@ const Login = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here (e.g., sending data to an API)
-    console.log("Email:", email);
-    console.log("Password:", password);
+    if (email === "admin@gmail.com" && password === "1234") {
+      navigate("/admin"); // Redirect to admin page
+    } else if (email === "user@gmail.com" && password === "1234") {
+      navigate("/"); // Redirect to home page
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Invalid email or password!",
+      });
+    }
   };
 
   return (
@@ -39,7 +49,6 @@ const Login = () => {
                 className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
                 value={email}
                 onChange={handleEmailChange}
-                required
               />
             </div>
             <div className="pt-4">
@@ -49,7 +58,6 @@ const Login = () => {
                 className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
                 value={password}
                 onChange={handlePasswordChange}
-                required
               />
             </div>
             <div className="pt-6">
