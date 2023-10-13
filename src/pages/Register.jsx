@@ -154,7 +154,6 @@ const Register = () => {
                 hasFeedback
               >
                 <Input
-                  addonBefore={prefixSelector}
                   placeholder="Phone Numbe"
                   className=" p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
                 />

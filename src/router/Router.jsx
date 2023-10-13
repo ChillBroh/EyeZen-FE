@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import QuizResults from "../pages/mainQuiz/QuizResults";
 
 // Import React components
@@ -57,15 +57,33 @@ import GameHome from "../pages/games/GameHome";
 import ColorVisonGame from "../pages/games/ColorVisonGame";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import { AuthContext } from "../context/authContext";
 
 const Router = () => {
+  const ProtectedRoute = ({ children }) => {
+    const { user } = useContext(AuthContext);
+    const admin = user?.isAdmin === true;
+    if (!admin) {
+      return <Navigate to="/login" />;
+    }
+    return children;
+  };
   return (
     <Routes>
       {/* App routes*/}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-
+      {/* Handle a 404 Not Found route */}
+      <Route path="*" element={<NotFound />} />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <AdminHome />
+          </ProtectedRoute>
+        }
+      />
       {/* main Quiz */}
       <Route path="/main-quiz" element={<MainQuizHome />} />
       <Route path="/main-questions" element={<QuizPage />} />
@@ -78,6 +96,7 @@ const Router = () => {
       <Route path="update-main-quiz/:id" element={<UpdateQuiz />} />
 
       {/* eye tests home pages*/}
+
       <Route path="/test-home" element={<AllTestHome />} />
       <Route path="/color-blind" element={<ColorBlind />} />
       <Route path="/contrast-sensitvity" element={<ContrastSensitivity />} />
@@ -90,16 +109,13 @@ const Router = () => {
         path="/macular-degeneration-test"
         element={<MacularDegenerationTest />}
       />
-
       {/* games */}
       <Route path="/games" element={<GameHome />} />
       <Route path="/color-vision-game" element={<ColorVisonGame />} />
+
       {/* -----------sighted test Routes--------------------- */}
       <Route path="/far-sighted" element={<SightedText />} />
       <Route path="/test-view" element={<FarSightedTestView />} />
-
-      {/* Handle a 404 Not Found route */}
-      <Route path="*" element={<NotFound />} />
 
       {/* Infant Eye Care Home Page */}
       <Route path="/infant_eye_care" element={<InfantQuizHome />} />
@@ -152,7 +168,6 @@ const Router = () => {
       <Route path="/doctorContact/doctorMap" element={<Map />} />
 
       {/* Admin Treatment Update */}
-      <Route path="/admin" element={<AdminHome />} />
 
       {/* Doctor Form */}
       <Route path="/doctorForm" element={<DoctorForm />} />
