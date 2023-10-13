@@ -43,20 +43,30 @@ const CreateQuizQuestion = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateQuestion() || !validateAnswers() || !validateCorrectAnswers()) {
+    if (
+      !validateQuestion() ||
+      !validateAnswers() ||
+      !validateCorrectAnswers()
+    ) {
       return;
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/infantQuiz", {
-        question: question,
-        answers: answers,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/infantQuiz",
+        {
+          question: question,
+          answers: answers,
+        }
+      );
 
       if (response.data.status === "ok") {
         // Quiz question successfully created
         setQuestion("");
-        setAnswers([{ answer: "", isCorrect: false }, { answer: "", isCorrect: false }]);
+        setAnswers([
+          { answer: "", isCorrect: false },
+          { answer: "", isCorrect: false },
+        ]);
         setErrorMessage("");
         Swal.fire({
           title: "Success!",
@@ -134,43 +144,53 @@ const CreateQuizQuestion = () => {
 
   const saveData = (e) => {
     e.preventDefault();
-    if (!validateQuestion() || !validateAnswers() || !validateCorrectAnswers()) {
+    if (
+      !validateQuestion() ||
+      !validateAnswers() ||
+      !validateCorrectAnswers()
+    ) {
       return;
     }
     handleSubmit(e);
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 mb-8 p-4 border rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold mb-4">Create Quiz Question</h2>
-      <form onSubmit={saveData}>
-        <div className="mb-4">
-          <label className="block text-sm font-semibold">Question:</label>
-          <textarea
+    <div className="lg:px-96 lg:py-32 px-20 py-32">
+      <h2 className="text-4xl font-bold mb-6 text-[#004AAD]">
+        Create Quiz Question
+      </h2>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-6">
+          <label className="block text-lg font-semibold mb-2">Question:</label>
+          <input
             type="text"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            className="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+            required
+            className="w-full px-4 py-3 border rounded focus:outline-none focus:ring focus:border-blue-500"
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-sm font-semibold">Answers:</label>
+        <div className="mb-6">
+          <label className="block text-lg font-semibold mb-2">Answers:</label>
           {answers.map((answer, index) => (
-            <div key={index} className="mb-2 flex items-center space-x-2">
+            <div key={index} className="mb-4 flex items-center space-x-2">
               <input
                 type="text"
                 value={answer.answer}
                 onChange={(e) => handleAnswerChange(index, e.target.value)}
-                className="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+                required
+                className="w-full px-4 py-3 border rounded focus:outline-none focus:ring focus:border-blue-500"
               />
-              <label className="flex items-center space-x-1">
+              <label className="flex items-center space-x-2">
                 <input
                   type="checkbox"
                   checked={answer.isCorrect}
-                  onChange={(e) => handleIsCorrectChange(index, e.target.checked)}
-                  className="form-checkbox h-5 w-5 text-blue-500"
+                  onChange={(e) =>
+                    handleIsCorrectChange(index, e.target.checked)
+                  }
+                  className="form-checkbox h-6 w-6 text-blue-500"
                 />
-                <span className="text-sm">Correct</span>
+                <span className="text-lg font-semibold">Correct</span>
               </label>
               {answers.length > 2 && (
                 <button
@@ -192,38 +212,30 @@ const CreateQuizQuestion = () => {
           </button>
         </div>
         {errorMessage && (
-          <p className="text-red-500 text-sm mb-2">{errorMessage}</p>
+          <p className="text-red-500 text-lg mb-4">{errorMessage}</p>
         )}
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800 focus:outline-none focus:ring focus:border-blue-500"
-        >
-          Create Question
-        </button>
-        <button
-          onClick={() => {
-            window.location.href = '/infant_view_quiz';
-          }}
-          className="bg-blue-600 text-white ml-5 px-4 py-2 rounded hover:bg-blue-800 focus:outline-none focus:ring focus:border-blue-500"
-        >
-          Back
-        </button>
+        <div className="flex items-center">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-6 py-3 rounded mr-4 hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300"
+          >
+            Create Question
+          </button>
+          <button
+            onClick={() => {
+              window.location.href = "/infant_view_quiz";
+            }}
+            className="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300"
+          >
+            Back
+          </button>
+        </div>
       </form>
     </div>
   );
 };
 
 export default CreateQuizQuestion;
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState } from "react";
 // import axios from "axios";
@@ -304,7 +316,7 @@ export default CreateQuizQuestion;
 //       });
 //       return;
 //     }
-    
+
 //     handleSubmit(e); // Pass the event object to handleSubmit
 //   };
 
@@ -318,7 +330,7 @@ export default CreateQuizQuestion;
 //             type="text"
 //             value={question}
 //             onChange={(e) => setQuestion(e.target.value)}
-            
+
 //             className="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring focus:border-blue-500"
 //           />
 //         </div>
@@ -330,7 +342,7 @@ export default CreateQuizQuestion;
 //                 type="text"
 //                 value={answer.answer}
 //                 onChange={(e) => handleAnswerChange(index, e.target.value)}
-                
+
 //                 className="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring focus:border-blue-500"
 //               />
 //               <label className="flex items-center space-x-1">
