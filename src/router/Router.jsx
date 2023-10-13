@@ -50,8 +50,6 @@ import AdminVideoTutorialList from "../pages/adminForms/AdminVideoTutorialList";
 import UpdateVideoTutorial from "../pages/adminForms/UpdateVideoTutorial";
 import AdminHome from "../pages/adminForms/AdminHome";
 
-
-
 //import NearSighted from "../pages/sighted-test/SightedText";
 import NearSightedTestInstructions from "../pages/vision Tests/sighted-test/NearSightedTestInstructions";
 import NearSighted from "../pages/vision Tests/sighted-test/SightedText";
@@ -124,7 +122,7 @@ const Router = () => {
       {/* -----------sighted test Routes--------------------- */}
       <Route path="/near-sighted" element={<NearSighted />} />
       <Route path="/test-view" element={<NearSightedTestView />} />
-      <Route path= "/test-inst" element={<NearSightedTestInstructions />}/>
+      <Route path="/test-inst" element={<NearSightedTestInstructions />} />
 
       {/* Ayurvedic Home Page */}
       <Route path="/ayurvedic" element={<AyurvedicHome />} />
@@ -152,7 +150,6 @@ const Router = () => {
 
       {/* Doctor map Page */}
       <Route path="/doctorContact/doctorMap" element={<Map />} />
-
 
       {/* Admin Treatment Update */}
       <Route path="/admin" element={<AdminHome />} />
@@ -199,7 +196,6 @@ const Router = () => {
       <Route path="/addText-form" element={<AddTextForm />} />
       <Route path="/near-sighted" element={<SightedText />} />
       <Route path="/near-sighted-result" element={<NearSightedTextResult />} />
-
     </Routes>
   );
 };
