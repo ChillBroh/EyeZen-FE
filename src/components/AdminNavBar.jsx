@@ -77,9 +77,9 @@ const AdminNavbar = () => {
                               : "text-gray-700",
                             "block px-4 py-2 text-sm"
                           )}
-                          to="/profile"
+                          to="/admin"
                         >
-                          Profile
+                          Admin Home
                         </Link>
                       )}
                     </Menu.Item>
