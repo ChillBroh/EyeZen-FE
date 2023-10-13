@@ -126,6 +126,19 @@ const UpdateVideoTutorial = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (
+      !videoTutorialInfo.title ||
+      !videoTutorialInfo.type ||
+      !videoTutorialInfo.description
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Title, Type, and Description are required fields.",
+      });
+      return;
+    }
+
     try {
       setLoading(true);
 

@@ -95,6 +95,19 @@ const UpdateTreatment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (
+      !treatmentInfo.title ||
+      !treatmentInfo.type ||
+      !treatmentInfo.description
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Title, Type, and Description are required fields.",
+      });
+      return;
+    }
+
     try {
       setLoading(true);
 
@@ -102,8 +115,6 @@ const UpdateTreatment = () => {
         `http://localhost:5000/api/treatments/${id}`,
         treatmentInfo
       );
-
-      console.log("Backend response:", response.data);
 
       Swal.fire({
         icon: "success",
