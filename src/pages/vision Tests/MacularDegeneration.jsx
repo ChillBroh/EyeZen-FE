@@ -24,7 +24,7 @@ const MacularDegeneration = () => {
             variations exist.
           </p>
           <div className="flex justify-center mt-10">
-            <Link to={"/color-blind-test"}>
+            <Link to={"/macular-degeneration-test"}>
               <Button btnName="Start Test" />
             </Link>
           </div>
