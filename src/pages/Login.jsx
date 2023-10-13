@@ -95,7 +95,7 @@ const Login = () => {
                 />
               </Form.Item>
             </div>
-            <div className="mt-2 flex justify-center">
+            <div className="mt-2">
               <Form.Item>
                 <button
                   type="submit"
@@ -105,7 +105,7 @@ const Login = () => {
                 </button>
               </Form.Item>
             </div>
-            <div className=" text-center">
+            <div>
               <Link to="/register" className="text-[#004AAD] hover:underline">
                 Not a member ? Register
               </Link>
