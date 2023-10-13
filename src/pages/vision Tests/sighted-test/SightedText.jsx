@@ -17,11 +17,7 @@ const NearSighted = () => {
         "/test-view",
       ]);
     } else {
-      setContent([
-        "NEAR",
-        "Take our nearsighted eye test to check your close-up vision clarity. Quickly assess if you need corrective lenses for reading and other up-close activities.",
-        "/near-test-view",
-      ]);
+      setContent(["NEAR", "Take our nearsighted eye test to check your close-up vision clarity. Quickly assess if you need corrective lenses for reading and other up-close activities.", "/test-inst"]);
     }
   }, [location.pathname]);
 
