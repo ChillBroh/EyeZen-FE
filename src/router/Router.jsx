@@ -50,6 +50,7 @@ import SightFail from "../pages/sighted-test/EyeSightedFail"
 import AddTextForm from  "../pages/sighted-test/AddTextForm"
 import NearSightedTextResult from "../pages/sighted-test/NearSightedResult"
 import NearSighted from "../pages/sighted-test/SightedText";
+import NearSightedTestInstructions from "../pages/sighted-test/NearSightedTestInstructions";
 
 const Router = () => {
   return (
@@ -110,6 +111,7 @@ const Router = () => {
       {/* -----------sighted test Routes--------------------- */}
       <Route path="/near-sighted" element={<NearSighted />} />
       <Route path="/test-view" element={<NearSightedTestView />} />
+      <Route path= "/test-inst" element={<NearSightedTestInstructions />}/>
 
       {/* Ayurvedic Home Page */}
       <Route path="/ayurvedic" element={<AyurvedicHome />} />
