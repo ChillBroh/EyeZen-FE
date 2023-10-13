@@ -36,7 +36,7 @@ const inside_nav2 = [
 ];
 
 const Navbar = () => {
-  const [nav, setNav] = useState(true);
+  const [nav, setNav] = useState(false);
 
   const handleNav = () => {
     setNav(!nav);
@@ -158,17 +158,17 @@ const Navbar = () => {
       </div>
       <div onClick={handleNav} className="block md:hidden">
         {nav ? (
-          <AiOutlineMenu size={20} style={{ color: "black" }} />
-        ) : (
           <AiOutlineClose size={20} style={{ color: "black" }} />
+        ) : (
+          <AiOutlineMenu size={20} style={{ color: "black" }} />
         )}
       </div>
 
       <div
         className={
           !nav
-            ? "fixed left-0 top-0 w-[60%] h-full border-r border-r-gray bg-white ease-in-out duration-500 md:hidden"
-            : "fixed left-[-100%]"
+            ? "fixed left-[-100%] top-0 w-[60%] h-full border-r border-r-gray bg-white ease-in-out duration-500 md:hidden"
+            : "fixed left-0 top-0 w-[60%] h-full border-r border-r-gray bg-white ease-in-out duration-500 md:hidden"
         }
       >
         <h1 className="text-2xl font-bold text-[#004AAD] m-8">EyeZen</h1>
