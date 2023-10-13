@@ -56,7 +56,7 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  const [nav, setNav] = useState(true);
+  const [nav, setNav] = useState(false);
 
   const handleNav = () => {
     setNav(!nav);
