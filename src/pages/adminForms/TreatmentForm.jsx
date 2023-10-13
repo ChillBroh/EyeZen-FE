@@ -61,6 +61,19 @@ const TreatmentForm = () => {
       photoUrl: imgUrl,
     };
 
+    if (
+      !updatedTreatmentInfo.title ||
+      !updatedTreatmentInfo.type ||
+      !updatedTreatmentInfo.description
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Title, Type, and Description are required fields.",
+      });
+      return;
+    }
+
     try {
       setLoading(true);
 
@@ -106,7 +119,6 @@ const TreatmentForm = () => {
             value={treatmentInfo.title}
             onChange={handleInputChange}
             className="w-full px-3 py-2 border rounded"
-            required
           />
         </div>
         <div className="mb-4">
@@ -120,7 +132,6 @@ const TreatmentForm = () => {
             value={treatmentInfo.type}
             onChange={handleInputChange}
             className="w-full px-3 py-2 border rounded"
-            required
           />
         </div>
         <div className="mb-4">
@@ -133,7 +144,6 @@ const TreatmentForm = () => {
             value={treatmentInfo.description}
             onChange={handleInputChange}
             className="w-full px-3 py-2 border rounded"
-            required
           />
         </div>
         <div className="mb-4">

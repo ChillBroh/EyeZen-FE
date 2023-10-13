@@ -28,6 +28,11 @@ const DoctorForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "mobile" && isNaN(value)) {
+      return;
+    }
+
     setDoctorInfo({ ...doctorInfo, [name]: value });
   };
 
@@ -71,6 +76,62 @@ const DoctorForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validation
+    if (!doctorInfo.name || !doctorInfo.email || !doctorInfo.mobile) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Name, Email, and Mobile are required fields.",
+      });
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(doctorInfo.email)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Invalid email format.",
+      });
+      return;
+    }
+
+    // Validate mobile number format (10 digits)
+    const mobileRegex = /^\d{10}$/;
+    if (!mobileRegex.test(doctorInfo.mobile)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Invalid mobile number format. It should contain 10 digits.",
+      });
+      return;
+    }
+
+    // Validate latitude and longitude format
+    const coordinateRegex = /^-?\d+(\.\d+)?$/;
+    if (
+      !coordinateRegex.test(doctorInfo.latitude) ||
+      !coordinateRegex.test(doctorInfo.longitude)
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Invalid latitude or longitude format.",
+      });
+      return;
+    }
+
+    // Validate minimum length for the about field
+    if (doctorInfo.about.length < 20) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "About section should have at least 20 characters.",
+      });
+      return;
+    }
 
     // Split the comma-separated strings into arrays
     const updatedDoctorInfo = {
@@ -157,7 +218,6 @@ const DoctorForm = () => {
               value={doctorInfo.name}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -171,7 +231,6 @@ const DoctorForm = () => {
               value={doctorInfo.email}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -182,10 +241,10 @@ const DoctorForm = () => {
               type="tel"
               id="mobile"
               name="mobile"
+              maxLength={10}
               value={doctorInfo.mobile}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -202,7 +261,6 @@ const DoctorForm = () => {
               value={doctorInfo.specialization}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -216,7 +274,6 @@ const DoctorForm = () => {
               value={doctorInfo.type}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -230,7 +287,6 @@ const DoctorForm = () => {
               value={doctorInfo.town}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -244,7 +300,6 @@ const DoctorForm = () => {
               value={doctorInfo.latitude}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -258,7 +313,6 @@ const DoctorForm = () => {
               value={doctorInfo.longitude}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -271,7 +325,6 @@ const DoctorForm = () => {
               value={doctorInfo.about}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -288,7 +341,6 @@ const DoctorForm = () => {
               value={doctorInfo.qualifications}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -302,7 +354,6 @@ const DoctorForm = () => {
               value={doctorInfo.experience}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -319,7 +370,6 @@ const DoctorForm = () => {
               value={doctorInfo.servicesOffered}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -333,7 +383,6 @@ const DoctorForm = () => {
               value={doctorInfo.officeHours}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
           <div className="mb-4">
@@ -350,7 +399,6 @@ const DoctorForm = () => {
               value={doctorInfo.acceptedPaymentMethods}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded"
-              required
             />
           </div>
 

@@ -90,6 +90,19 @@ const VideoTutorialForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (
+      !videoTutorialInfo.title ||
+      !videoTutorialInfo.type ||
+      !videoTutorialInfo.description
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Title, Type, and Description are required fields.",
+      });
+      return;
+    }
+
     // Include the video URL and thumbnail URL in the videoTutorialInfo object
     const updatedVideoTutorialInfo = {
       ...videoTutorialInfo,
@@ -143,7 +156,6 @@ const VideoTutorialForm = () => {
             value={videoTutorialInfo.title}
             onChange={handleInputChange}
             className="w-full px-3 py-2 border rounded"
-            required
           />
         </div>
         <div className="mb-4">
@@ -157,7 +169,6 @@ const VideoTutorialForm = () => {
             value={videoTutorialInfo.type}
             onChange={handleInputChange}
             className="w-full px-3 py-2 border rounded"
-            required
           />
         </div>
         <div className="mb-4">
@@ -170,7 +181,6 @@ const VideoTutorialForm = () => {
             value={videoTutorialInfo.description}
             onChange={handleInputChange}
             className="w-full px-3 py-2 border rounded"
-            required
           />
         </div>
         <div className="mb-4">
