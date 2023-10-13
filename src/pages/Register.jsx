@@ -1,119 +1,237 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Form, Input, Select } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import hero from "../assets/main/home.png";
+import axios from "axios";
+import Swal from "sweetalert2";
+
+const { Option } = Select;
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
+  const [form] = Form.useForm();
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
+  const onFinish = async (values) => {
+    try {
+      const result = await Swal.fire({
+        title: "Do you want to Register With EyeZen",
+        showDenyButton: true,
+        confirmButtonText: "Yes",
+        denyButtonText: "No",
+      });
+
+      if (result.isConfirmed) {
+        const res = await axios.post(
+          "http://localhost:5000/api/auth/register",
+          {
+            name: values.name,
+            email: values.email,
+            mobile: values.phone,
+            password: values.password,
+          }
+        );
+        Swal.fire(
+          "Congratulations! You Have Successfully Registered with EyeZen",
+          "",
+          "success"
+        );
+        navigate("/login");
+      } else {
+        Swal.fire("Registraion Cancelled", "", "error");
+      }
+    } catch (err) {
+      console.log(err);
+      const res = err.response.statusText === "Conflict";
+      if (res) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "User Already exists",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.message,
+        });
+      }
+    }
   };
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleMobileChange = (e) => {
-    setMobile(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    // Handle registration logic here (e.g., sending data to an API)
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Mobile:", mobile);
-    console.log("Password:", password);
-    console.log("Confirm Password:", confirmPassword);
-  };
+  const prefixSelector = (
+    <Form.Item name="prefix" noStyle>
+      <Select>
+        <Option value="86">+94</Option>
+        <Option value="87">+87</Option>
+      </Select>
+    </Form.Item>
+  );
 
   return (
     <div className="grid lg:grid-cols-2 px-12 py-20 pt-10 lg:pt-0 lg:px-32 gap-10">
-      <div className="flex justify-center items-center h-full">
+      <div className="md:pl-10">
         <div>
-          <span className="text-[46px] font-extrabold text-[#004AAD]">
+          <span className="text-[46px] font-extrabold text-[#004AAD] pt-5">
             Register
           </span>
+        </div>
+        <div className="md:pl-10">
           <h2 className="pt-8 font-semibold">
             Create an Account for Visual Wellness
           </h2>
-          <form onSubmit={handleFormSubmit}>
-            <div className="pt-6">
-              <input
-                type="text"
-                placeholder="Full Name"
-                className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                value={name}
-                onChange={handleNameChange}
-                required
-              />
-            </div>
+          <Form
+            form={form}
+            name="register"
+            onFinish={onFinish}
+            initialValues={{
+              prefix: "86",
+            }}
+            style={{
+              maxWidth: 600,
+            }}
+            scrollToFirstError
+          >
             <div className="pt-4">
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                value={email}
-                onChange={handleEmailChange}
-                required
-              />
-            </div>
-            <div className="pt-4">
-              <input
-                type="tel"
-                placeholder="Mobile Number"
-                className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                value={mobile}
-                onChange={handleMobileChange}
-                required
-              />
-            </div>
-            <div className="pt-4">
-              <input
-                type="password"
-                placeholder="Password"
-                className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
-            </div>
-            <div className="pt-4">
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-                required
-              />
-            </div>
-            <div className="pt-6">
-              <button
-                type="submit"
-                className="bg-[#004AAD] text-white font-bold px-6 py-3 rounded-md hover:bg-blue-800"
+              <Form.Item
+                name="name"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your nickname!",
+                    whitespace: true,
+                  },
+                ]}
               >
-                Register
-              </button>
+                <Input
+                  className=" p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+                  placeholder="Full Name"
+                />
+              </Form.Item>
             </div>
-          </form>
-          <div className="pt-6">
-            <Link to="/login" className="text-[#004AAD] hover:underline">
-              Already a member? Login
-            </Link>
-          </div>
+
+            <div className="pt-2">
+              <Form.Item
+                name="email"
+                rules={[
+                  {
+                    type: "email",
+                    message: "The input is not valid E-mail!",
+                  },
+                  {
+                    required: true,
+                    message: "Please input your E-mail!",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="Email"
+                  className=" p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+                />
+              </Form.Item>
+            </div>
+            <div className="pt-2">
+              <Form.Item
+                type="Number"
+                name="phone"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your phone number!",
+                  },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (/^\d{10}$/.test(value)) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        "Phone number must be 10 digits and contain only numbers."
+                      );
+                    },
+                  }),
+                ]}
+              >
+                <Input
+                  addonBefore={prefixSelector}
+                  placeholder="Phone Numbe"
+                  className=" p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+                />
+              </Form.Item>
+            </div>
+
+            <div className="pt-2">
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your password!",
+                  },
+                  {
+                    min: 8,
+                    message: "Password must be at least 8 characters.",
+                  },
+                  {
+                    pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
+                    message:
+                      "Password must contain at least one uppercase letter, one lowercase letter, and one number.",
+                  },
+                  // Add other relevant rules here
+                ]}
+                hasFeedback
+              >
+                <Input.Password className="p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" />
+              </Form.Item>
+            </div>
+
+            <div className="pt-2">
+              <Form.Item
+                name="confirm"
+                dependencies={["password"]}
+                hasFeedback
+                rules={[
+                  {
+                    required: true,
+                    message: "Please confirm your password!",
+                  },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue("password") === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        new Error(
+                          "The new password that you entered do not match!"
+                        )
+                      );
+                    },
+                  }),
+                ]}
+              >
+                <Input.Password className=" p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" />
+              </Form.Item>
+            </div>
+            <div>
+              <div className="pt-2 flex justify-center">
+                <Form.Item>
+                  <button
+                    type="primary"
+                    htmlType="submit"
+                    className="bg-[#004AAD] text-white font-bold px-6 py-3 rounded-md hover:bg-blue-800 "
+                  >
+                    Register
+                  </button>
+                </Form.Item>
+              </div>
+            </div>
+            <div className="pt-2 text-center">
+              <Link
+                to="/login"
+                className="text-[#004AAD] text-lg hover:underline"
+              >
+                Already a member? Login
+              </Link>
+            </div>
+          </Form>
         </div>
       </div>
 

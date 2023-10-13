@@ -1,38 +1,47 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {
+  FaWhatsappSquare,
+  FaFacebookSquare,
+  FaInstagramSquare,
+  FaTwitterSquare,
+} from "react-icons/fa";
 
 const Footer = () => {
-  const handleContactClick = () => {
-    window.location.href = "mailto:isurusanka98@gmail.com";
-  };
-
   return (
-    <footer className="bg-gray-950 text-white py-6">
-      <div>
-        <div className="flex md:flex-row flex-col md:justify-between items-center w-full py-4 px-20">
-          <div className="mb-4 md:mb-0">
-            <h3 className="text-gray-300 text-sm">
-              <p>&copy; 2023 EyeZen. All rights reserved.</p>
-            </h3>
-          </div>
-          <div className="flex space-x-4">
-            <button className="text-gray-300 hover:text-gray-200">
-              <Link to="/" spy={true} smooth={true} duration={500}>
-                Home
-              </Link>
-            </button>
-
-            <Link
-              to="#"
-              className="text-gray-300 hover:text-gray-200"
-              onClick={handleContactClick}
-            >
-              Contact
-            </Link>
-          </div>
+    <div className="w-full bg-black py-16 px-10 grid md:grid-cols-2 gap-8 text-gray-300 bottom-0 m-0">
+      <div className="">
+        <h3 className="text-2xl font-bold text-[#41A4FF]">EyeZen</h3>
+        <p className="py-4">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio non
+          nemo veniam, natus accusantium. Praesentium, doloribus mollitia
+          dignissimos similique optio
+        </p>
+        <div className="flex justify-start gap-10 md:w-[75%] my-6">
+          <FaWhatsappSquare size={30} />
+          <FaFacebookSquare size={30} />
+          <FaInstagramSquare size={30} />
+          <FaTwitterSquare size={30} />
         </div>
       </div>
-    </footer>
+      <div className="flex md:justify-around justify-start mt-8">
+        <div>
+          <h6 className="font-bold text-[#41a3ff]">Doctor Reservations</h6>
+          <ul className="mt-2 font-light">
+            <li className="py-2 text-sm">Eycare Quizes</li>
+            <li className="py-2 text-sm">Vision Games</li>
+            <li className="py-2 text-sm">Ayurvedic Eyecare</li>
+            <li className="py-2 text-sm">Infant EyeCare</li>
+          </ul>
+        </div>
+        <div className="ml-[8rem]">
+          <h6 className="font-bold text-[#41A4FF]">Support</h6>
+          <ul className="mt-2 font-light">
+            <li className="py-2 text-sm">Contact us</li>
+            <li className="py-2 text-sm">About us</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   );
 };
 

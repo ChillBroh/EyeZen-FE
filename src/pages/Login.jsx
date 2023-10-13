@@ -1,33 +1,52 @@
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import hero from "../assets/main/home.png";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/authContext";
+import axios from "axios";
+import Loader from "../components/Loader";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [credentials, setCredentials] = useState({
+    email: undefined,
+    password: undefined,
+  });
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const [loading2, setLoading2] = useState(false);
+
+  const { loading, error, dispatch } = useContext(AuthContext);
+
+  const handleChange = (e) => {
+    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (email === "admin@gmail.com" && password === "1234") {
-      navigate("/admin"); // Redirect to admin page
-    } else if (email === "user@gmail.com" && password === "1234") {
-      navigate("/"); // Redirect to home page
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Invalid email or password!",
-      });
+    dispatch({ type: "LOGIN_START" });
+
+    if (!credentials.email || !credentials.password) {
+      Swal.fire("Please enter your email and password", "", "error");
+    }
+    if (!/\S+@\S+\.\S+/.test(credentials.email)) {
+      Swal.fire("Please enter a valid email address", "", "error");
+    }
+    try {
+      setLoading2(true);
+      const res = await axios.post("auth/login", credentials);
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+      setLoading2(false);
+      if (res.data.isAdmin === true) {
+        navigate("/admin");
+      }
+      if (res.data.isAdmin === false) {
+        navigate("/");
+      }
+    } catch (err) {
+      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+      setTimeout(() => {
+        Swal.fire(err.response.data, "", "error");
+      }, 2000);
     }
   };
 
@@ -44,20 +63,22 @@ const Login = () => {
           <form onSubmit={handleFormSubmit}>
             <div className="pt-6">
               <input
+                className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
                 type="email"
                 placeholder="Email"
-                className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                value={email}
-                onChange={handleEmailChange}
+                id="email"
+                name="email"
+                onChange={handleChange}
               />
             </div>
             <div className="pt-4">
               <input
+                className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
                 type="password"
                 placeholder="Password"
-                className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                value={password}
-                onChange={handlePasswordChange}
+                id="password"
+                name="password"
+                onChange={handleChange}
               />
             </div>
             <div className="pt-6">
@@ -69,6 +90,7 @@ const Login = () => {
               </button>
             </div>
           </form>
+          {loading && <Loader />}
           <div className="pt-6">
             <Link to="/register" className="text-[#004AAD] hover:underline">
               Not a member ? Register
