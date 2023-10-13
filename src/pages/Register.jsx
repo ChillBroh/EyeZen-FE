@@ -101,6 +101,7 @@ const Register = () => {
                     whitespace: true,
                   },
                 ]}
+                hasFeedback
               >
                 <Input
                   className=" p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
@@ -122,6 +123,7 @@ const Register = () => {
                     message: "Please input your E-mail!",
                   },
                 ]}
+                hasFeedback
               >
                 <Input
                   placeholder="Email"
@@ -149,6 +151,7 @@ const Register = () => {
                     },
                   }),
                 ]}
+                hasFeedback
               >
                 <Input
                   addonBefore={prefixSelector}
