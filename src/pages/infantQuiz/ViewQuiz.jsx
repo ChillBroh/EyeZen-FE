@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
+import Swal from 'sweetalert2';
 
 const ViewQuiz = () => {
   const [questions, setQuestions] = useState([]);
@@ -41,34 +42,66 @@ const ViewQuiz = () => {
     setSelectedQuestion(question);
   };
 
-  const handleQuestionDelete = async (questionId) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/infantQuiz/${questionId}`);
-      setQuestions((prevQuestions) =>
-        prevQuestions.filter((question) => question._id !== questionId)
-      );
-      setSelectedQuestion(null);
-    } catch (error) {
-      console.error("Error deleting question:", error);
-    }
+  const handleQuestionDelete = (questionId) => {
+    Swal.fire({
+      title: 'Delete Question',
+      text: 'Are you sure you want to delete this question?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try {
+          axios.delete(`http://localhost:5000/api/infantQuiz/${questionId}`).then(() => {
+            setQuestions((prevQuestions) =>
+              prevQuestions.filter((question) => question._id !== questionId)
+            );
+            setSelectedQuestion(null);
+            Swal.fire('Deleted!', 'The question has been deleted.', 'success');
+          });
+        } catch (error) {
+          console.error('Error deleting question:', error);
+          Swal.fire('Error', 'An error occurred while deleting the question.', 'error');
+        }
+      }
+    });
   };
-
-  const handleSaveChanges = async () => {
-    try {
-      await axios.put(
-        `http://localhost:5000/api/infantQuiz/${selectedQuestion._id}`,
-        selectedQuestion
-      );
-      setQuestions((prevQuestions) =>
-        prevQuestions.map((question) =>
-          question._id === selectedQuestion._id ? selectedQuestion : question
-        )
-      );
-      setSelectedQuestion(null);
-    } catch (error) {
-      console.error("Error updating question:", error);
-    }
+  
+  const handleSaveChanges = () => {
+    Swal.fire({
+      title: 'Save Changes',
+      text: 'Are you sure you want to save changes to this question?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, save it',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try {
+          axios
+            .put(`http://localhost:5000/api/infantQuiz/${selectedQuestion._id}`, selectedQuestion)
+            .then(() => {
+              setQuestions((prevQuestions) =>
+                prevQuestions.map((question) =>
+                  question._id === selectedQuestion._id ? selectedQuestion : question
+                )
+              );
+              setSelectedQuestion(null);
+              Swal.fire('Saved!', 'Changes have been saved.', 'success');
+            });
+        } catch (error) {
+          console.error('Error updating question:', error);
+          Swal.fire('Error', 'An error occurred while updating the question.', 'error');
+        }
+      }
+    });
   };
+  
 
   // Filter questions based on the search term
   const filteredQuestions = questions.filter((question) =>
@@ -137,9 +170,7 @@ const ViewQuiz = () => {
                 </button>
                 <button
                   onClick={() => {
-                    if (window.confirm("Are you sure you want to delete this question?")) {
-                      handleQuestionDelete(question._id);
-                    }
+                    handleQuestionDelete(question._id);
                   }}
                   className="text-red-600 hover:text-red-800"
                 >
