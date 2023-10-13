@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Axios from "axios";
+import Loader from "../../components/Loader";
 
 const DoctorList = () => {
   const location = useLocation();
@@ -10,14 +11,18 @@ const DoctorList = () => {
   // State to store treatments data
   const [doctorData, setDoctorData] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     // Make an HTTP GET request to fetch data from the backend
     Axios.get("http://localhost:5000/api/doctors")
       .then((response) => {
         setDoctorData(response.data); // Set the data received from the backend to state
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+        setIsLoading(false);
       });
   }, []); // Empty dependency array ensures this effect runs only once on component mount
 
@@ -52,10 +57,12 @@ const DoctorList = () => {
     new Set(doctorData.map((doctor) => doctor.type))
   );
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className="pb-14 lg:px-20 py-3">
       <div className="lg:px-12 px-4 lg:pt-8 lg:pb-3 pt-3 pb-3">
-        <div className="lg:flex lg:flex lg:justify-between items-start grid grid-rows-3">
+        <div className="lg:flex lg:justify-between items-start grid grid-rows-3">
           <div className="lg:w-1/2">
             <span className="text-xl font-bold">Eye Care </span>
             <span className="text-xl font-bold text-[#004AAD]">Doctors</span>

@@ -38,7 +38,7 @@ const NearSightedTestView = () => {
               visionLevel = result[currentIndex]
               navigate('/near-sighted-result', {state: {visionLevel}});  //c
             }
-          } else if (spokenWord === 'no') {
+          } else if (spokenWord === 'not clear') {
             // Navigate to 'near-sighted-result' path
             visionLevel = result[currentIndex] //c
             navigate('/near-sighted-result', {state: {visionLevel}} );
@@ -71,9 +71,9 @@ const NearSightedTestView = () => {
            {characters[currentIndex]}
          </h1>
          {isListening}
-         <button className="bg-[#004AAD] text-white rounded-md font-medium py-2 w-full  items-center lg:mt-0" >
+         {/* <button className="bg-[#004AAD] text-white rounded-md font-medium py-2 w-full  items-center lg:mt-0" >
                         Next
-            </button>
+            </button> */}
        </div>
       
      </div>

@@ -1,137 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 
-const StepperComponent = () => {
+const StepperComponent = (props) => {
+  const [expandedQuestions, setExpandedQuestions] = useState({});
+
+  const toggleQuestion = (questionId) => {
+    setExpandedQuestions((prevState) => ({
+      ...prevState,
+      [questionId]: !prevState[questionId], // Toggle the expanded state
+    }));
+  };
   return (
     <div>
-      <ul
-        className="relative m-0 w-full list-none overflow-hidden p-0 transition-[height] duration-200 ease-in-out"
-        data-te-stepper-init
-        data-te-stepper-type="vertical"
-      >
-        <li
-          data-te-stepper-step-ref
-          className="relative h-fit after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#e0e0e0] after:content-[''] dark:after:bg-neutral-600"
-        >
-          <div
-            data-te-stepper-head-ref
-            className="flex cursor-pointer items-center p-6 leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-[''] hover:bg-[#f9f9f9] focus:outline-none dark:after:bg-neutral-600 dark:hover:bg-[#3b3b3b]"
-          >
-            <span
-              data-te-stepper-head-icon-ref
-              className="mr-3 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]"
-            >
-              1
-            </span>
-            <span
-              data-te-stepper-head-text-ref
-              className="text-neutral-500 after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300"
-            >
-              step1
-            </span>
+      <div className="container mx-auto md:px-6 xl:px-24">
+        <section className="">
+          <div id="accordionFlushExample">
+            {props.data.map((data) => (
+              <div
+                key={data.id}
+                className="rounded-none border border-t-0 border-l-0 border-r-0 border-neutral-200"
+              >
+                <h2 className="mb-0" id={`flush-heading${data.id}`}>
+                  <button
+                    className="group relative flex w-full items-center rounded-none border-0 py-4 px-5 text-left text-base font-bold transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:text-primary-400"
+                    type="button"
+                    data-te-collapse-init
+                    onClick={() => toggleQuestion(data.id)}
+                    aria-expanded={expandedQuestions[data.id]}
+                    aria-controls={`flush-collapse${data.id}`}
+                  >
+                    {data.question}
+                    <span
+                      className={`ml-auto h-5 w-5 shrink-0 rotate-${
+                        expandedQuestions[data.id] ? "0" : "-180"
+                      } fill-[#336dec] transition-transform duration-200 ease-in-out group-${
+                        expandedQuestions[data.id]
+                          ? "[data-te-collapse-collapsed]"
+                          : ""
+                      }:rotate-0 group-${
+                        expandedQuestions[data.id]
+                          ? "[data-te-collapse-collapsed]"
+                          : ""
+                      }:fill-[#212529] motion-reduce:transition-none dark:fill-[#8FAEE0] dark:group-${
+                        expandedQuestions[data.id]
+                          ? "[data-te-collapse-collapsed]"
+                          : ""
+                      }:fill-[#eee]`}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </h2>
+                <div
+                  id={`flush-collapse${data.id}`}
+                  className={`py-4 px-5 text-neutral-500 dark:text-neutral-300 ${
+                    expandedQuestions[data.id] ? "block" : "hidden"
+                  }`}
+                  data-te-collapse-item
+                  aria-labelledby={`flush-heading${data.id}`}
+                  data-te-parent="#accordionFlushExample"
+                >
+                  {data.answer}
+                </div>
+              </div>
+            ))}
           </div>
-          <div
-            data-te-stepper-content-ref
-            className="transition-[height, margin-bottom, padding-top, padding-bottom] left-0 overflow-hidden pb-6 pl-[3.75rem] pr-6 duration-300 ease-in-out"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever.. Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever.Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever..Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever.. Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever.Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever..
-          </div>
-        </li>
-
-        <li
-          data-te-stepper-step-ref
-          className="relative h-fit after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#e0e0e0] after:content-[''] dark:after:bg-neutral-600"
-        >
-          <div
-            data-te-stepper-head-ref
-            className="flex cursor-pointer items-center p-6 leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-[''] hover:bg-[#f9f9f9] focus:outline-none dark:after:bg-neutral-600 dark:hover:bg-[#3b3b3b]"
-          >
-            <span
-              data-te-stepper-head-icon-ref
-              className="mr-3 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]"
-            >
-              2
-            </span>
-            <span
-              data-te-stepper-head-text-ref
-              className="text-neutral-500 after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300"
-            >
-              step2
-            </span>
-          </div>
-          <div
-            data-te-stepper-content-ref
-            className="transition-[height, margin-bottom, padding-top, padding-bottom] left-0 overflow-hidden pb-6 pl-[3.75rem] pr-6 duration-300 ease-in-out"
-          >
-            {" "}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever.. Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever.Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever..Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever.. Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever.Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever..
-          </div>
-        </li>
-
-        <li data-te-stepper-step-ref className="relative h-fit">
-          <div
-            data-te-stepper-head-ref
-            className="flex cursor-pointer items-center p-6 leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-[''] hover:bg-[#f9f9f9] focus:outline-none dark:after:bg-neutral-600 dark:hover:bg-[#3b3b3b]"
-          >
-            <span
-              data-te-stepper-head-icon-ref
-              className="mr-3 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]"
-            >
-              3
-            </span>
-            <span
-              data-te-stepper-head-text-ref
-              className="text-neutral-500 after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300"
-            >
-              step3
-            </span>
-          </div>
-          <div
-            data-te-stepper-content-ref
-            className="transition-[height, margin-bottom, padding-top, padding-bottom] left-0 overflow-hidden pb-6 pl-[3.75rem] pr-6 duration-300 ease-in-out"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever.. Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever.Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever..Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever.. Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever.Lorem
-            Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever..
-          </div>
-        </li>
-      </ul>
+        </section>
+      </div>
     </div>
   );
 };

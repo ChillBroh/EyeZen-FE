@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Loader from "../../components/Loader";
 import {
   GoogleMap,
   LoadScript,
@@ -19,6 +20,7 @@ const center = {
 
 const Map = () => {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   // State to store treatments data
   const [doctorData, setDoctorData] = useState([]);
@@ -28,9 +30,11 @@ const Map = () => {
     Axios.get("http://localhost:5000/api/doctors")
       .then((response) => {
         setDoctorData(response.data); // Set the data received from the backend to state
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+        setIsLoading(false);
       });
   }, []); // Empty dependency array ensures this effect runs only once on component mount
 
@@ -42,7 +46,9 @@ const Map = () => {
     setSelectedDoctor(null);
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <LoadScript googleMapsApiKey="AIzaSyBSzNtimwLewNypgLnzfpq0fnr26Nfs0no">
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={7}>
         {doctorData.map((doctor) => (

@@ -146,8 +146,10 @@ const UpdateQuiz = () => {
                         onChange={handleChange}
                       >
                         <option>--Select one--</option>
-                        <option value={"Myopia"}>Myopia</option>
-                        <option value={"Hyperopia"}>Hyperopia</option>
+                        <option value={"Nearsightedness"}>
+                          Nearsightedness
+                        </option>
+                        <option value={"Farsightedness"}>Farsightedness</option>
                         <option value={"Color Blindness"}>
                           Color Blindness
                         </option>

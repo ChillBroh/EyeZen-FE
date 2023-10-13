@@ -1,8 +1,6 @@
-import React from 'react'
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import sightedResultImg from '../../assets/sigthted-test/sightedResultImg.png'
-
-
+import sightedResultImg from "../../../assets/sigthted-test/sightedResultImg.png";
 
 const NearSightedResult = () => {
 
@@ -29,7 +27,7 @@ const NearSightedResult = () => {
     
        
     </div>
-  )
-}
+  );
+};
 
-export default NearSightedResult
+export default NearSightedResult;
