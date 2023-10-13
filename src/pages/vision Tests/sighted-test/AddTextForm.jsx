@@ -5,6 +5,7 @@ const TextForm = () => {
   const [textList, setTextList] = useState([]);
   const [allWords, setAllWords] = useState([]);
   const [editingWord, setEditingWord] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     // Fetch all saved words when the component mounts
@@ -16,6 +17,14 @@ const TextForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Regular expression to match only letters (no numbers or symbols)
+    const lettersOnlyRegex = /^[A-Za-z]+$/;
+
+    if (!lettersOnlyRegex.test(text)) {
+      setErrorMessage('Please enter text without numbers or symbols.');
+      return;
+    }
 
     try {
       const response = await fetch('http://localhost:5000/api/word/', {
@@ -31,6 +40,7 @@ const TextForm = () => {
         console.log('Word added successfully');
         setTextList([...textList, text]);
         setText('');
+        setErrorMessage('');
       } else {
         // Handle errors if the request was not successful
         console.error('Failed to add word to the backend');
@@ -109,6 +119,7 @@ const TextForm = () => {
         >
           Submit
         </button>
+        {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
       </form>
 
       <div>
@@ -139,18 +150,20 @@ const TextForm = () => {
               ) : (
                 <>
                   {word.word}
-                  <button
-                    onClick={() => handleEdit(word._id)}
-                    className="ml-2 text-blue-500 hover:underline"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(word._id)}
-                    className="ml-2 text-red-500 hover:underline"
-                  >
-                    Delete
-                  </button>
+                  <div>
+                    <button
+                      onClick={() => handleEdit(word._id)}
+                      className="ml-2 text-blue-500 hover:underline mr-8"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(word._id)}
+                      className="ml-2 text-red-500 hover:underline"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </>
               )}
             </li>

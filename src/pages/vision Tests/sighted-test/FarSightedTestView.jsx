@@ -17,7 +17,7 @@ function VoiceToText() {
   const { speak } = useSpeechSynthesis();
 
   const predefinedText =
-    "Please make sure to cover your one eye before starting the test by clicking the blue button below and do the test for both eyes.";
+    "Please make sure to cover your one eye before starting the test by clicking the blue button below and do the test for both eyes. Say the word that you can see in the screen, when test started. to start the test press the button below.";
 
   useEffect(() => {
     axios
