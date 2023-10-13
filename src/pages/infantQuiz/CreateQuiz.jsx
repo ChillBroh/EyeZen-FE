@@ -146,7 +146,7 @@ const CreateQuizQuestion = () => {
       <form onSubmit={saveData}>
         <div className="mb-4">
           <label className="block text-sm font-semibold">Question:</label>
-          <input
+          <textarea
             type="text"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
