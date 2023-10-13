@@ -19,7 +19,7 @@ const inside_nav = [
     display: "Eye Checkup Tests for Adults",
   },
   {
-    path: "/tests",
+    path: "/games",
     display: "Games for Kids",
   },
 ];

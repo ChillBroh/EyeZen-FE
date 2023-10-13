@@ -4,6 +4,8 @@ import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import jsPDF from "jspdf";
+import Pass from "../../assets/sigthted-test/pass.png";
+import Fail from "../../assets/sigthted-test/fail.png";
 
 const QuizResults = () => {
   const { finalPercentage } = useParams();
@@ -27,11 +29,6 @@ const QuizResults = () => {
     // Calculate the X position to center the subtitle
     const pageWidth = doc.internal.pageSize.width;
     const subtitleX = (pageWidth - subtitleWidth) / 2;
-
-    // Add title
-    // doc.setTextColor.apply(doc, titleStyle.textColor);
-    // doc.setFontSize(titleStyle.fontSize);
-    // doc.text("EyeZen", subtitleX, 10);
 
     // Add subtitle centered horizontally
     doc.setTextColor(0); // Reset text color to black
@@ -164,8 +161,8 @@ const QuizResults = () => {
               </p>
             </div>
           </div>
-          <div className="grid grid-rows-2 ">
-            <div className="flex justify-center space-x-8 ">
+          <div className="grid grid-rows-2 mt-10">
+            <div className="flex justify-center space-x-8 mb-10">
               <Link to="/">
                 <Button btnName="Back To Home" />
               </Link>
@@ -183,8 +180,12 @@ const QuizResults = () => {
           </div>
         </div>
         {/* right pane */}
-        <div className="flex justify-center mb-16">
-          <img src={ResultsShow} alt="Girl with a snell chart" />
+        <div className="flex justify-center ">
+          {finalPercentage > 50 ? (
+            <img src={Pass} alt="passed test" className="lg:max-h-[672px]" />
+          ) : (
+            <img src={Fail} alt="failed test" className="lg:max-h-[672px]" />
+          )}
         </div>
       </div>
     </div>

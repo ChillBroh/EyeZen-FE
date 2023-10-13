@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../../components/Button";
 
 const Questions = (props) => {
   const questions = props.data;
@@ -24,7 +25,7 @@ const Questions = (props) => {
 
   const finalPercentage = (correctCount / answers.length) * 100;
 
-  const selectRadio = (value, index) => {
+  const selectBtn = (value, index) => {
     const updatedValues = [...input];
     updatedValues[props.num] = value;
 
@@ -36,6 +37,7 @@ const Questions = (props) => {
     // Update the state with the new array
     setCheckedOptions(updatedCheckedOptions);
     props.onFinalPercentatge(finalPercentage);
+    props.next();
   };
 
   return (
@@ -43,29 +45,12 @@ const Questions = (props) => {
       <h1 className="text-3xl text-center mt-16">
         {questions[props.num].questions}
       </h1>
-      <div className="mt-16 text-3xl ml-48 sm:ml-16 xs:ml-0">
-        <ul>
-          {questions[props.num].options.map((value, index) => (
-            <div key={index}>
-              <li>
-                <input
-                  type="radio"
-                  name="answers"
-                  id={`q${index}-option`}
-                  className="mx-16 ml-32 mt-10 hover:cursor-pointer"
-                  checked={checkedOptions[props.num] === index}
-                  onChange={() => selectRadio(value, index)}
-                />
-                <label
-                  htmlFor={`q${index}-option`}
-                  className="hover:cursor-pointer"
-                >
-                  {value}
-                </label>
-              </li>
-            </div>
-          ))}
-        </ul>
+      <div className="mt-16 text-3xl ml-48 sm:ml-16 xs:ml-0  flex justify-center space-x-10">
+        {questions[props.num].options.map((value, index) => (
+          <div key={index}>
+            <Button onClick={() => selectBtn(value, index)} btnName={value} />
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -10,9 +10,9 @@ import CreateFact from "../pages/infantQuiz/InfantFact";
 import InfantQuiz from "../pages/infantQuiz/InfantQuiz";
 import Home from "../pages/Home";
 import QuizPage from "../pages/mainQuiz/QuizPage";
-import SightedText from "../pages/sighted-test/SightedText";
-import FarSightedTestView from "../pages/sighted-test/FarSightedTestView";
-import NearSightedTestView from "../pages/sighted-test/NearSightedTestView";
+import SightedText from "../pages/vision Tests/sighted-test/SightedText";
+import FarSightedTestView from "../pages/vision Tests/sighted-test/FarSightedTestView";
+import NearSightedTestView from "../pages/vision Tests/sighted-test/NearSightedTestView";
 import AyurvedicHome from "../pages/ayurvedicHome/AyurvedicHome";
 import AyurvedicTreatments from "../pages/ayurvedicHome/AyurvedicTreatments";
 import Treatment from "../pages/ayurvedicHome/Treatment";
@@ -27,10 +27,10 @@ import ColorBlind from "../pages/vision Tests/ColorBlind";
 import ContrastSensitivity from "../pages/vision Tests/ContrastSensitivity";
 import DepthPrecision from "../pages/vision Tests/DepthPrecision";
 import MacularDegeneration from "../pages/vision Tests/MacularDegeneration";
-import SightPass from "../pages/sighted-test/EyeSightedPass";
-import SightFail from "../pages/sighted-test/EyeSightedFail";
-import AddTextForm from "../pages/sighted-test/AddTextForm";
-import NearSightedTextResult from "../pages/sighted-test/NearSightedResult";
+import SightPass from "../pages/vision Tests/sighted-test/EyeSightedPass";
+import SightFail from "../pages/vision Tests/sighted-test/EyeSightedFail";
+import AddTextForm from "../pages/vision Tests/sighted-test/AddTextForm";
+import NearSightedTextResult from "../pages/vision Tests/sighted-test/NearSightedResult";
 import Questionnaire from "../pages/infantQuiz/Questionnaire";
 import CreateQuizQuestion from "../pages/infantQuiz/CreateQuiz";
 import ViewQuiz from "../pages/infantQuiz/ViewQuiz";
@@ -49,7 +49,9 @@ import UpdateTreatment from "../pages/adminForms/UpdateTreatment";
 import AdminVideoTutorialList from "../pages/adminForms/AdminVideoTutorialList";
 import UpdateVideoTutorial from "../pages/adminForms/UpdateVideoTutorial";
 import AdminHome from "../pages/adminForms/AdminHome";
-import NearSighted from "../pages/sighted-test/SightedText";
+import NearSighted from "../pages/vision Tests/sighted-test/SightedText";
+import GameHome from "../pages/games/GameHome";
+import ColorVisonGame from "../pages/games/ColorVisonGame";
 
 const Router = () => {
   return (
@@ -82,6 +84,9 @@ const Router = () => {
         element={<MacularDegenerationTest />}
       />
 
+      {/* games */}
+      <Route path="/games" element={<GameHome />} />
+      <Route path="/color-vision-game" element={<ColorVisonGame />} />
       {/* -----------sighted test Routes--------------------- */}
       <Route path="/far-sighted" element={<SightedText />} />
       <Route path="/test-view" element={<FarSightedTestView />} />

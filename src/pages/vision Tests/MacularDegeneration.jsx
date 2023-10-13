@@ -23,9 +23,11 @@ const MacularDegeneration = () => {
             basic grid is typically black lines on a white background, but
             variations exist.
           </p>
-          <Link to={"/macular-degeneration-test"}>
-            <Button btnName="Start Test" />
-          </Link>
+          <div className="flex justify-center mt-10">
+            <Link to={"/color-blind-test"}>
+              <Button btnName="Start Test" />
+            </Link>
+          </div>
         </div>
         <div className="flex justify-center mb-16">
           <img src={Macular} alt="number from ishihara" />

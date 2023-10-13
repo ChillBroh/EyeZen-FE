@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Button from "../../components/Button";
 import Questions from "./Questions";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import axios from "axios";
 import Loader from "../../components/Loader";
@@ -45,8 +46,30 @@ const QuizPage = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     } else {
-      alert("This is the first question!");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "This is the first Question!",
+      });
     }
+  };
+  //exit button
+  const onExitBtn = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be Exit from this quiz!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Do it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Quiz Cancelled!", "", "success");
+
+        navigate("/");
+      }
+    });
   };
 
   return (
@@ -57,21 +80,32 @@ const QuizPage = () => {
         <>
           <div>
             <h1 className="text-5xl font-bold font-serif text-center">
-              {`Question  ${currentIndex + 1}`}
+              {`Question  ${currentIndex + 1} out of ${allquestions.length}`}
             </h1>
           </div>
           <Questions
             num={currentIndex}
             onFinalPercentatge={getfinalPercentage}
             data={allquestions}
+            next={onNext}
           />
           <hr className="my-12 h-0.5 border-t-0 bg-gray-500 opacity-100 dark:opacity-60" />
           <div className="grid grid-cols-2 ">
-            <div className="flex justify-start">
-              <Button btnName="Prev" onClick={onPrev}></Button>
+            <div className="flex justify-start mb-10">
+              <Button
+                btnName="Prev"
+                color="black"
+                onClick={onPrev}
+                className="rounded-lg"
+              />
             </div>
-            <div className="flex justify-end">
-              <Button btnName="Next" color="black" onClick={onNext}></Button>
+            <div className="flex justify-end mb-10 ">
+              <Button
+                btnName="Exit"
+                color="red"
+                className="rounded-lg"
+                onClick={onExitBtn}
+              />
             </div>
           </div>
         </>
