@@ -57,12 +57,16 @@ import NearSightedTestInstructions from "../pages/vision Tests/sighted-test/Near
 import NearSighted from "../pages/vision Tests/sighted-test/SightedText";
 import GameHome from "../pages/games/GameHome";
 import ColorVisonGame from "../pages/games/ColorVisonGame";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const Router = () => {
   return (
     <Routes>
       {/* App routes*/}
       <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
 
       {/* main Quiz */}
       <Route path="/main-quiz" element={<MainQuizHome />} />
