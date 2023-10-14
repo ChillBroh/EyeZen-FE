@@ -369,7 +369,7 @@ const CreateFact = () => {
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         {imageUrl && (
           <div className="mb-4">
-            <p className="block">Image URL:</p>
+            <p className="block">Uploaded Image:</p>
             <img src={imageUrl} alt="Uploaded" width="200" className="mt-2" />
           </div>
         )}
