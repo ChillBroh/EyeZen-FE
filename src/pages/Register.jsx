@@ -90,6 +90,7 @@ const Register = () => {
               maxWidth: 600,
             }}
             scrollToFirstError
+            autoComplete="none"
           >
             <div className="pt-4">
               <Form.Item
