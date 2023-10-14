@@ -68,31 +68,24 @@ const Register = () => {
   );
 
   return (
-    <div className="grid lg:grid-cols-2 px-12 py-20 pt-10 lg:pt-0 lg:px-32 gap-10">
-      <div className="md:pl-10">
-        <div>
-          <span className="text-[46px] font-extrabold text-[#004AAD] pt-5">
+    <div className="grid lg:grid-cols-2 px-12 pt-10 lg:pt-0 lg:px-32 gap-10">
+      <div className="flex justify-center items-center h-full">
+        <div className="text-white">
+          <span className="text-5xl font-extrabold text-[#004AAD]">
             Register
           </span>
-        </div>
-        <div className="md:pl-10">
-          <h2 className="pt-8 font-semibold">
+          <h2 className="pt-6 pb-3 font-semibold text-lg">
             Create an Account for Visual Wellness
           </h2>
           <Form
-            form={form}
             name="register"
             onFinish={onFinish}
             initialValues={{
               prefix: "86",
             }}
-            style={{
-              maxWidth: 600,
-            }}
             scrollToFirstError
-            autoComplete="none"
           >
-            <div className="pt-4">
+            <div className="pt-2">
               <Form.Item
                 name="name"
                 rules={[
@@ -104,10 +97,7 @@ const Register = () => {
                 ]}
                 hasFeedback
               >
-                <Input
-                  className=" p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                  placeholder="Full Name"
-                />
+                <Input className="input-style" placeholder="Full Name" />
               </Form.Item>
             </div>
 
@@ -126,12 +116,10 @@ const Register = () => {
                 ]}
                 hasFeedback
               >
-                <Input
-                  placeholder="Email"
-                  className=" p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                />
+                <Input className="input-style" placeholder="Email" />
               </Form.Item>
             </div>
+
             <div className="pt-2">
               <Form.Item
                 type="Number"
@@ -154,10 +142,7 @@ const Register = () => {
                 ]}
                 hasFeedback
               >
-                <Input
-                  placeholder="Phone Numbe"
-                  className=" p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                />
+                <Input className="input-style" placeholder="Phone Number" />
               </Form.Item>
             </div>
 
@@ -178,11 +163,13 @@ const Register = () => {
                     message:
                       "Password must contain at least one uppercase letter, one lowercase letter, and one number.",
                   },
-                  // Add other relevant rules here
                 ]}
                 hasFeedback
               >
-                <Input.Password className="p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" />
+                <Input.Password
+                  className="input-style"
+                  placeholder="Password"
+                />
               </Form.Item>
             </div>
 
@@ -210,27 +197,29 @@ const Register = () => {
                   }),
                 ]}
               >
-                <Input.Password className=" p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" />
+                <Input.Password
+                  className="input-style"
+                  placeholder="Confirm Password"
+                />
               </Form.Item>
             </div>
-            <div>
-              <div className="pt-2 flex justify-center">
+
+            <div className="pt-2">
+              <div>
                 <Form.Item>
                   <button
                     type="primary"
                     htmlType="submit"
-                    className="bg-[#004AAD] text-white font-bold px-6 py-3 rounded-md hover:bg-blue-800 "
+                    className="bg-[#004AAD] text-white font-bold px-6 py-3 rounded-md hover:bg-blue-800"
                   >
                     Register
                   </button>
                 </Form.Item>
               </div>
             </div>
-            <div className="pt-2 text-center">
-              <Link
-                to="/login"
-                className="text-[#004AAD] text-lg hover:underline"
-              >
+
+            <div className="pt-2">
+              <Link to="/login" className="text-[#004AAD] hover:underline">
                 Already a member? Login
               </Link>
             </div>
