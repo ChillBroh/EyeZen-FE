@@ -77,6 +77,7 @@ const Questionnaire = () => {
     const scoreStyle = { fontSize: 18, textColor: [255, 0, 0] }; // Red color
     const suggestionStyle = { fontSize: 12 };
     const footerStyle = { fontSize: 10, textColor: [128, 128, 128] }; // Gray color
+    const rangeStyle = { fontSize: 10, textColor: [50, 100, 255] }; // Gray color
 
     // Measure the width of the subtitle text
     const subtitleText = "Infant Vision Test Results";
@@ -101,17 +102,29 @@ const Questionnaire = () => {
     // Add score
     doc.setTextColor.apply(doc, scoreStyle.textColor);
     doc.setFontSize(scoreStyle.fontSize);
-    doc.text(`Score Obtained: ${percentage.toFixed(2)}%`, 10, 30);
+    doc.text(`Score Obtained: ${percentage.toFixed(2)}%`, 10, 40);
 
     // Add suggestions
     doc.setFontSize(suggestionStyle.fontSize);
-    doc.text("Vision Condition:", 10, 40);
-    if (percentage <= 50) {
-      doc.text("Vision seems to be a bit weak", 20, 50);
-      doc.text("Recommendation: Meet an ophthalmologist", 20, 60);
+    doc.text("Vision Condition:", 10, 60);
+    if (percentage < 50) {
+      doc.text("Vision seems to be poor", 20, 70);
+      doc.text("Highly recommended to meet an ophthalmologist", 20, 80);
+    }else if (percentage < 75) {
+      doc.text("Vision seems to be a bit weak", 20, 70);
+      doc.text("Recommendation: Meet an ophthalmologist", 20, 80);
     } else {
-      // Add other conditions and recommendations as needed
+      doc.text("Vision seems to be good", 20, 70);
     }
+
+    doc.setTextColor.apply(doc, rangeStyle.textColor);
+    doc.text("Vision Range Summary", 10, 100);
+    doc.text("< 50%", 20, 110);
+    doc.text("Poor", 60, 110);
+    doc.text("50% - 75%", 20, 120);
+    doc.text("Average", 60, 120);
+    doc.text("75% - 100%", 20, 130);
+    doc.text("Good", 60, 130);
 
     // Add footer
     doc.setTextColor.apply(doc, footerStyle.textColor);
@@ -138,14 +151,14 @@ const Questionnaire = () => {
             &nbsp;of {questions.length}
           </span>
         </div>
-        <h3 className="text-xl my-4">{question.question}</h3>
-        <div className="grid gap-40 grid-cols-2 mt-20">
+        <h3 className="text-xl mt-4 mb-20">{question.question}</h3>
+        <div className="grid gap-4 grid-cols-1">
           {question.answers &&
             question.answers.map((answer) => (
               <button
                 key={answer.id}
                 onClick={() => handleAnswerSelect(question.id, answer.id)}
-                className={`p-2 border border-gray-400 rounded-3xl text-white text-xl ${
+                className={`p-2 border border-gray-400 rounded-3xl mx-auto text-white text-xl w-1/4 ${
                   answer.id === userAnswers[question.id]
                     ? "bg-slate-500"
                     : answer.id === 1
@@ -172,12 +185,23 @@ const Questionnaire = () => {
                 Score Obtained: {percentage.toFixed(2)}%
               </h2>
               <h3 className="text-xl text-bold mb-3">Vision Condition</h3>
-              {percentage <= 50 && (
-                <ul className="list-disc">
+              <ul className="list-disc">
+              {percentage < 50 && (
+                <>
+                  <li>Vision seems to be poor</li>
+                  <li>Highly recommended to meet an ophthalmologist</li>
+                </>
+              )}
+              {percentage >= 50 && percentage < 75 && (
+                <>
                   <li>Vision seems to be a bit weak</li>
                   <li>Recommendation: Meet an ophthalmologist</li>
-                </ul>
+                </>
               )}
+              {percentage >= 75 && (
+                <li>Vision seems to be good</li>
+              )}
+            </ul>
             </div>
             <div>
               <img src={result} alt="Result" className="w-full rounded-3xl" />

@@ -63,6 +63,7 @@ const Router = () => {
   const ProtectedRoute = ({ children }) => {
     const { user } = useContext(AuthContext);
     const admin = user?.isAdmin === true;
+
     if (!admin) {
       return <Navigate to="/login" />;
     }

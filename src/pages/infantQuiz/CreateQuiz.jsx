@@ -72,6 +72,10 @@ const CreateQuizQuestion = () => {
           title: "Success!",
           text: "Quiz question added successfully!",
           icon: "success",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = '/infant_view_quiz';
+          }
         });
       } else {
         setErrorMessage("Failed to create quiz question.");
@@ -166,7 +170,6 @@ const CreateQuizQuestion = () => {
             type="text"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            required
             className="w-full px-4 py-3 border rounded focus:outline-none focus:ring focus:border-blue-500"
           />
         </div>
@@ -178,7 +181,6 @@ const CreateQuizQuestion = () => {
                 type="text"
                 value={answer.answer}
                 onChange={(e) => handleAnswerChange(index, e.target.value)}
-                required
                 className="w-full px-4 py-3 border rounded focus:outline-none focus:ring focus:border-blue-500"
               />
               <label className="flex items-center space-x-2">
@@ -220,14 +222,6 @@ const CreateQuizQuestion = () => {
             className="bg-blue-500 text-white px-6 py-3 rounded mr-4 hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300"
           >
             Create Question
-          </button>
-          <button
-            onClick={() => {
-              window.location.href = "/infant_view_quiz";
-            }}
-            className="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300"
-          >
-            Back
           </button>
         </div>
       </form>
