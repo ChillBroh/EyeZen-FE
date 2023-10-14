@@ -69,7 +69,7 @@
 //       }
 //     });
 //   };
-  
+
 //   const handleSaveChanges = () => {
 //     Swal.fire({
 //       title: 'Save Changes',
@@ -101,7 +101,6 @@
 //       }
 //     });
 //   };
-  
 
 //   // Filter questions based on the search term
 //   const filteredQuestions = questions.filter((question) =>
@@ -238,7 +237,6 @@
 
 // export default ViewQuiz;
 
-
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
@@ -256,7 +254,9 @@ const ViewQuiz = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/infantQuiz");
+        const response = await axios.get(
+          "http://localhost:5000/api/infantQuiz"
+        );
         if (response.data && response.data.length > 0) {
           const flattenedQuestions = response.data.flat();
           setQuestions(flattenedQuestions);
@@ -279,7 +279,6 @@ const ViewQuiz = () => {
       });
     }
   }, [selectedQuestion]);
-  
 
   const handleQuestionUpdate = (question) => {
     setSelectedQuestion(question);
@@ -306,7 +305,11 @@ const ViewQuiz = () => {
                 prevQuestions.filter((question) => question._id !== questionId)
               );
               setSelectedQuestion(null);
-              Swal.fire("Deleted!", "The question has been deleted.", "success");
+              Swal.fire(
+                "Deleted!",
+                "The question has been deleted.",
+                "success"
+              );
             });
         } catch (error) {
           console.error("Error deleting question:", error);
@@ -356,7 +359,9 @@ const ViewQuiz = () => {
             .then(() => {
               setQuestions((prevQuestions) =>
                 prevQuestions.map((question) =>
-                  question._id === selectedQuestion._id ? selectedQuestion : question
+                  question._id === selectedQuestion._id
+                    ? selectedQuestion
+                    : question
                 )
               );
               setSelectedQuestion(null);
@@ -393,22 +398,32 @@ const ViewQuiz = () => {
 
   return (
     <div className="mx-20">
-      <button
-        onClick={() => {
-          window.location.href = "/infant_create_quiz";
-        }}
-        className="bg-blue-500 text-white px-4 py-2 rounded-3xl mt-10 flex items-center justify-center hover-bg-blue-700 focus-outline-none focus-ring focus-border-green-500"
-      >
-        <span className="mr-2">
-          <FaPlus />
-        </span>
-        Add Question
-      </button>
-  
+      <div className="flex flex-row gap-4">
+        <button
+          onClick={() => {
+            window.location.href = "/infant_create_quiz";
+          }}
+          className="bg-blue-500 text-white px-4 py-2 rounded-3xl mt-10 flex items-center justify-center hover-bg-blue-700 focus-outline-none focus-ring focus-border-green-500"
+        >
+          <span className="mr-2">
+            <FaPlus />
+          </span>
+          Add Question
+        </button>
+        <button
+          onClick={() => {
+            window.location.href = "/infant_facts";
+          }}
+          className="bg-blue-500 text-white px-4 py-2 rounded-3xl mt-10 flex items-center justify-center hover-bg-blue-700 focus-outline-none focus-ring focus-border-green-500"
+        >
+          Infant Facts
+        </button>
+      </div>
+
       <h2 className="text-2xl font-semibold mb-4 mt-10 text-center text-black">
         Quiz Questions List
       </h2>
-  
+
       <div className="flex">
         <input
           type="text"
@@ -418,7 +433,7 @@ const ViewQuiz = () => {
           className="w-1/2 py-2 border rounded shadow-sm mb-4 focus-outline-none focus-ring focus-border-blue-500 mx-auto"
         />
       </div>
-  
+
       {loading ? (
         <div>Loading...</div>
       ) : filteredQuestions.length > 0 ? (
@@ -430,7 +445,9 @@ const ViewQuiz = () => {
                 question._id === selectedQuestion?._id ? "bg-blue-100" : ""
               }`}
             >
-              <h3 className="text-lg font-semibold mb-2">{question.question}</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                {question.question}
+              </h3>
               <ul>
                 {question.answers?.map((answer, index) => (
                   <li key={index}>
@@ -454,7 +471,7 @@ const ViewQuiz = () => {
                   <FaTrash /> Delete
                 </button>
               </div>
-              
+
               {question._id === selectedQuestion?._id && (
                 <div className="border p-4 rounded-lg shadow-lg bg-white">
                   <h3 className="text-lg font-semibold mb-2">Edit Question</h3>
@@ -477,7 +494,8 @@ const ViewQuiz = () => {
                           value={answer.answer}
                           onChange={(e) => {
                             const updatedQuestion = { ...selectedQuestion };
-                            updatedQuestion.answers[index].answer = e.target.value;
+                            updatedQuestion.answers[index].answer =
+                              e.target.value;
                             setSelectedQuestion(updatedQuestion);
                           }}
                           className="w-full px-3 py-2 border rounded shadow-sm mb-1 focus-outline-none focus-ring focus-border-blue-500"
@@ -488,7 +506,8 @@ const ViewQuiz = () => {
                             checked={answer.isCorrect}
                             onChange={() => {
                               const updatedQuestion = { ...selectedQuestion };
-                              updatedQuestion.answers[index].isCorrect = !answer.isCorrect;
+                              updatedQuestion.answers[index].isCorrect =
+                                !answer.isCorrect;
                               setSelectedQuestion(updatedQuestion);
                             }}
                           />
@@ -542,8 +561,6 @@ const ViewQuiz = () => {
       )}
     </div>
   );
-  
-  
 };
 
 export default ViewQuiz;
