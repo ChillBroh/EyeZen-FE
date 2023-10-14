@@ -90,7 +90,7 @@ const InfantQuiz = () => {
             ))}
           </ul>
         </section>
-        <div className="flex justify-center mt-1">
+        <div className="flex justify-center mt-1 mb-10">
         <Button btnName="Start Quiz" onClick={handleButtonClick}/>
       </div>
       </div>
