@@ -1,4 +1,4 @@
-# EyeZen-Mobile Project
+# EyeZen Web Project
 
 Welcome to EyeZen, a cutting-edge Web app designed to enhance your visual experience! Our MERN application combines cutting-edge technology with expert knowledge in eye care. EyeZen is your go-to solution for all things related to eye health. This repository contains the source code for EyeZen-web frontend. Follow these simple steps to clone the project, install dependencies, and run the app.
 
