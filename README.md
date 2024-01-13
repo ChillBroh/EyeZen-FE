@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# EyeZen-Mobile Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to EyeZen, a cutting-edge Web app designed to enhance your visual experience! Our MERN application combines cutting-edge technology with expert knowledge in eye care. EyeZen is your go-to solution for all things related to eye health. This repository contains the source code for EyeZen-web frontend. Follow these simple steps to clone the project, install dependencies, and run the app.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Ayurvedic Eye Care Section**
+- **Doctor Contact Section**
+- **Doctor Map**
+- **Eye test games for kids**
+- **Infant eye care section**
+- **Quiz to test your vision problems**
+- **Eye check-up tests for adults**
+- **Admin panel**
+- **Comprehensive Information:**
+- **User-Friendly Interface:**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Contributors
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+EyeZen is the result of collaborative efforts from a team of passionate individuals dedicated to enhancing eye care awareness. Meet our contributors:
 
-### `npm test`
+1. **Isuru Madusanka** - Creator of the Ayurvedic Eye Care Section and the Doctor contact section
+2. **Ishara Madusanka** - Creator of user management, games for kids, and Eye check-up tests for adults (group leader)
+3. **Umesha Dilshani** - Creator of infant eye care section
+4. **Yasiru Deshan** - Creator of the far-sighted test and the near-sighted test
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
